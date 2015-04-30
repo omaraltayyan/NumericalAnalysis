@@ -5,7 +5,7 @@ using System.Text;
 
 namespace numerical_analysis.Method_classes
 {
-    class General_Method
+    class GeneralMethodFunction
     {
 
     }
