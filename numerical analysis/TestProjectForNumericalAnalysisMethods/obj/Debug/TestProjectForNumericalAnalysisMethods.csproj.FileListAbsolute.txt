@@ -1,0 +1,9 @@
+C:\Users\omar\Documents\GitHub\NumericalAnalysis\numerical analysis\TestProjectForNumericalAnalysisMethods\bin\Debug\TestProjectForNumericalAnalysisMethods.dll
+C:\Users\omar\Documents\GitHub\NumericalAnalysis\numerical analysis\TestProjectForNumericalAnalysisMethods\bin\Debug\TestProjectForNumericalAnalysisMethods.pdb
+C:\Users\omar\Documents\GitHub\NumericalAnalysis\numerical analysis\TestProjectForNumericalAnalysisMethods\bin\Debug\numerical analysis.exe
+C:\Users\omar\Documents\GitHub\NumericalAnalysis\numerical analysis\TestProjectForNumericalAnalysisMethods\bin\Debug\numerical analysis.pdb
+C:\Users\omar\Documents\GitHub\NumericalAnalysis\numerical analysis\TestProjectForNumericalAnalysisMethods\bin\Debug\numerical analysis_Accessor.exe
+C:\Users\omar\Documents\GitHub\NumericalAnalysis\numerical analysis\TestProjectForNumericalAnalysisMethods\bin\Debug\numerical analysis_Accessor.pdb
+C:\Users\omar\Documents\GitHub\NumericalAnalysis\numerical analysis\TestProjectForNumericalAnalysisMethods\obj\Debug\TestProjectForNumericalAnalysisMethods.csprojResolveAssemblyReference.cache
+C:\Users\omar\Documents\GitHub\NumericalAnalysis\numerical analysis\TestProjectForNumericalAnalysisMethods\obj\Debug\TestProjectForNumericalAnalysisMethods.dll
+C:\Users\omar\Documents\GitHub\NumericalAnalysis\numerical analysis\TestProjectForNumericalAnalysisMethods\obj\Debug\TestProjectForNumericalAnalysisMethods.pdb

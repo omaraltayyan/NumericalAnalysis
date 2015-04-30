@@ -48,13 +48,15 @@ namespace numerical_analysis.Method_classes
             }
 
             double determinant = 1;
+            int columnsCounter = 0;
             for (int rowsCounter = 0; rowsCounter < matrix.Length; rowsCounter++)
             {
+                if (columnsCounter >= matrix[0].Length) break;
                 int firstNonZeroValueRowIndex = -1;
                 int firstNonZeroValueColumnIndex = -1;
                 bool isValueFound = false;
                 // iterate the columns of the matrix to find the first non-zero column
-                for (int i = 0; i < matrix[0].Length; i++) // col
+                for (int i = columnsCounter; i < matrix[0].Length; i++) // col
                 {
                     for (int j = rowsCounter; j < matrix.Length; j++)
                     {
@@ -70,19 +72,19 @@ namespace numerical_analysis.Method_classes
                 }
                 // if it's not found this means that the values in the matrix are all zeros
                 if (!isValueFound) return 0;
-
+                columnsCounter = firstNonZeroValueColumnIndex + 1;
                 // short hands for the long names
                 int rowIdx = firstNonZeroValueRowIndex;
                 int colIdx = firstNonZeroValueColumnIndex;
 
-                if (rowIdx != 0) // if this isn't the first row in the matrix
+                if (rowIdx != rowsCounter) // if this isn't the top current row in the matrix
                 {
                     // multiply the determinant by -1 (flip the sign)
                     determinant = -determinant;
 
                     // swap this found row with the first row
-                    double[] temp = matrix[0];
-                    matrix[0] = matrix[rowIdx];
+                    double[] temp = matrix[rowsCounter];
+                    matrix[rowsCounter] = matrix[rowIdx];
                     matrix[rowIdx] = temp;
                 }
 
@@ -91,21 +93,21 @@ namespace numerical_analysis.Method_classes
                 if (matrix[rowIdx][colIdx] != 1)
                 {
                     // divid the determinate by the found value (we're taking the common value out from the row)
-                    determinant /= matrix[rowIdx][colIdx];
+                    determinant *= matrix[rowIdx][colIdx];
 
                     // divid the row in the matrix by this number
-                    for (int i = 0; i < matrix[rowIdx].Length; i++)
+                    for (int i = columnsCounter; i < matrix[rowIdx].Length; i++)
                     {
                         matrix[rowIdx][i] /= matrix[rowIdx][colIdx];
                     }
                 }
-                for (int i = rowIdx + 1; i < matrix[rowIdx].Length; i++)
+                for (int i = rowIdx + 1; i < matrix.Length; i++)
                 {
                     if (matrix[i][colIdx] != 0)
                     {
-                        for (int j = colIdx + 1; j < matrix.Length; j++)
+                        for (int j = colIdx + 1; j < matrix[0].Length; j++)
                         {
-                            matrix[i][j] = (matrix[i][colIdx] * matrix[rowIdx][j]) - matrix[i][j];
+                            matrix[i][j] = (-matrix[i][colIdx] * matrix[rowIdx][j]) + matrix[i][j];
                         }
                         matrix[i][colIdx] = 0;
                     }
