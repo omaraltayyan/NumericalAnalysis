@@ -59,7 +59,6 @@
             this.dataGridViewSamplesInput.Size = new System.Drawing.Size(362, 389);
             this.dataGridViewSamplesInput.TabIndex = 0;
             this.dataGridViewSamplesInput.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewSamplesInput_CellValueChanged);
-            this.dataGridViewSamplesInput.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dataGridViewSamplesInput_UserAddedRow);
             // 
             // X
             // 

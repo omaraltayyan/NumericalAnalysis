@@ -74,11 +74,6 @@ namespace numerical_analysis
             }
         }
 
-        private void dataGridViewSamplesInput_UserAddedRow(object sender, DataGridViewRowEventArgs e)
-        {
-           
-
-        }
 
     }
 }
