@@ -55,8 +55,11 @@
             this.dataGridViewSamplesInput.Location = new System.Drawing.Point(15, 29);
             this.dataGridViewSamplesInput.Name = "dataGridViewSamplesInput";
             this.dataGridViewSamplesInput.RowTemplate.Height = 26;
+            this.dataGridViewSamplesInput.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dataGridViewSamplesInput.Size = new System.Drawing.Size(362, 389);
             this.dataGridViewSamplesInput.TabIndex = 0;
+            this.dataGridViewSamplesInput.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewSamplesInput_CellValueChanged);
+            this.dataGridViewSamplesInput.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dataGridViewSamplesInput_UserAddedRow);
             // 
             // X
             // 
@@ -145,8 +148,9 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridViewSamplesInput);
+            this.KeyPreview = true;
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Numerical Analysis";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSamplesInput)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
