@@ -12,6 +12,7 @@ here's how to setup your work:
 a branch is like a special personal space for you to edit the code and UI as much as you like without effecting the original project.
 
 use this command to create a branch:
+
       git branch -d <branch name>
 
 example: 
@@ -28,6 +29,7 @@ here's how to do a commit:
       git push -u origin <your branch name>
 
 5 - you can stay up to date with the changes to the project by using pull
+
     git pull
     
 
