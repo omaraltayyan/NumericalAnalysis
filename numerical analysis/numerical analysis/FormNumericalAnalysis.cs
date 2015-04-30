@@ -9,9 +9,9 @@ using System.Windows.Forms;
 
 namespace numerical_analysis
 {
-    public partial class Form1 : Form
+    public partial class FormNumericalAnalysis : Form
     {
-        public Form1()
+        public FormNumericalAnalysis()
         {
             InitializeComponent();
         }

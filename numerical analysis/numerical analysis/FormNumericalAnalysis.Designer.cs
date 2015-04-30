@@ -1,6 +1,6 @@
 ﻿namespace numerical_analysis
 {
-    partial class Form1
+    partial class FormNumericalAnalysis
     {
         /// <summary>
         /// Required designer variable.
