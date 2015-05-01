@@ -72,13 +72,13 @@ namespace TestProjectForNumericalAnalysisMethods
         public void matrixDeterminantByGaussTest()
         {
 
-            double[,] param = new double[2,3]
+            double[,] param = new double[,]
             {
-            { 1, 0, 1 },
-            { 2, 4, 6 }
+            { 1,3,4,6 },
+            { 1,9,16,36}
             };
             GeneralMethodFunction_Accessor target = new GeneralMethodFunction_Accessor(param);
-
+            string s = target.FunctionString();
 
             // test case 1
             double[,] matrix = new double[3,3]{

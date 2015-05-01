@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using System.Numerics;
 namespace numerical_analysis.Method_classes
 {
     class GeneralMethodFunction : AnalysisMethod
     {
         private double WendermondDeterminant = 1;
 
+        private double[] interpolationFunctionConstants;
         /// <summary>
         /// pass the 2-row n-column array of sample values to interpolate
         /// </summary>
@@ -25,11 +26,11 @@ namespace numerical_analysis.Method_classes
 
 
             // calculate Wendermond's Determinant
-            for (int j = 0; j < samplesColumnLength - 1; j++)
+            for (int i = 0; i < samplesColumnLength - 1; i++)
             {
-                for (int k = j + 1; k < samplesColumnLength; k++)
+                for (int j = i + 1; j < samplesColumnLength; j++)
                 {
-                    WendermondDeterminant *= samplesToInterpolate[0,k] - samplesToInterpolate[0,j];
+                    WendermondDeterminant *= samplesToInterpolate[0, j] - samplesToInterpolate[0, i];
                 }
             }
 
@@ -40,6 +41,44 @@ namespace numerical_analysis.Method_classes
             // continue extracting the interpolation function
             if (isSolvable)
             {
+
+                // this array has some weird dimentions, you need to check the rules for the general methods
+                // to know why this is the case.
+                int gaussMatrixRows = samplesColumnLength;
+                int gaussMatrixColumns = samplesColumnLength + 1;
+                double[,] gaussMatrix = new double[gaussMatrixRows, gaussMatrixColumns];
+
+
+                // fill the gauss linear equation solving matrix
+                for (int i = 0; i < gaussMatrixRows; i++)
+                {
+                    for (int j = 0; j < gaussMatrixColumns; j++)
+                    {
+                        gaussMatrix[i, j] = Math.Pow(samplesToInterpolate[0, i], j);
+                    }
+                }
+
+                interpolationFunctionConstants = new double[gaussMatrixColumns];
+
+
+                for (int j = 0; j < gaussMatrixColumns; j++)
+                {
+                    // replace each column with the y's from the samples  
+                    for (int i = 0; i < gaussMatrixRows; i++)
+                    {
+                        gaussMatrix[i, j] = samplesToInterpolate[1, i];
+                    }
+
+                    // calculate the determinant and put it in the coefficients (or constants) array
+                    interpolationFunctionConstants[j] = matrixDeterminantByGauss(gaussMatrix) / WendermondDeterminant;
+
+                    // restore the matrix to it's state
+                    for (int i = 0; i < gaussMatrixRows; i++)
+                    {
+                        gaussMatrix[i, j] = Math.Pow(samplesToInterpolate[0, i], j);
+                    }
+                }
+
             }
         }
 
@@ -58,7 +97,26 @@ namespace numerical_analysis.Method_classes
 
         public override string FunctionString()
         {
-#warning TODO: Implement this
+            if (isSolvable)
+            {
+                StringBuilder builder = new StringBuilder("Pn(x) = ");
+                for (int i = 0; i < interpolationFunctionConstants.Length; i++)
+                {
+                    if (interpolationFunctionConstants[i] != 0)
+                    {
+                        if(i == 0) builder.Append(Math.Round(interpolationFunctionConstants[i],3));
+                        else
+                        {
+                            builder.Append(Math.Abs(Math.Round(interpolationFunctionConstants[i], 3)));
+                            builder.Append("x");
+                        }
+                        if (i > 1) builder.Append("^" + i);
+                        if(i != interpolationFunctionConstants.Length - 1 && interpolationFunctionConstants[i+1] != 0)
+                            builder.Append(interpolationFunctionConstants[i] > 0 ? " + " : " - ");
+                    }
+                }
+                return builder.ToString();
+            }
             return ""; // 
         }
 
@@ -70,7 +128,7 @@ namespace numerical_analysis.Method_classes
             int matrixColumnLength = matrix.GetUpperBound(1) + 1;
 
 
-            if (matrixRowsLength== 0 || matrixColumnLength == 0)
+            if (matrixRowsLength == 0 || matrixColumnLength == 0)
             {
                 return 0;
             }
@@ -88,7 +146,7 @@ namespace numerical_analysis.Method_classes
                 {
                     for (int j = rowsCounter; j < matrixRowsLength; j++)
                     {
-                        if (matrix[j,i] != 0)
+                        if (matrix[j, i] != 0)
                         {
                             isValueFound = true;
                             firstNonZeroValueRowIndex = j;
@@ -112,36 +170,36 @@ namespace numerical_analysis.Method_classes
 
                     // swap this found row with the first row
                     for (int i = 0; i < matrixColumnLength; i++)
-			{
-                        
-                    double temp = matrix[rowsCounter,i];
-                    matrix[rowsCounter,i] = matrix[rowIdx,i];
-                    matrix[rowIdx,i] = temp;
-			}
+                    {
+
+                        double temp = matrix[rowsCounter, i];
+                        matrix[rowsCounter, i] = matrix[rowIdx, i];
+                        matrix[rowIdx, i] = temp;
+                    }
                 }
 
 
 
-                if (matrix[rowIdx,colIdx] != 1)
+                if (matrix[rowIdx, colIdx] != 1)
                 {
                     // divid the determinate by the found value (we're taking the common value out from the row)
-                    determinant *= matrix[rowIdx,colIdx];
+                    determinant *= matrix[rowIdx, colIdx];
 
                     // divid the row in the matrix by this number
                     for (int i = columnsCounter; i < matrixColumnLength; i++)
                     {
-                        matrix[rowIdx,i] /= matrix[rowIdx,colIdx];
+                        matrix[rowIdx, i] /= matrix[rowIdx, colIdx];
                     }
                 }
                 for (int i = rowIdx + 1; i < matrixRowsLength; i++)
                 {
-                    if (matrix[i,colIdx] != 0)
+                    if (matrix[i, colIdx] != 0)
                     {
                         for (int j = colIdx + 1; j < matrixColumnLength; j++)
                         {
                             matrix[i, j] = (-matrix[i, colIdx] * matrix[rowIdx, j]) + matrix[i, j];
                         }
-                        matrix[i,colIdx] = 0;
+                        matrix[i, colIdx] = 0;
                     }
                 }
             }
