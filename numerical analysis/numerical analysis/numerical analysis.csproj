@@ -52,6 +52,7 @@
     <Compile Include="FormNumericalAnalysis.Designer.cs">
       <DependentUpon>FormNumericalAnalysis.cs</DependentUpon>
     </Compile>
+    <Compile Include="Method classes\AnalysisMethod.cs" />
     <Compile Include="Method classes\GeneralMethodFunction.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

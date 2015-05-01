@@ -5,10 +5,8 @@ using System.Text;
 
 namespace numerical_analysis.Method_classes
 {
-    class GeneralMethodFunction
+    class GeneralMethodFunction : AnalysisMethod
     {
-        public bool isSolvable { get; set; }
-
         private double WendermondDeterminant = 1;
 
         /// <summary>
@@ -32,6 +30,24 @@ namespace numerical_analysis.Method_classes
 
         }
 
+        public override double YForX(double x)
+        {
+#warning TODO: Implement this
+            return 0.0;
+        }
+
+        public override string errorStringForX(double x)
+        {
+#warning TODO: Implement this
+
+            return "";
+        }
+
+        public override string FunctionString()
+        {
+#warning TODO: Implement this
+            return ""; // 
+        }
 
         // this method solves
         private double matrixDeterminantByGauss(double[][] matrix)
