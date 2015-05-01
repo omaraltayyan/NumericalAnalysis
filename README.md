@@ -22,7 +22,8 @@ example:
 3 - every now and then, do a commit, a commit applies your changes to your repositry and makes your changes ready to be uploaded to the cloud
 
 here's how to do a commit:
-      git commit -m"a description of changes"
+
+      git commit -m "a description of changes"
 
 4 - you can apply you changes to the online cloud by using push command:
 
