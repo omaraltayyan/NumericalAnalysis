@@ -72,17 +72,20 @@ namespace TestProjectForNumericalAnalysisMethods
         public void matrixDeterminantByGaussTest()
         {
 
-            double[][] param = new double[2][];
-            param[0] = new double[] { 1, 0, 1 };
-            param[1] = new double[] { 2, 4, 6 };
+            double[,] param = new double[2,3]
+            {
+            { 1, 0, 1 },
+            { 2, 4, 6 }
+            };
             GeneralMethodFunction_Accessor target = new GeneralMethodFunction_Accessor(param);
 
 
             // test case 1
-            double[][] matrix = new double[3][];
-            matrix[0] = new double[] { 1, 2, 3 };
-            matrix[1] = new double[] { 1, 0, 1 };
-            matrix[2] = new double[] { 2, 4, 6 };
+            double[,] matrix = new double[3,3]{
+            { 1, 2, 3 },
+            { 1, 0, 1 },
+            { 2, 4, 6 }
+            };
             double expected = 0;
             double actual;
             actual = target.matrixDeterminantByGauss(matrix);
@@ -91,10 +94,11 @@ namespace TestProjectForNumericalAnalysisMethods
 
 
             // test case 2
-            matrix = new double[3][];
-            matrix[0] = new double[] { 1, 0, 2 };
-            matrix[1] = new double[] { -3, 4, 6 };
-            matrix[2] = new double[] { -1, -2, 3 };
+            matrix = new double[3, 3]{
+            { 1, 0, 2 },
+            { -3, 4, 6 },
+            { -1, -2, 3 }
+            };
             expected = 44;
             actual = target.matrixDeterminantByGauss(matrix);
             Assert.AreEqual(expected, actual);
@@ -102,10 +106,11 @@ namespace TestProjectForNumericalAnalysisMethods
 
 
             // test case 2
-            matrix = new double[3][];
-            matrix[0] = new double[] { 1, 0, 2 };
-            matrix[1] = new double[] { -3, 4, 6 };
-            matrix[2] = new double[] { -1, -2, 3 };
+            matrix = new double[3,3]{
+            { 1, 0, 2 },
+            { -3, 4, 6 },
+            { -1, -2, 3 }
+            };
             expected = 44;
             actual = target.matrixDeterminantByGauss(matrix);
             Assert.AreEqual(expected, actual);
@@ -113,10 +118,11 @@ namespace TestProjectForNumericalAnalysisMethods
 
 
             // test case 3
-            matrix = new double[3][];
-            matrix[0] = new double[] { 5, 0, -1, 3, 8, 2 };
-            matrix[1] = new double[] { 2, 1, 4, 8, 9, 0 };
-            matrix[2] = new double[] { 7, 2, 4, 8, 2, 1 };
+            matrix = new double[3,6]{
+            { 5, 0, -1, 3, 8, 2 },
+            { 2, 1, 4, 8, 9, 0 },
+            { 7, 2, 4, 8, 2, 1 }
+            };
 
             expected = -17;
             actual = target.matrixDeterminantByGauss(matrix);
@@ -126,12 +132,13 @@ namespace TestProjectForNumericalAnalysisMethods
 
 
             // test case 4
-            matrix = new double[5][];
-            matrix[0] = new double[] { 3, 2, 1 };
-            matrix[1] = new double[] { 0, 4, 4 };
-            matrix[2] = new double[] { -2, 4, -1 };
-            matrix[3] = new double[] { 3, 4, 1 };
-            matrix[4] = new double[] { 5, 3, -2 };
+            matrix = new double[5, 3]{
+            { 3, 2, 1 },
+            { 0, 4, 4 },
+            { -2, 4, -1 },
+            { 3, 4, 1 },
+            { 5, 3, -2 }
+            };
             expected = -68;
             actual = target.matrixDeterminantByGauss(matrix);
             Assert.AreEqual(expected, actual);

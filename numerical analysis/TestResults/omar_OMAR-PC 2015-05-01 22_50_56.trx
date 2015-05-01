@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<TestRun id="1d94712a-bd21-49e7-9aec-55c6ad3e1ad7" name="omar@OMAR-PC 2015-04-30 21:53:58" runUser="OMAR-PC\omar" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+<TestRun id="e7406940-e178-4b1a-9ed4-a1f901902729" name="omar@OMAR-PC 2015-05-01 22:50:56" runUser="OMAR-PC\omar" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
   <TestSettings name="Local" id="5d80a348-d93c-4cd2-ba5e-990bf5ff4e83">
     <Description>These are default test settings for a local test run.</Description>
-    <Deployment enabled="false" runDeploymentRoot="omar_OMAR-PC 2015-04-30 21_53_58">
+    <Deployment enabled="false" runDeploymentRoot="omar_OMAR-PC 2015-05-01 22_50_56">
       <DeploymentItem filename="C:\Users\omar\Documents\GitHub\NumericalAnalysis\numerical analysis\numerical analysis\bin\Debug\numerical analysis.exe" />
     </Deployment>
     <Execution>
@@ -11,11 +11,11 @@
       </AgentRule>
     </Execution>
   </TestSettings>
-  <Times creation="2015-04-30T21:53:58.4689190+03:00" queuing="2015-04-30T21:53:58.7221467+03:00" start="2015-04-30T21:53:58.7846669+03:00" finish="2015-04-30T21:53:59.5346748+03:00" />
-  <ResultSummary outcome="Inconclusive">
-    <Counters total="1" executed="1" error="0" failed="0" timeout="0" aborted="0" inconclusive="1" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" passed="0" completed="0" inProgress="0" pending="0" />
+  <Times creation="2015-05-01T22:50:56.8656365+03:00" queuing="2015-05-01T22:50:57.6826632+03:00" start="2015-05-01T22:50:57.7330809+03:00" finish="2015-05-01T22:50:57.9830827+03:00" />
+  <ResultSummary outcome="Failed">
+    <Counters total="1" executed="1" error="0" failed="1" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" passed="0" completed="0" inProgress="0" pending="0" />
     <RunInfos>
-      <RunInfo computerName="OMAR-PC" outcome="Warning" timestamp="2015-04-30T21:53:58.4845433+03:00">
+      <RunInfo computerName="OMAR-PC" outcome="Warning" timestamp="2015-05-01T22:50:57.4391279+03:00">
         <Text>Deployment is currently disabled. The deployment item 'numerical analysis.exe' on test 'TestProjectForNumericalAnalysisMethods.GeneralMethodFunctionTest.matrixDeterminantByGaussTest' was not deployed.</Text>
       </RunInfo>
     </RunInfos>
@@ -25,7 +25,7 @@
       <DeploymentItems>
         <DeploymentItem filename="numerical analysis.exe" />
       </DeploymentItems>
-      <Execution id="138d8628-ea40-4bc6-9138-553e68947d13" />
+      <Execution id="36989799-7b1b-4d6d-bbe1-c14ffe1f54a7" />
       <TestMethod codeBase="C:/Users/omar/Documents/GitHub/NumericalAnalysis/numerical analysis/TestProjectForNumericalAnalysisMethods/bin/Debug/TestProjectForNumericalAnalysisMethods.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProjectForNumericalAnalysisMethods.GeneralMethodFunctionTest, TestProjectForNumericalAnalysisMethods, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="matrixDeterminantByGaussTest" />
     </UnitTest>
   </TestDefinitions>
@@ -34,14 +34,16 @@
     <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
   </TestLists>
   <TestEntries>
-    <TestEntry testId="073888ed-0e57-e522-0e96-f60fd887f5ad" executionId="138d8628-ea40-4bc6-9138-553e68947d13" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="073888ed-0e57-e522-0e96-f60fd887f5ad" executionId="36989799-7b1b-4d6d-bbe1-c14ffe1f54a7" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
   </TestEntries>
   <Results>
-    <UnitTestResult executionId="138d8628-ea40-4bc6-9138-553e68947d13" testId="073888ed-0e57-e522-0e96-f60fd887f5ad" testName="matrixDeterminantByGaussTest" computerName="OMAR-PC" duration="00:00:00.0687207" startTime="2015-04-30T21:53:58.8471679+03:00" endTime="2015-04-30T21:53:59.4408957+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Inconclusive" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="138d8628-ea40-4bc6-9138-553e68947d13">
+    <UnitTestResult executionId="36989799-7b1b-4d6d-bbe1-c14ffe1f54a7" testId="073888ed-0e57-e522-0e96-f60fd887f5ad" testName="matrixDeterminantByGaussTest" computerName="OMAR-PC" duration="00:00:00.0438955" startTime="2015-05-01T22:50:57.7330809+03:00" endTime="2015-05-01T22:50:57.9518341+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="36989799-7b1b-4d6d-bbe1-c14ffe1f54a7">
       <Output>
         <ErrorInfo>
-          <Message>Assert.Inconclusive failed. Verify the correctness of this test method.</Message>
-          <StackTrace>   at TestProjectForNumericalAnalysisMethods.GeneralMethodFunctionTest.matrixDeterminantByGaussTest() in C:\Users\omar\Documents\GitHub\NumericalAnalysis\numerical analysis\TestProjectForNumericalAnalysisMethods\GeneralMethodFunctionTest.cs:line 88
+          <Message>Test method TestProjectForNumericalAnalysisMethods.GeneralMethodFunctionTest.matrixDeterminantByGaussTest threw exception: 
+System.Exception: samples rows must be exactly 2</Message>
+          <StackTrace>   at numerical_analysis.Method_classes.GeneralMethodFunction_Accessor..ctor(Double[,] samplesToInterpolate)
+   at TestProjectForNumericalAnalysisMethods.GeneralMethodFunctionTest.matrixDeterminantByGaussTest() in C:\Users\omar\Documents\GitHub\NumericalAnalysis\numerical analysis\TestProjectForNumericalAnalysisMethods\GeneralMethodFunctionTest.cs:line 80
 </StackTrace>
         </ErrorInfo>
       </Output>
