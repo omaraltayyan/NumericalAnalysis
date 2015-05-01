@@ -7,15 +7,9 @@ namespace numerical_analysis.Method_classes
 {
     class GeneralMethodFunction
     {
-        private bool _isSolvable;
+        public bool isSolvable { get; set; }
 
-        public bool isSolvable
-        {
-            get { return _isSolvable; }
-            set { _isSolvable = value; }
-        }
-
-        private double wendermondDeterminant = 1;
+        private double WendermondDeterminant = 1;
 
         /// <summary>
         /// pass the 2-row n-column array of sample values to interpolate
@@ -29,12 +23,12 @@ namespace numerical_analysis.Method_classes
             {
                 for (int k = j + 1; k < samplesToInterpolate[0].Length; k++)
                 {
-                    wendermondDeterminant *= samplesToInterpolate[0][k] - samplesToInterpolate[0][j];
+                    WendermondDeterminant *= samplesToInterpolate[0][k] - samplesToInterpolate[0][j];
                 }
             }
 
             // it is solvable if the determinant is not 0
-            isSolvable = wendermondDeterminant != 0;
+            isSolvable = WendermondDeterminant != 0;
 
         }
 
