@@ -27,6 +27,7 @@ namespace numerical_analysis
                 e.Handled = true;
             }
         }
+<<<<<<< HEAD
 
         private void dataGridViewSamplesInput_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
@@ -36,6 +37,56 @@ namespace numerical_analysis
                 e.Cancel = true;
             }
             string newValue = (string)e.FormattedValue;
+=======
+
+        private void dataGridViewSamplesInput_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        {
+            // Don't try to validate the 'new row' until finished 
+            // editing since there
+            // is not any point in validating its initial value.
+
+            if (dataGridViewSamplesInput.Rows[e.RowIndex].IsNewRow) { return; }
+
+            // go through all columns, if one of them has a value then so must be this one
+            for (int i = 0; i < dataGridViewSamplesInput.ColumnCount; i++)
+            {
+                if (i != e.ColumnIndex)
+                {
+                    if (e.FormattedValue.ToString() == "" && (dataGridViewSamplesInput[i, e.RowIndex].FormattedValue.ToString() != null &&
+                        dataGridViewSamplesInput[i, e.RowIndex].FormattedValue.ToString() != ""))
+                    {
+                        dataGridViewSamplesInput[e.ColumnIndex, e.RowIndex].ErrorText = "Required";
+                        e.Cancel = true;
+                        return;
+                    }
+                }
+            }
+
+            // copy the formatted value
+            string newValue = new string(e.FormattedValue.ToString().ToCharArray());
+
+            // clear all .'s other than the first
+            bool isfirstdot = true;
+            for (int i = 0; i < newValue.Length; i++)
+            {
+                if (newValue[i] == '.')
+                {
+                    if (isfirstdot)
+                    {
+                        isfirstdot = false;
+                    }
+                    else
+                    {
+                        newValue = newValue.Remove(i, 1);
+                        dataGridViewSamplesInput[e.ColumnIndex, e.RowIndex].Value = newValue;
+                        i--;
+                    }
+                }
+            }
+
+
+
+>>>>>>> corrected some UI behaviour
 
             // try to see if this is still a double
             double value = 0;
@@ -53,12 +104,27 @@ namespace numerical_analysis
         }
 
         private void dataGridViewSamplesInput_RowValidating(object sender, DataGridViewCellCancelEventArgs e)
+<<<<<<< HEAD
         {
             DataGridView currentView = (DataGridView)sender;
 
             DataGridViewRow currentRow = currentView.Rows[e.RowIndex];
             if (currentRow.IsNewRow) return;
 
+=======
+        {  
+            // Don't try to validate the 'new row' until finished 
+            // editing since there
+            // is not any point in validating its initial value.
+
+            if (dataGridViewSamplesInput.Rows[e.RowIndex].IsNewRow) { return; }
+
+            DataGridView currentView = (DataGridView)sender;
+
+            DataGridViewRow currentRow = currentView.Rows[e.RowIndex];
+            if (currentRow.IsNewRow) return;
+
+>>>>>>> corrected some UI behaviour
             bool AllCellsFromPrevRowHasVal = true;
             for (int i = 0; i < currentRow.Cells.Count; i++)
             {
