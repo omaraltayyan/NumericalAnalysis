@@ -7,10 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
+
+
 namespace numerical_analysis
 {
     public partial class FormNumericalAnalysis : Form
     {
+        public const int samplesXIndex = 0;
+        public const int samplesYIndex = 1;
         public FormNumericalAnalysis()
         {
             InitializeComponent();

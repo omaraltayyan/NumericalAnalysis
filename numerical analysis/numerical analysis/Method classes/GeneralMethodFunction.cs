@@ -30,7 +30,7 @@ namespace numerical_analysis.Method_classes
             {
                 for (int j = i + 1; j < samplesColumnLength; j++)
                 {
-                    WendermondDeterminant *= samplesToInterpolate[0, j] - samplesToInterpolate[0, i];
+                    WendermondDeterminant *= samplesToInterpolate[samplesXIndex, j] - samplesToInterpolate[samplesXIndex, i];
                 }
             }
 
@@ -54,7 +54,7 @@ namespace numerical_analysis.Method_classes
                 {
                     for (int j = 0; j < gaussMatrixColumns; j++)
                     {
-                        gaussMatrix[i, j] = Math.Pow(samplesToInterpolate[0, i], j);
+                        gaussMatrix[i, j] = Math.Pow(samplesToInterpolate[samplesXIndex, i], j);
                     }
                 }
 
@@ -66,16 +66,16 @@ namespace numerical_analysis.Method_classes
                     // replace each column with the y's from the samples  
                     for (int i = 0; i < gaussMatrixRows; i++)
                     {
-                        gaussMatrix[i, j] = samplesToInterpolate[1, i];
+                        gaussMatrix[i, j] = samplesToInterpolate[samplesYIndex, i];
                     }
 
                     // calculate the determinant and put it in the coefficients (or constants) array
-                    interpolationConstants[j] = matrixDeterminantByGauss(gaussMatrix) / WendermondDeterminant;
+                    interpolationConstants[j] =Math.Round(matrixDeterminantByGauss(gaussMatrix) / WendermondDeterminant,14);
 
                     // restore the matrix to it's state
                     for (int i = 0; i < gaussMatrixRows; i++)
                     {
-                        gaussMatrix[i, j] = Math.Pow(samplesToInterpolate[0, i], j);
+                        gaussMatrix[i, j] = Math.Pow(samplesToInterpolate[samplesXIndex, i], j);
                     }
                 }
 
@@ -89,7 +89,7 @@ namespace numerical_analysis.Method_classes
                 double answer = 0;
                 for (int i = 0; i < interpolationConstants.Length; i++)
                 {
-                    answer += interpolationConstants[i] * Math.Pow(x,i);
+                    answer += interpolationConstants[i] * Math.Pow(x, i);
                 }
                 return answer;
             }
@@ -107,6 +107,7 @@ namespace numerical_analysis.Method_classes
         {
             if (isSolvable)
             {
+                bool didAddACoefficient = false;
                 StringBuilder builder = new StringBuilder("Pn(x) = ");
                 for (int i = 0; i < interpolationConstants.Length; i++)
                 {
@@ -115,17 +116,20 @@ namespace numerical_analysis.Method_classes
                         if(i == 0) builder.Append(Math.Round(interpolationConstants[i],3));
                         else
                         {
+                            if (didAddACoefficient)
+                            {
+                                builder.Append(interpolationConstants[i] > 0 ? " + " : " - ");
+                            }
                             builder.Append(Math.Abs(Math.Round(interpolationConstants[i], 3)));
                             builder.Append("x");
+                            if (i > 1) builder.Append("^" + i);
                         }
-                        if (i > 1) builder.Append("^" + i);
-                        if(i != interpolationConstants.Length - 1 && interpolationConstants[i+1] != 0)
-                            builder.Append(interpolationConstants[i + 1] > 0 ? " + " : " - ");
+                        didAddACoefficient = true;
                     }
                 }
                 return builder.ToString();
             }
-            return ""; // 
+            return ""; // b?.
         }
 
         // this method solves
@@ -136,7 +140,7 @@ namespace numerical_analysis.Method_classes
             int matrixColumnLength = matrix.GetUpperBound(1) + 1;
 
             // we should work on a copy of the matrix so that we don't alter the original one
-            double[,] matrixCopy = new double[matrixRowsLength,matrixColumnLength];
+            double[,] matrixCopy = new double[matrixRowsLength, matrixColumnLength];
             for (int i = 0; i < matrixRowsLength; i++)
             {
                 for (int j = 0; j < matrixColumnLength; j++)
@@ -146,7 +150,7 @@ namespace numerical_analysis.Method_classes
             }
 
 
-            
+
             if (matrixRowsLength == 0 || matrixColumnLength == 0)
             {
                 return 0;

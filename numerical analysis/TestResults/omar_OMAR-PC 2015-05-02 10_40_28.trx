@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<TestRun id="899d878e-787f-4e77-8ab1-1657d8400ffc" name="omar@OMAR-PC 2015-05-01 23:50:04" runUser="OMAR-PC\omar" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+<TestRun id="53684456-1a6b-4185-a187-bfcbb012a93d" name="omar@OMAR-PC 2015-05-02 10:40:28" runUser="OMAR-PC\omar" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
   <TestSettings name="Local" id="5d80a348-d93c-4cd2-ba5e-990bf5ff4e83">
     <Description>These are default test settings for a local test run.</Description>
-    <Deployment enabled="false" runDeploymentRoot="omar_OMAR-PC 2015-05-01 23_50_04">
+    <Deployment enabled="false" runDeploymentRoot="omar_OMAR-PC 2015-05-02 10_40_28">
       <DeploymentItem filename="C:\Users\omar\Documents\GitHub\NumericalAnalysis\numerical analysis\numerical analysis\bin\Debug\numerical analysis.exe" />
     </Deployment>
     <Execution>
@@ -11,15 +11,12 @@
       </AgentRule>
     </Execution>
   </TestSettings>
-  <Times creation="2015-05-01T23:50:04.8937114+03:00" queuing="2015-05-01T23:50:05.4460892+03:00" start="2015-05-01T23:50:05.5011281+03:00" finish="2015-05-01T23:55:33.4365795+03:00" />
-  <ResultSummary outcome="Error">
-    <Counters total="1" executed="1" error="0" failed="0" timeout="0" aborted="1" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" passed="0" completed="0" inProgress="0" pending="0" />
+  <Times creation="2015-05-02T10:40:28.8611469+03:00" queuing="2015-05-02T10:40:29.1333914+03:00" start="2015-05-02T10:40:29.1959013+03:00" finish="2015-05-02T10:40:30.0553046+03:00" />
+  <ResultSummary outcome="Warning">
+    <Counters total="1" executed="1" passed="1" error="0" failed="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
     <RunInfos>
-      <RunInfo computerName="OMAR-PC" outcome="Warning" timestamp="2015-05-01T23:50:04.9337264+03:00">
+      <RunInfo computerName="OMAR-PC" outcome="Warning" timestamp="2015-05-02T10:40:28.8923981+03:00">
         <Text>Deployment is currently disabled. The deployment item 'numerical analysis.exe' on test 'TestProjectForNumericalAnalysisMethods.GeneralMethodFunctionTest.matrixDeterminantByGaussTest' was not deployed.</Text>
-      </RunInfo>
-      <RunInfo computerName="OMAR-PC" outcome="Error" timestamp="2015-05-01T23:55:33.4345511+03:00">
-        <Text>Test host process exited unexpectedly.</Text>
       </RunInfo>
     </RunInfos>
   </ResultSummary>
@@ -28,7 +25,7 @@
       <DeploymentItems>
         <DeploymentItem filename="numerical analysis.exe" />
       </DeploymentItems>
-      <Execution id="0ed66d7a-ccaf-49f1-975c-a1138561f12d" />
+      <Execution id="90757d2a-a0be-4d29-92c5-1a691f7a6075" />
       <TestMethod codeBase="C:/Users/omar/Documents/GitHub/NumericalAnalysis/numerical analysis/TestProjectForNumericalAnalysisMethods/bin/Debug/TestProjectForNumericalAnalysisMethods.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProjectForNumericalAnalysisMethods.GeneralMethodFunctionTest, TestProjectForNumericalAnalysisMethods, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="matrixDeterminantByGaussTest" />
     </UnitTest>
   </TestDefinitions>
@@ -37,10 +34,10 @@
     <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
   </TestLists>
   <TestEntries>
-    <TestEntry testId="073888ed-0e57-e522-0e96-f60fd887f5ad" executionId="0ed66d7a-ccaf-49f1-975c-a1138561f12d" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="073888ed-0e57-e522-0e96-f60fd887f5ad" executionId="90757d2a-a0be-4d29-92c5-1a691f7a6075" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
   </TestEntries>
   <Results>
-    <UnitTestResult executionId="0ed66d7a-ccaf-49f1-975c-a1138561f12d" testId="073888ed-0e57-e522-0e96-f60fd887f5ad" testName="matrixDeterminantByGaussTest" computerName="OMAR-PC" duration="00:05:27.8863877" startTime="2015-05-01T23:50:05.5491633+03:00" endTime="2015-05-01T23:55:33.4355510+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Aborted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="0ed66d7a-ccaf-49f1-975c-a1138561f12d">
+    <UnitTestResult executionId="90757d2a-a0be-4d29-92c5-1a691f7a6075" testId="073888ed-0e57-e522-0e96-f60fd887f5ad" testName="matrixDeterminantByGaussTest" computerName="OMAR-PC" duration="00:00:00.0774478" startTime="2015-05-02T10:40:29.2271452+03:00" endTime="2015-05-02T10:40:29.8678029+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="90757d2a-a0be-4d29-92c5-1a691f7a6075">
     </UnitTestResult>
   </Results>
 </TestRun>
