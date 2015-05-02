@@ -13,8 +13,8 @@ namespace numerical_analysis.Method_classes
         /// <summary>
         /// pass the 2-row n-column array of sample values to interpolate
         /// </summary>
-        /// <param name="samplesToInterpolate"> the samples 2 by n grid</param>
-        GeneralMethodFunction(double[,] samplesToInterpolate)
+        /// <param name="samplesToInterpolate"> the samples 2 by n grid</param> 
+        public GeneralMethodFunction(double[,] samplesToInterpolate)
         {
 
             int samplesRowsLength = samplesToInterpolate.GetUpperBound(0) + 1;
@@ -25,7 +25,7 @@ namespace numerical_analysis.Method_classes
 
 
 
-            // calculate Wendermond's Determinant
+            // calculate Wonderment's Determinant
             for (int i = 0; i < samplesColumnLength - 1; i++)
             {
                 for (int j = i + 1; j < samplesColumnLength; j++)
@@ -42,7 +42,7 @@ namespace numerical_analysis.Method_classes
             if (isSolvable)
             {
 
-                // this array has some weird dimentions, you need to check the rules for the general methods
+                // this array has some weird dimensions, you need to check the rules for the general methods
                 // to know why this is the case.
                 int gaussMatrixRows = samplesColumnLength;
                 int gaussMatrixColumns = samplesColumnLength;
@@ -70,7 +70,7 @@ namespace numerical_analysis.Method_classes
                     }
 
                     // calculate the determinant and put it in the coefficients (or constants) array
-                    // rounding is just for computer mathmatical presentation 
+                    // rounding is just for computer mathematical presentation 
                     interpolationConstants[j] = Math.Round(MatrixDeterminantByGauss(gaussMatrix) / WendermondDeterminant, 14);
 
                     // restore the matrix to it's original state
@@ -104,33 +104,36 @@ namespace numerical_analysis.Method_classes
             return "";
         }
 
-        public override string FunctionString()
+        public override string FunctionString
         {
-            if (isSolvable)
+            get
             {
-                bool didAddACoefficient = false;
-                StringBuilder builder = new StringBuilder("Pn(x) = ");
-                for (int i = 0; i < interpolationConstants.Length; i++)
+                if (isSolvable)
                 {
-                    if (interpolationConstants[i] != 0)
+                    bool didAddACoefficient = false;
+                    StringBuilder builder = new StringBuilder("P" + (interpolationConstants.Length - 1) + "(x) = ");
+                    for (int i = 0; i < interpolationConstants.Length; i++)
                     {
-                        if(i == 0) builder.Append(Math.Round(interpolationConstants[i],3));
-                        else
+                        if (interpolationConstants[i] != 0)
                         {
-                            if (didAddACoefficient)
+                            if (i == 0) builder.Append(Math.Round(interpolationConstants[i], 3));
+                            else
                             {
-                                builder.Append(interpolationConstants[i] > 0 ? " + " : " - ");
+                                if (didAddACoefficient)
+                                {
+                                    builder.Append(interpolationConstants[i] > 0 ? " + " : " - ");
+                                }
+                                builder.Append(Math.Abs(Math.Round(interpolationConstants[i], 3)));
+                                builder.Append("x");
+                                if (i > 1) builder.Append("^" + i);
                             }
-                            builder.Append(Math.Abs(Math.Round(interpolationConstants[i], 3)));
-                            builder.Append("x");
-                            if (i > 1) builder.Append("^" + i);
+                            didAddACoefficient = true;
                         }
-                        didAddACoefficient = true;
                     }
+                    return builder.ToString();
                 }
-                return builder.ToString();
+                return ""; // b?.
             }
-            return ""; // b?.
         }
 
         // this method solves
@@ -206,10 +209,10 @@ namespace numerical_analysis.Method_classes
 
                 if (matrixCopy[rowIdx, colIdx] != 1)
                 {
-                    // divid the determinate by the found value (we're taking the common value out from the row)
+                    // divide the determinate by the found value (we're taking the common value out from the row)
                     determinant *= matrixCopy[rowIdx, colIdx];
 
-                    // divid the row in the matrix by this number
+                    // divide the row in the matrix by this number
                     for (int i = columnsCounter; i < matrixColumnLength; i++)
                     {
                         matrixCopy[rowIdx, i] /= matrixCopy[rowIdx, colIdx];

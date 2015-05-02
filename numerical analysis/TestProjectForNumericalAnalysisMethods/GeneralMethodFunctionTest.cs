@@ -78,7 +78,7 @@ namespace TestProjectForNumericalAnalysisMethods
             { -3,1,2,7}
             };
             GeneralMethodFunction_Accessor target = new GeneralMethodFunction_Accessor(param);
-            string s = target.FunctionString();
+            string s = target.FunctionString;
 
 
             // test case 1

@@ -8,7 +8,7 @@ namespace numerical_analysis.Method_classes
     abstract class AnalysisMethod
     {
 
-        // a convinient rename to shorten the terms for use in 
+        // a convenient rename to shorten the terms for use in 
         // subclasses (so that you don't have to write FormNumericalAnalysis.samplesXIndex every time
         // u wanna reference these constants
         public const int samplesXIndex = FormNumericalAnalysis.samplesXIndex;
@@ -23,9 +23,7 @@ namespace numerical_analysis.Method_classes
             return "";
         }
 
-        public virtual string FunctionString()
-        {
-            return "";
-        }
+        public virtual string FunctionString { get; protected set; }
+
     }
 }
