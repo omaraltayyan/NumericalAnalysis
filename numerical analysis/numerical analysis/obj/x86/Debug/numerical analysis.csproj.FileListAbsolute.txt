@@ -16,11 +16,4 @@ C:\Users\omar\Documents\GitHub\NumericalAnalysis\numerical analysis\numerical an
 C:\Users\omar\Documents\GitHub\NumericalAnalysis\numerical analysis\numerical analysis\obj\x86\Debug\numerical analysis.csproj.GenerateResource.Cache
 C:\Users\omar\Documents\GitHub\NumericalAnalysis\numerical analysis\numerical analysis\obj\x86\Debug\numerical analysis.exe
 C:\Users\omar\Documents\GitHub\NumericalAnalysis\numerical analysis\numerical analysis\obj\x86\Debug\numerical analysis.pdb
-C:\Users\New Laptop\Documents\GitHub\NumericalAnalysis\numerical analysis\numerical analysis\bin\Debug\numerical analysis.exe
-C:\Users\New Laptop\Documents\GitHub\NumericalAnalysis\numerical analysis\numerical analysis\bin\Debug\numerical analysis.pdb
-C:\Users\New Laptop\Documents\GitHub\NumericalAnalysis\numerical analysis\numerical analysis\obj\x86\Debug\numerical analysis.csprojResolveAssemblyReference.cache
-C:\Users\New Laptop\Documents\GitHub\NumericalAnalysis\numerical analysis\numerical analysis\obj\x86\Debug\numerical_analysis.FormNumericalAnalysis.resources
-C:\Users\New Laptop\Documents\GitHub\NumericalAnalysis\numerical analysis\numerical analysis\obj\x86\Debug\numerical_analysis.Properties.Resources.resources
-C:\Users\New Laptop\Documents\GitHub\NumericalAnalysis\numerical analysis\numerical analysis\obj\x86\Debug\numerical analysis.csproj.GenerateResource.Cache
-C:\Users\New Laptop\Documents\GitHub\NumericalAnalysis\numerical analysis\numerical analysis\obj\x86\Debug\numerical analysis.exe
-C:\Users\New Laptop\Documents\GitHub\NumericalAnalysis\numerical analysis\numerical analysis\obj\x86\Debug\numerical analysis.pdb
+C:\Users\omar\Documents\GitHub\NumericalAnalysis\numerical analysis\numerical analysis\obj\x86\Debug\numerical analysis.csprojResolveAssemblyReference.cache

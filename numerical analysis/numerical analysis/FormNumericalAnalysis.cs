@@ -27,17 +27,6 @@ namespace numerical_analysis
                 e.Handled = true;
             }
         }
-<<<<<<< HEAD
-
-        private void dataGridViewSamplesInput_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
-        {
-            if (e.FormattedValue.ToString() == string.Empty)
-            {
-                dataGridViewSamplesInput[e.ColumnIndex, e.RowIndex].ErrorText = "Required";
-                e.Cancel = true;
-            }
-            string newValue = (string)e.FormattedValue;
-=======
 
         private void dataGridViewSamplesInput_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
@@ -85,9 +74,6 @@ namespace numerical_analysis
             }
 
 
-
->>>>>>> corrected some UI behaviour
-
             // try to see if this is still a double
             double value = 0;
             if (!double.TryParse(newValue, out value))
@@ -104,14 +90,7 @@ namespace numerical_analysis
         }
 
         private void dataGridViewSamplesInput_RowValidating(object sender, DataGridViewCellCancelEventArgs e)
-<<<<<<< HEAD
-        {
-            DataGridView currentView = (DataGridView)sender;
 
-            DataGridViewRow currentRow = currentView.Rows[e.RowIndex];
-            if (currentRow.IsNewRow) return;
-
-=======
         {  
             // Don't try to validate the 'new row' until finished 
             // editing since there
@@ -124,7 +103,6 @@ namespace numerical_analysis
             DataGridViewRow currentRow = currentView.Rows[e.RowIndex];
             if (currentRow.IsNewRow) return;
 
->>>>>>> corrected some UI behaviour
             bool AllCellsFromPrevRowHasVal = true;
             for (int i = 0; i < currentRow.Cells.Count; i++)
             {
