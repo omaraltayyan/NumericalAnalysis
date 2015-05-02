@@ -60,7 +60,16 @@ namespace numerical_analysis
             {
                 if (newValue[i] == '.')
                 {
-                    if (isfirstdot)
+                    // if this isn't the first dot we encounter then or their is no 
+                    // other characters after it then delete it
+                    if (i == newValue.Length || !isfirstdot) 
+                    {
+                        newValue = newValue.Remove(i, 1);
+                        dataGridViewSamplesInput[e.ColumnIndex, e.RowIndex].Value = newValue;
+                        dataGridViewSamplesInput.RefreshEdit();
+                        i--;
+                    }
+                    else
                     {
                         if (i == 0)
                         {
@@ -68,13 +77,6 @@ namespace numerical_analysis
                             newValue = newValue.Insert(0, "0");
                         }
                         isfirstdot = false;
-                    }
-                    else
-                    {
-                        newValue = newValue.Remove(i, 1);
-                        dataGridViewSamplesInput[e.ColumnIndex, e.RowIndex].Value = newValue;
-                        dataGridViewSamplesInput.RefreshEdit();
-                        i--;
                     }
                 }
             }

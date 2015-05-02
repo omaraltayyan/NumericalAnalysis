@@ -5,3 +5,4 @@ C:\Users\omar\Documents\GitHub\NumericalAnalysis\numerical analysis\numerical an
 C:\Users\omar\Documents\GitHub\NumericalAnalysis\numerical analysis\numerical analysis\obj\x86\Debug\numerical analysis.csproj.GenerateResource.Cache
 C:\Users\omar\Documents\GitHub\NumericalAnalysis\numerical analysis\numerical analysis\obj\x86\Debug\numerical analysis.exe
 C:\Users\omar\Documents\GitHub\NumericalAnalysis\numerical analysis\numerical analysis\obj\x86\Debug\numerical analysis.pdb
+C:\Users\omar\Documents\GitHub\NumericalAnalysis\numerical analysis\numerical analysis\obj\x86\Debug\numerical analysis.csprojResolveAssemblyReference.cache
