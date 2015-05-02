@@ -9,6 +9,8 @@ namespace numerical_analysis.Method_classes
     {
         private double WendermondDeterminant = 1;
 
+        private double polynomialDegree = 0;
+
         private double[] interpolationConstants;
         /// <summary>
         /// pass the 2-row n-column array of sample values to interpolate
@@ -79,8 +81,21 @@ namespace numerical_analysis.Method_classes
                         gaussMatrix[i, j] = Math.Pow(samplesToInterpolate[samplesXIndex, i], j);
                     }
                 }
+                polynomialDegree = interpolationConstants.Length - 1;
 
             }
+        }
+
+        public string YForXString(string x)
+        {
+            if (!isSolvable) return "";
+
+            double sentVal;
+
+            if (!double.TryParse(x,out sentVal)) return "";
+
+            double yForFx = YForX(sentVal);
+            return "P" + polynomialDegree + "(" + sentVal + ")" + " = " + yForFx;
         }
 
         public override double YForX(double x)
@@ -111,7 +126,7 @@ namespace numerical_analysis.Method_classes
                 if (isSolvable)
                 {
                     bool didAddACoefficient = false;
-                    StringBuilder builder = new StringBuilder("P" + (interpolationConstants.Length - 1) + "(x) = ");
+                    StringBuilder builder = new StringBuilder("P" + polynomialDegree + "(x) = ");
                     for (int i = 0; i < interpolationConstants.Length; i++)
                     {
                         if (interpolationConstants[i] != 0)

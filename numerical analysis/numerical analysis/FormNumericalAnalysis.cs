@@ -101,7 +101,9 @@ namespace numerical_analysis
 
         private void updateSolutions()
         {
+            // make the grid view apply it's changes to it's data cache
             dataGridViewSamplesInput.EndEdit();
+
             // check if the input is complete
             bool haveCompleteInput = true;
             int rowsCounter = 0;
@@ -143,18 +145,21 @@ namespace numerical_analysis
                 // clear results view
                 textBoxOutputResults.Clear();
 
-
+                
                 // General Method Code
                 GeneralMethodFunction generalMethod = new GeneralMethodFunction(interpolationSamples);
                 if (generalMethod.isSolvable && checkBoxGeneralMethod.Checked)
                 {
-                    textBoxOutputResults.AppendText("General Method's Solution: \n\n" + generalMethod.FunctionString);
+                    textBoxOutputResults.AppendText("General Method's Solution:");
+                    textBoxOutputResults.Text += "\r\n\r\n";
+                    textBoxOutputResults.AppendText(generalMethod.FunctionString);
+                    if (textBoxPerdictValue.Text != null && textBoxPerdictValue.Text != "")
+                    {
+                        textBoxOutputResults.Text += "\r\n\r\n";
+                        textBoxOutputResults.AppendText( generalMethod.YForXString(textBoxPerdictValue.Text));
+                    }
                 }
-
-
-
-
-
+                // end of general method
 
 
 #warning add your method calling code here
@@ -197,6 +202,11 @@ namespace numerical_analysis
                 dataGridViewSamplesInput[cellIndex, e.RowIndex].ErrorText = string.Empty;
             }
 
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            updateSolutions();
         }
 
 
