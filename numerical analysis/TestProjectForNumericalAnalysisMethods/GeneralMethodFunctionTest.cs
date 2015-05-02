@@ -74,11 +74,12 @@ namespace TestProjectForNumericalAnalysisMethods
 
             double[,] param = new double[,]
             {
-            { 1,3,4,6 },
-            { 1,9,16,36}
+            { 0,1,2,4 },
+            { -3,1,2,7}
             };
             GeneralMethodFunction_Accessor target = new GeneralMethodFunction_Accessor(param);
             string s = target.FunctionString();
+
 
             // test case 1
             double[,] matrix = new double[3,3]{
