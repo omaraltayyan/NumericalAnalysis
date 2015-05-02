@@ -70,9 +70,10 @@ namespace numerical_analysis.Method_classes
                     }
 
                     // calculate the determinant and put it in the coefficients (or constants) array
-                    interpolationConstants[j] =Math.Round(matrixDeterminantByGauss(gaussMatrix) / WendermondDeterminant,14);
+                    // rounding is just for computer mathmatical presentation 
+                    interpolationConstants[j] = Math.Round(MatrixDeterminantByGauss(gaussMatrix) / WendermondDeterminant, 14);
 
-                    // restore the matrix to it's state
+                    // restore the matrix to it's original state
                     for (int i = 0; i < gaussMatrixRows; i++)
                     {
                         gaussMatrix[i, j] = Math.Pow(samplesToInterpolate[samplesXIndex, i], j);
@@ -96,7 +97,7 @@ namespace numerical_analysis.Method_classes
             return 0.0;
         }
 
-        public override string errorStringForX(double x)
+        public override string ErrorStringForX(double x)
         {
 #warning TODO: Implement this
 
@@ -133,7 +134,7 @@ namespace numerical_analysis.Method_classes
         }
 
         // this method solves
-        private double matrixDeterminantByGauss(double[,] matrix)
+        private double MatrixDeterminantByGauss(double[,] matrix)
         {
 
             int matrixRowsLength = matrix.GetUpperBound(0) + 1;

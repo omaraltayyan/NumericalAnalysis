@@ -43,8 +43,8 @@
             // 
             // dataGridViewSamplesInput
             // 
-            this.dataGridViewSamplesInput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)));
+            this.dataGridViewSamplesInput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.dataGridViewSamplesInput.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewSamplesInput.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
             this.dataGridViewSamplesInput.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -58,7 +58,9 @@
             this.dataGridViewSamplesInput.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dataGridViewSamplesInput.Size = new System.Drawing.Size(362, 389);
             this.dataGridViewSamplesInput.TabIndex = 0;
-            this.dataGridViewSamplesInput.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewSamplesInput_CellValueChanged);
+            this.dataGridViewSamplesInput.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dataGridViewSamplesInput_CellValidating);
+            this.dataGridViewSamplesInput.RowValidating += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dataGridViewSamplesInput_RowValidating);
+            this.dataGridViewSamplesInput.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dataGridViewSamplesInput_KeyPress);
             // 
             // X
             // 
@@ -97,8 +99,8 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBox1.Controls.Add(this.checkBox2);
             this.groupBox1.Controls.Add(this.checkBox1);
             this.groupBox1.Location = new System.Drawing.Point(394, 29);
@@ -137,7 +139,7 @@
             this.label2.TabIndex = 5;
             this.label2.Text = "Results";
             // 
-            // Form1
+            // FormNumericalAnalysis
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -148,7 +150,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridViewSamplesInput);
             this.KeyPreview = true;
-            this.Name = "Form1";
+            this.Name = "FormNumericalAnalysis";
             this.Text = "Numerical Analysis";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSamplesInput)).EndInit();
             this.groupBox1.ResumeLayout(false);

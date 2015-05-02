@@ -65,11 +65,11 @@ namespace TestProjectForNumericalAnalysisMethods
 
 
         /// <summary>
-        ///A test for matrixDeterminantByGauss
+        ///A test for MatrixDeterminantByGauss
         ///</summary>
         [TestMethod()]
         [DeploymentItem("numerical analysis.exe")]
-        public void matrixDeterminantByGaussTest()
+        public void MatrixDeterminantByGaussTest()
         {
 
             double[,] param = new double[,]
@@ -89,7 +89,7 @@ namespace TestProjectForNumericalAnalysisMethods
             };
             double expected = 0;
             double actual;
-            actual = target.matrixDeterminantByGauss(matrix);
+            actual = target.MatrixDeterminantByGauss(matrix);
             Assert.AreEqual(expected, actual);
 
 
@@ -101,7 +101,7 @@ namespace TestProjectForNumericalAnalysisMethods
             { -1, -2, 3 }
             };
             expected = 44;
-            actual = target.matrixDeterminantByGauss(matrix);
+            actual = target.MatrixDeterminantByGauss(matrix);
             Assert.AreEqual(expected, actual);
 
 
@@ -113,7 +113,7 @@ namespace TestProjectForNumericalAnalysisMethods
             { -1, -2, 3 }
             };
             expected = 44;
-            actual = target.matrixDeterminantByGauss(matrix);
+            actual = target.MatrixDeterminantByGauss(matrix);
             Assert.AreEqual(expected, actual);
 
 
@@ -126,7 +126,7 @@ namespace TestProjectForNumericalAnalysisMethods
             };
 
             expected = -17;
-            actual = target.matrixDeterminantByGauss(matrix);
+            actual = target.MatrixDeterminantByGauss(matrix);
             Assert.AreEqual(expected, actual);
 
 
@@ -141,7 +141,7 @@ namespace TestProjectForNumericalAnalysisMethods
             { 5, 3, -2 }
             };
             expected = -68;
-            actual = target.matrixDeterminantByGauss(matrix);
+            actual = target.MatrixDeterminantByGauss(matrix);
             Assert.AreEqual(expected, actual);
         }
     }

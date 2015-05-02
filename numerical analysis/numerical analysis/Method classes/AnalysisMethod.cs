@@ -18,7 +18,7 @@ namespace numerical_analysis.Method_classes
 
         public abstract double YForX(double x);
 
-        public virtual string errorStringForX(double x)
+        public virtual string ErrorStringForX(double x)
         {
             return "";
         }
