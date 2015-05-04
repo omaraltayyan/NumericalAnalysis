@@ -98,6 +98,58 @@ namespace numerical_analysis.Method_classes
         }
 
 
+        /**
+         * Hermit's error formula: e(x) = [f(m)^(2n+2)/(2n+2)!] * Π(x-xi)^2
+         * 
+         * in order to calculate the error for hermit
+         * we need to "guess" if the function is generally increasing
+         * or decreasing , we can never do this with absolute
+         * accuracy, since this is an interpolation operation).
+         * to do this we will consider a function whose difference
+         * between yn to y0 is positive to be an increasing function
+         * and it is decreasing otherwise
+        **/
+        public override string ErrorStringForX(double x)
+        {
+            bool isIncreasing = interpolationSamples[samplesYIndex, samplesColumnLength - 1] - interpolationSamples[samplesYIndex, 0] > 0;
+
+            // calculate the (2n+2)!
+            double denominator = 1;
+            int factorialLevel = polynomialDegree + 1;// 2n+2
+            for (int i = 2; i <= factorialLevel; i++)
+            {
+                denominator *= i;
+            }
+
+            // calculate  Π(x-xi)^2
+            double product = 1;
+            for (int i = 0; i < samplesColumnLength; i++)
+            {
+                product *= Math.Pow(x - interpolationSamples[samplesXIndex, i],2);
+            }
+
+
+            // calculate  [Π(x-xi)^2] / (2n+2)!
+            double steadyPart = product / denominator;
+
+
+            // now we calculate f(m)^(2n+2) for x0 and xn as it says in the lecture notes
+            double mForX0 = Math.Pow(interpolationSamples[samplesYIndex,0],factorialLevel);
+            double mForXn = Math.Pow(interpolationSamples[samplesYIndex, samplesColumnLength - 1], factorialLevel);
+
+            double minimalError = mForX0 * steadyPart;
+            double maximalError = mForXn * steadyPart;
+
+            if (!isIncreasing)
+            {
+                // swap the minimal and maximal errors
+                double temp = minimalError;
+                minimalError = maximalError;
+                maximalError = temp;
+            }
+                        
+            return "Error for " + x + " is between " + minimalError + " and " + maximalError;
+        }
 
         /**
          * the way we calculate the derivative of Lagrange:
@@ -130,6 +182,7 @@ namespace numerical_analysis.Method_classes
                 }
             }
 
+            
 
             // calculate the value on the derivative
             double derivativeValue = 0;
@@ -151,11 +204,11 @@ namespace numerical_analysis.Method_classes
 
         public override double YForX(double x)
         {
-            // remeber hemit's formula 
-            // H2n+1(x) = ς[yj * hj(x)] + ς[y'j * H^j(x)]
+            // remember hermit's formula 
+            // H2n+1(x) = Σ[yj * hj(x)] + Σ[y'j * H^j(x)]
 
 
-            // ς[yj * hj(x)]
+            // Σ[yj * hj(x)]
             double firstSummation = 0;
             for (int j = 0; j < samplesColumnLength; j++)
             {
@@ -163,7 +216,7 @@ namespace numerical_analysis.Method_classes
             }
 
 
-            // ς[y'j * H^j(x)] 
+            // Σ[y'j * H^j(x)] 
             double secondSummation = 0;
             for (int j = 0; j < samplesColumnLength; j++)
             {

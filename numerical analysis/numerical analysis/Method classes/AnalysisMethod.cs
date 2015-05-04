@@ -17,7 +17,7 @@ namespace numerical_analysis.Method_classes
 
 
 
-        protected double polynomialDegree = 0;
+        protected int polynomialDegree = 0;
 
         public bool isSolvable { get; protected set; }
 
