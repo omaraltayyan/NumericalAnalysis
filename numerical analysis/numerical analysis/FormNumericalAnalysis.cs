@@ -15,6 +15,7 @@ namespace numerical_analysis
     {
         public const int samplesXIndex = 0;
         public const int samplesYIndex = 1;
+        public const int samplesYDerivativeIndex = 2;
         public FormNumericalAnalysis()
         {
             InitializeComponent();
@@ -30,21 +31,38 @@ namespace numerical_analysis
 
         private void dataGridViewSamplesInput_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
+
+            DataGridView currentView = (DataGridView)sender;
+
+            DataGridViewCell currentCell = currentView[e.ColumnIndex, e.RowIndex];
+
+            DataGridViewRow currentRow = currentView.Rows[e.RowIndex];
+
+            DataGridViewColumnCollection allColumns = currentView.Columns;
+
+            DataGridViewRowCollection allRows = currentView.Rows;
+
             // Don't try to validate the 'new row' until finished 
             // editing since there
             // is not any point in validating its initial value.
 
-            if (dataGridViewSamplesInput.Rows[e.RowIndex].IsNewRow) { return; }
+
+
+            if (allRows[e.RowIndex].IsNewRow) { return; }
+            if (!allColumns[e.ColumnIndex].ReadOnly) return;
 
             // go through all columns, if one of them has a value then so must be this one
-            for (int i = 0; i < dataGridViewSamplesInput.ColumnCount; i++)
+            for (int i = 0; i < allColumns.Count; i++)
             {
-                if (i != e.ColumnIndex)
+                // if the current column is enabled
+                if (!allColumns[e.ColumnIndex].ReadOnly && i != e.ColumnIndex)
                 {
-                    if ((string)dataGridViewSamplesInput[e.ColumnIndex, e.RowIndex].Value == "" && (dataGridViewSamplesInput[i, e.RowIndex].FormattedValue.ToString() != null &&
-                        dataGridViewSamplesInput[i, e.RowIndex].FormattedValue.ToString() != ""))
+                    DataGridViewCell comparedCell = currentView[i, e.RowIndex];
+
+                    if (((string)currentCell.Value == "" || currentCell.Value == null) &&
+                        (comparedCell.FormattedValue.ToString() != null && comparedCell.FormattedValue.ToString() != ""))
                     {
-                        dataGridViewSamplesInput[e.ColumnIndex, e.RowIndex].ErrorText = "Required";
+                        currentCell.ErrorText = "Required";
                         e.Cancel = true;
                         return;
                     }
@@ -65,7 +83,7 @@ namespace numerical_analysis
                     if (i == newValue.Length || !isfirstdot)
                     {
                         newValue = newValue.Remove(i, 1);
-                        dataGridViewSamplesInput[e.ColumnIndex, e.RowIndex].Value = newValue;
+                        currentCell.Value = newValue;
                         dataGridViewSamplesInput.RefreshEdit();
                         i--;
                     }
@@ -87,13 +105,13 @@ namespace numerical_analysis
             if (!double.TryParse(newValue, out value))
             {
                 // if this isn't a double then clear the cell
-                dataGridViewSamplesInput[e.ColumnIndex, e.RowIndex].ErrorText = "Not Valid Number";
+                currentCell.ErrorText = "Not Valid Number";
                 e.Cancel = true;
             }
             else
             {
                 // else set this cell to the new filtered value
-                dataGridViewSamplesInput[e.ColumnIndex, e.RowIndex].ErrorText = string.Empty;
+                currentCell.ErrorText = string.Empty;
             }
 
             updateSolutions();
@@ -101,6 +119,7 @@ namespace numerical_analysis
 
         private void updateSolutions()
         {
+
             // make the grid view apply it's changes to it's data cache
             dataGridViewSamplesInput.EndEdit();
 
@@ -162,6 +181,75 @@ namespace numerical_analysis
                 // end of general method
 
 
+                // hermit method code
+                bool hermitInputComplete = true;
+                int hermitRowsCounter = 0;
+                if (!checkBoxHermitMethod.Checked) hermitInputComplete = false;
+                else
+                {
+                    // check the y' column for complete input
+                    for (int i = 0; i < dataGridViewSamplesInput.Rows.Count; i++)
+                    {
+                        DataGridViewRow currentRow = dataGridViewSamplesInput.Rows[i];
+
+                        DataGridViewCell currentCell = currentRow.Cells[samplesYDerivativeIndex];
+                        DataGridViewCell comparedRandomCell = currentRow.Cells[samplesXIndex];
+
+                        // since at this point we are sure we have a complete input for methods other that hermit
+                        // (i.e X's and Y's columns are complete) we only need to check one cell other that the Y' cell
+                        // to see if that row has any values
+                        if ((currentCell.Value == null || (string)currentCell.Value == "") ^
+                            (comparedRandomCell.Value == null || (string)comparedRandomCell.Value == ""))
+                        {
+                            hermitInputComplete = false;
+                        }
+                        if (currentCell.Value != null && (string)currentCell.Value != "")
+                        {
+                            hermitRowsCounter++;
+                        }
+                    }
+                }
+
+
+                if (hermitInputComplete)
+                {
+                    double[,] hermitInterpolationSamples = new double[3, rowsCounter];
+
+                    // collect samples for hermit from the grid view
+                    for (int i = 0; i < dataGridViewSamplesInput.Rows.Count; i++)
+                    {
+                        DataGridViewRow currentRow = dataGridViewSamplesInput.Rows[i];
+                        if (currentRow.Cells[samplesXIndex].Value != null && (string)currentRow.Cells[samplesXIndex].Value != "")
+                        {
+                            interpolationSamples[samplesXIndex, i] = double.Parse((string)currentRow.Cells[samplesXIndex].Value);
+                            interpolationSamples[samplesYIndex, i] = double.Parse((string)currentRow.Cells[samplesYIndex].Value);
+                            interpolationSamples[samplesYDerivativeIndex, i] = double.Parse((string)currentRow.Cells[samplesYDerivativeIndex].Value);
+                        }
+                    }
+
+
+                    HermitMethod hermitMethod = new HermitMethod(interpolationSamples);
+                    if (hermitMethod.isSolvable)
+                    {
+                        textBoxOutputResults.AppendText("Hermit Method's Solution:");
+                        textBoxOutputResults.Text += "\r\n\r\n";
+                        textBoxOutputResults.AppendText(hermitMethod.FunctionString);
+                        if (textBoxPerdictValue.Text != null && textBoxPerdictValue.Text != "")
+                        {
+                            textBoxOutputResults.Text += "\r\n\r\n";
+                            textBoxOutputResults.AppendText(hermitMethod.YForXString(textBoxPerdictValue.Text));
+                        }
+                    }
+
+                }
+
+
+
+
+                // end of hermit's code
+
+
+
 #warning add your method calling code here
 
 
@@ -178,15 +266,18 @@ namespace numerical_analysis
             DataGridView currentView = (DataGridView)sender;
 
             DataGridViewRow currentRow = currentView.Rows[e.RowIndex];
-            if (currentRow.IsNewRow) return;
+
+            DataGridViewColumnCollection allColumns = currentView.Columns;
 
             bool AllCellsFromPrevRowHasVal = true;
             int cellIndex = e.ColumnIndex;
             for (int i = 0; i < currentRow.Cells.Count; i++)
             {
                 string cellVal = (string)currentRow.Cells[i].Value;
-                if (cellVal == null || cellVal == "")
+                // if this column is enabled and the cell is empty
+                if (!allColumns[i].ReadOnly && ( cellVal == null || cellVal == ""))
                 {
+                    // preserve the cell's index and set the input to be not complete
                     cellIndex = i;
                     AllCellsFromPrevRowHasVal = false;
                     break;
@@ -204,10 +295,17 @@ namespace numerical_analysis
 
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void textBoxPerdictValue_TextChanged(object sender, EventArgs e)
         {
             updateSolutions();
         }
+
+        private void checkBoxHermitMethod_CheckedChanged(object sender, EventArgs e)
+        {
+            // if the hermit method is checked then enable the derivative column, else disable it
+            dataGridViewSamplesInput.Columns[samplesYDerivativeIndex].ReadOnly = checkBoxHermitMethod.Checked ? false : true;
+        }
+
 
 
 

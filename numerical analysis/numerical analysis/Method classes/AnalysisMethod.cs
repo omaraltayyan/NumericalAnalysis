@@ -13,17 +13,37 @@ namespace numerical_analysis.Method_classes
         // u wanna reference these constants
         public const int samplesXIndex = FormNumericalAnalysis.samplesXIndex;
         public const int samplesYIndex = FormNumericalAnalysis.samplesYIndex;
+        public const int samplesYDerivativeIndex = FormNumericalAnalysis.samplesYDerivativeIndex;
 
-        public bool isSolvable { get;protected set; }
+
+
+        protected double polynomialDegree = 0;
+
+        public bool isSolvable { get; protected set; }
 
         public abstract double YForX(double x);
+
+
+        public virtual string FunctionString { get; protected set; }
+
 
         public virtual string ErrorStringForX(double x)
         {
             return "";
         }
 
-        public virtual string FunctionString { get; protected set; }
+
+        public string YForXString(string x)
+        {
+            if (!isSolvable) return "";
+
+            double sentVal;
+
+            if (!double.TryParse(x, out sentVal)) return "";
+
+            double yForFx = YForX(sentVal);
+            return "P" + polynomialDegree + "(" + sentVal + ")" + " = " + yForFx;
+        }
 
     }
 }

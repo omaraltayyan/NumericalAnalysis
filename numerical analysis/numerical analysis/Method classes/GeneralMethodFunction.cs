@@ -9,7 +9,6 @@ namespace numerical_analysis.Method_classes
     {
         private double WendermondDeterminant = 1;
 
-        private double polynomialDegree = 0;
 
         private double[] interpolationConstants;
         /// <summary>
@@ -86,17 +85,6 @@ namespace numerical_analysis.Method_classes
             }
         }
 
-        public string YForXString(string x)
-        {
-            if (!isSolvable) return "";
-
-            double sentVal;
-
-            if (!double.TryParse(x,out sentVal)) return "";
-
-            double yForFx = YForX(sentVal);
-            return "P" + polynomialDegree + "(" + sentVal + ")" + " = " + yForFx;
-        }
 
         public override double YForX(double x)
         {
@@ -114,8 +102,6 @@ namespace numerical_analysis.Method_classes
 
         public override string ErrorStringForX(double x)
         {
-#warning TODO: Implement this
-
             return "";
         }
 

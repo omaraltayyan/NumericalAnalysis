@@ -74,6 +74,7 @@
     </Compile>
     <Compile Include="Method classes\AnalysisMethod.cs" />
     <Compile Include="Method classes\GeneralMethodFunction.cs" />
+    <Compile Include="Method classes\HermitMethod.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormNumericalAnalysis.resx">

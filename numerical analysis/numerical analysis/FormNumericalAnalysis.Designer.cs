@@ -31,10 +31,11 @@
             this.dataGridViewSamplesInput = new System.Windows.Forms.DataGridView();
             this.X = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Y = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Yderivative = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.checkBoxGeneralMethod = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.checkBoxHermitMethod = new System.Windows.Forms.CheckBox();
             this.textBoxOutputResults = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.textBoxPerdictValue = new System.Windows.Forms.TextBox();
@@ -51,7 +52,8 @@
             this.dataGridViewSamplesInput.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewSamplesInput.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.X,
-            this.Y});
+            this.Y,
+            this.Yderivative});
             this.dataGridViewSamplesInput.GridColor = System.Drawing.SystemColors.ButtonFace;
             this.dataGridViewSamplesInput.Location = new System.Drawing.Point(0, 31);
             this.dataGridViewSamplesInput.Name = "dataGridViewSamplesInput";
@@ -79,6 +81,14 @@
             this.Y.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.Y.ToolTipText = "The y\'s column";
             // 
+            // Yderivative
+            // 
+            this.Yderivative.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Yderivative.HeaderText = "Y\'";
+            this.Yderivative.Name = "Yderivative";
+            this.Yderivative.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Yderivative.ToolTipText = "The derivative of y\'s column";
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -102,7 +112,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.checkBox2);
+            this.groupBox1.Controls.Add(this.checkBoxHermitMethod);
             this.groupBox1.Controls.Add(this.checkBoxGeneralMethod);
             this.groupBox1.Location = new System.Drawing.Point(371, 31);
             this.groupBox1.Name = "groupBox1";
@@ -111,15 +121,18 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Choose Numerical Methods";
             // 
-            // checkBox2
+            // checkBoxHermitMethod
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(6, 50);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(120, 21);
-            this.checkBox2.TabIndex = 3;
-            this.checkBox2.Text = "Hermit Method";
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.checkBoxHermitMethod.AutoSize = true;
+            this.checkBoxHermitMethod.Checked = true;
+            this.checkBoxHermitMethod.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxHermitMethod.Location = new System.Drawing.Point(6, 50);
+            this.checkBoxHermitMethod.Name = "checkBoxHermitMethod";
+            this.checkBoxHermitMethod.Size = new System.Drawing.Size(120, 21);
+            this.checkBoxHermitMethod.TabIndex = 3;
+            this.checkBoxHermitMethod.Text = "Hermit Method";
+            this.checkBoxHermitMethod.UseVisualStyleBackColor = true;
+            this.checkBoxHermitMethod.CheckedChanged += new System.EventHandler(this.checkBoxHermitMethod_CheckedChanged);
             // 
             // textBoxOutputResults
             // 
@@ -151,7 +164,7 @@
             this.textBoxPerdictValue.Name = "textBoxPerdictValue";
             this.textBoxPerdictValue.Size = new System.Drawing.Size(129, 24);
             this.textBoxPerdictValue.TabIndex = 7;
-            this.textBoxPerdictValue.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.textBoxPerdictValue.TextChanged += new System.EventHandler(this.textBoxPerdictValue_TextChanged);
             // 
             // FormNumericalAnalysis
             // 
@@ -180,14 +193,15 @@
 
         private System.Windows.Forms.DataGridView dataGridViewSamplesInput;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn X;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Y;
         private System.Windows.Forms.CheckBox checkBoxGeneralMethod;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.CheckBox checkBoxHermitMethod;
         private System.Windows.Forms.TextBox textBoxOutputResults;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBoxPerdictValue;
+        private System.Windows.Forms.DataGridViewTextBoxColumn X;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Y;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Yderivative;
     }
 }
 
