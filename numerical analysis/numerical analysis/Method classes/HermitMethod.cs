@@ -35,29 +35,27 @@ namespace numerical_analysis.Method_classes
                 if(currentY == 0) continue;
                 if (j != 0)
                 {
-                    if (currentY > 0) builder.Append(" + ");
-                    else builder.Append(" - ");
+                    builder.Append(currentY >= 0 ? '-' : '+');
                 }
                 builder.Append(Math.Abs(currentY) + "(");
-
-                // build Hj(x) string
-
-                // first the [1-2(x-xj)*l'j(xj)]
-                // note that the Hj(x) formula can be changed from 
-                // [1-2(x-xj)*l'j(xj)]*l2j(x) to [a*x - b]* l2j(x)
-                // where a = 2 * l'j(xj) and b = a * xj + 1
-                double a = 2 * lagrangeDerivativeForX(j);
-                double b = a * currentX + 1;
-                char bInversedSign = b > 0 ? '-' : '+';
-                builder.Append(a + "x " + bInversedSign + " " + b + ")");
-
-                // now the l2j(x) part
-
+                builder.Append(HjStringForX(j) + ")");
             }
+            builder.Append(" + ");
+            for (int j = 0; j < samplesColumnLength; j++)
+            {
+                double currentX = interpolationSamples[samplesXIndex, j];
+                double currentYDerivative = interpolationSamples[samplesYDerivativeIndex, j];
+                if (currentYDerivative == 0) continue;
+                if (j != 0)
+                {
+                    builder.Append(currentYDerivative >= 0 ? '-' : '+');
+                }
+                builder.Append(Math.Abs(currentYDerivative) + "(");
+                builder.Append(HchapeaujStringForX(j) + ")");
+            }
+            isSolvable = true;
+            FunctionString = builder.ToString();
         }
-
-
-
 
         // H^j(x) part of the formula
         // which is H^j(x) = (x-xj)*l2j(x)
@@ -84,9 +82,9 @@ namespace numerical_analysis.Method_classes
             double leftPart = 0;
 
             // the l'j(xj) part
-            double lagrangeDerivative = lagrangeDerivativeForX(jIndex);
+            double lagDerivative = lagrangeDerivative(jIndex);
 
-            leftPart = (1 - (2 *(x - interpolationSamples[samplesXIndex,jIndex]) * lagrangeDerivative));
+            leftPart = (1 - (2 * (x - interpolationSamples[samplesXIndex, jIndex]) * lagDerivative));
 
             // the l2j(x) part
             double rightPart = Math.Pow(langrangeForX(jIndex,x),2);
@@ -196,7 +194,7 @@ namespace numerical_analysis.Method_classes
          * note here we don't need to pass x, since x is in the same index as Lagrange's index
          * in this chunk of hermit formula 
         **/
-        private double lagrangeDerivativeForX(int lagrangeIndex)
+        private double lagrangeDerivative(int lagrangeIndex)
         {
             // calculate the denominator
             double denominator = 1;
@@ -208,8 +206,6 @@ namespace numerical_analysis.Method_classes
                     denominator *= (interpolationSamples[samplesXIndex, lagrangeIndex] - interpolationSamples[samplesXIndex,i]);
                 }
             }
-
-            
 
             // calculate the value on the derivative
             double derivativeValue = 0;
@@ -253,5 +249,127 @@ namespace numerical_analysis.Method_classes
 
             return firstSummation + secondSummation;
         }
+
+
+
+        // strings generating functions
+
+
+        private string langrangeString(int lagrangeIndex)
+        {
+            // calculate the denominator
+            double denominator = 1;
+            for (int i = 0; i < samplesColumnLength; i++)
+            {
+                if (i != lagrangeIndex)
+                {
+                    // (xj - xi) from the lectures
+                    denominator *= (interpolationSamples[samplesXIndex, lagrangeIndex] - interpolationSamples[samplesXIndex, i]);
+                }
+            }
+
+
+            // calculate the nominator part
+            StringBuilder nominatorBuilder = new StringBuilder();
+
+            for (int i = 0; i < samplesColumnLength; i++)
+            {
+                if (i != lagrangeIndex)
+                {
+                    // (x - xi) from the lectures
+                    double currentXi = interpolationSamples[samplesXIndex, i];
+                    char currentXiReversedSign = currentXi >= 0 ? '-' : '+';
+
+                    nominatorBuilder.Append("(x " + currentXiReversedSign + " " + Math.Abs(currentXi) + ")");
+                }
+            }
+            nominatorBuilder.Append("/" + denominator);
+            return nominatorBuilder.ToString();
+        }
+
+
+        // note here we consider the x to be unknown instead of xj like the double version
+        private string lagrangeDerivativeString(int lagrangeIndex)
+        {
+            // calculate the denominator
+            double denominator = 1;
+            for (int i = 0; i < samplesColumnLength; i++)
+            {
+                if (i != lagrangeIndex)
+                {
+                    // (xj - xi) from the lectures
+                    denominator *= (interpolationSamples[samplesXIndex, lagrangeIndex] - interpolationSamples[samplesXIndex, i]);
+                }
+            }
+
+
+
+            // calculate the value on the derivative
+            StringBuilder derivativeValueBuilder = new StringBuilder();
+            for (int i = 0; i < samplesColumnLength; i++)
+            {
+                for (int j = 0; j < samplesColumnLength; j++)
+                {
+                    if (j != lagrangeIndex && i != j)
+                    {
+                         double currentXi = interpolationSamples[samplesXIndex, j];
+                        char currentXiReversedSign = currentXi >= 0 ? '-' : '+';
+
+                        derivativeValueBuilder.Append("(x " + currentXiReversedSign + " " + Math.Abs(currentXi) + ")");
+                    }
+                }
+                if (i != samplesColumnLength - 1)
+                {
+                    derivativeValueBuilder.Append(" + ");
+                }
+            }
+            derivativeValueBuilder.Append("/" + denominator);
+            return derivativeValueBuilder.ToString();
+        }
+
+
+        private string HchapeaujStringForX(int jIndex)
+        {
+            
+            double currentXi = interpolationSamples[samplesXIndex, jIndex];
+            char currentXiReversedSign = currentXi >= 0 ? '-' : '+';
+
+
+            // the (x-xj) part
+            StringBuilder builder = new StringBuilder("(x " + currentXiReversedSign + " " + Math.Abs(currentXi) + ")");
+
+            // the l2j(x) part
+            builder.Append("[" + langrangeString(jIndex) + "]");
+
+            return builder.ToString();
+        }
+
+
+        private string HjStringForX(int jIndex)
+        {
+
+            double currentXi = interpolationSamples[samplesXIndex, jIndex];
+
+            // the [1-2(x-xj)*l'j(xj)] part            
+
+
+            // build Hj(x) string
+
+            // first the [1-2(x-xj)*l'j(xj)]
+            // note that the Hj(x) formula can be changed from 
+            // [1-2(x-xj)*l'j(xj)]*l2j(x) to [a*x - b]* l2j(x)
+            // where a = 2 * l'j(xj) and b = a * xj + 1
+            double a = 2 * lagrangeDerivative(jIndex);
+            double b = a * currentXi + 1;
+            char bInversedSign = b >= 0 ? '-' : '+';
+            StringBuilder builder = new StringBuilder("[" + a + "x " + bInversedSign + " " + Math.Abs(b) + "]");
+
+
+            // the l2j(x) part
+            builder.Append("(" + langrangeString(jIndex) + ")^2");
+
+            return builder.ToString();
+        }
+
     }
 }
