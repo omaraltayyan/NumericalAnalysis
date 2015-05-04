@@ -26,7 +26,34 @@ namespace numerical_analysis.Method_classes
             polynomialDegree = samplesColumnLength * 2 + 1;
 
 
+            // build the function string
+            StringBuilder builder = new StringBuilder("H" + polynomialDegree + "(x) = ");
+            for (int j = 0; j < samplesColumnLength; j++)
+            {
+                double currentX = interpolationSamples[samplesXIndex,j];
+                double currentY = interpolationSamples[samplesYIndex,j];
+                if(currentY == 0) continue;
+                if (j != 0)
+                {
+                    if (currentY > 0) builder.Append(" + ");
+                    else builder.Append(" - ");
+                }
+                builder.Append(Math.Abs(currentY) + "(");
 
+                // build Hj(x) string
+
+                // first the [1-2(x-xj)*l'j(xj)]
+                // note that the Hj(x) formula can be changed from 
+                // [1-2(x-xj)*l'j(xj)]*l2j(x) to [a*x - b]* l2j(x)
+                // where a = 2 * l'j(xj) and b = a * xj + 1
+                double a = 2 * lagrangeDerivativeForX(j);
+                double b = a * currentX + 1;
+                char bInversedSign = b > 0 ? '-' : '+';
+                builder.Append(a + "x " + bInversedSign + " " + b + ")");
+
+                // now the l2j(x) part
+
+            }
         }
 
 
