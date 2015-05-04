@@ -59,7 +59,7 @@ namespace numerical_analysis.Method_classes
             // the l'j(xj) part
             double lagrangeDerivative = lagrangeDerivativeForX(jIndex);
 
-            leftPart = (1 - (2 *(x - interpolationSamples[samplesXIndex,jIndex]) * lagrangeDerivative);
+            leftPart = (1 - (2 *(x - interpolationSamples[samplesXIndex,jIndex]) * lagrangeDerivative));
 
             // the l2j(x) part
             double rightPart = Math.Pow(langrangeForX(jIndex,x),2);
