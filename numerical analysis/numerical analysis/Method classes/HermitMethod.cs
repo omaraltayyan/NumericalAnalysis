@@ -25,6 +25,76 @@ namespace numerical_analysis.Method_classes
 
             polynomialDegree = samplesColumnLength * 2 + 1;
 
+
+
+        }
+
+
+
+
+        // H^j(x) part of the formula
+        // which is H^j(x) = (x-xj)*l2j(x)
+        // the jIndex is the j of the formula (surprise!!!)
+        // and x is the argument of the function 
+        private double HchapeaujX(int jIndex, double x)
+        {
+            // the (x-xj) part
+            double leftPart = (x - interpolationSamples[samplesXIndex,jIndex]);
+
+            // the l2j(x) part
+            double rightPart = Math.Pow(langrangeForX(jIndex,x),2);
+
+            return leftPart * rightPart;
+        }
+
+        // Hj(x) part of the formula
+        // which is Hj(x) = [1-2(x-xj)*l'j(xj)]*l2j(x)
+        // the jIndex is the j of the formula (surprise!!!)
+        // and x is the argument of the function
+        private double HjX(int jIndex, double x)
+        {
+            // the [1-2(x-xj)*l'j(xj)] part
+            double leftPart = 0;
+
+            // the l'j(xj) part
+            double lagrangeDerivative = lagrangeDerivativeForX(jIndex);
+
+            leftPart = (1 - (2 *(x - interpolationSamples[samplesXIndex,jIndex]) * lagrangeDerivative);
+
+            // the l2j(x) part
+            double rightPart = Math.Pow(langrangeForX(jIndex,x),2);
+
+            return leftPart * rightPart;
+        }
+
+        // the simple formula for Lagrange's function
+        private double langrangeForX(int lagrangeIndex, double x)
+        {
+
+            // calculate the denominator
+            double denominator = 1;
+            for (int i = 0; i < samplesColumnLength; i++)
+            {
+                if (i != lagrangeIndex)
+                {
+                    // (xj - xi) from the lectures
+                    denominator *= (interpolationSamples[samplesXIndex,lagrangeIndex] - interpolationSamples[samplesXIndex,i]);
+                }
+            }
+
+
+            // calculate the nominator part
+            double nominator = 1;
+
+            for (int i = 0; i < samplesColumnLength; i++)
+            {
+                if (i != lagrangeIndex)
+                {
+                    // (x - xi) from the lectures
+                    nominator *= (x - interpolationSamples[samplesXIndex,i]);
+                }
+            }
+            return nominator / denominator;
         }
 
 
@@ -42,11 +112,13 @@ namespace numerical_analysis.Method_classes
          * ( f1 f2...fn)' = f2 f3...fn + f1 f3...fn + ... + f1 f2...fn-1.
          * and then we divide the answer from the above formula by the denominator we calculated
          * previously to get the final answer.
+         * 
+         * lagrangeIndex: the j in the formula for Lagrange
+         * note here we don't need to pass x, since x is in the same index as Lagrange's index
+         * in this chunk of hermit formula 
         **/
-        private double langrangeDerivativeForX(int lagrangeIndex)
+        private double lagrangeDerivativeForX(int lagrangeIndex)
         {
-
-
             // calculate the denominator
             double denominator = 1;
             for (int i = 0; i < samplesColumnLength; i++)
@@ -54,12 +126,12 @@ namespace numerical_analysis.Method_classes
                 if (i != lagrangeIndex)
                 {
                     // (xj - xi) from the lectures
-                    denominator *= (interpolationSamples[lagrangeIndex, samplesXIndex] - interpolationSamples[i, samplesXIndex]);
+                    denominator *= (interpolationSamples[samplesXIndex, lagrangeIndex] - interpolationSamples[samplesXIndex,i]);
                 }
             }
 
 
-            // calculate the value on the derivative 
+            // calculate the value on the derivative
             double derivativeValue = 0;
             for (int i = 0; i < samplesColumnLength; i++)
             {
@@ -68,18 +140,38 @@ namespace numerical_analysis.Method_classes
                 {
                     if (j != lagrangeIndex && i != j)
                     {
-                        localMultiplication *= (interpolationSamples[lagrangeIndex, samplesXIndex] - interpolationSamples[j, samplesXIndex]);
+                        localMultiplication *= (interpolationSamples[samplesXIndex,lagrangeIndex] - interpolationSamples[samplesXIndex,j]);
                     }
                 }
                 derivativeValue += localMultiplication;
             }
-            double totalResult = derivativeValue / denominator;
-            return totalResult;
+            return derivativeValue / denominator;
         }
+
+
         public override double YForX(double x)
         {
+            // remeber hemit's formula 
+            // H2n+1(x) = ς[yj * hj(x)] + ς[y'j * H^j(x)]
 
-            return 0;
+
+            // ς[yj * hj(x)]
+            double firstSummation = 0;
+            for (int j = 0; j < samplesColumnLength; j++)
+            {
+                firstSummation += interpolationSamples[samplesYIndex, j] * HjX(j, x);
+            }
+
+
+            // ς[y'j * H^j(x)] 
+            double secondSummation = 0;
+            for (int j = 0; j < samplesColumnLength; j++)
+            {
+                secondSummation += interpolationSamples[samplesYDerivativeIndex, j] * HchapeaujX(j, x);
+            }
+
+
+            return firstSummation + secondSummation;
         }
     }
 }
