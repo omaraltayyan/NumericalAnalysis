@@ -27,7 +27,7 @@ namespace numerical_analysis.Method_classes
         public virtual string FunctionString { get; protected set; }
 
 
-        public virtual string ErrorStringForX(double x)
+        public virtual string ErrorStringForX(string x)
         {
             return "";
         }

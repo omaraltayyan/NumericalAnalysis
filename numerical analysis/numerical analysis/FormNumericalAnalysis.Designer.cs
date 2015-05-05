@@ -109,6 +109,7 @@
             this.checkBoxGeneralMethod.TabIndex = 2;
             this.checkBoxGeneralMethod.Text = "General Method";
             this.checkBoxGeneralMethod.UseVisualStyleBackColor = true;
+            this.checkBoxGeneralMethod.CheckedChanged += new System.EventHandler(this.checkBoxGeneralMethod_CheckedChanged);
             // 
             // groupBox1
             // 

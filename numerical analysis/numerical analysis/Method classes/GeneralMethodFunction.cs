@@ -100,7 +100,7 @@ namespace numerical_analysis.Method_classes
             return 0.0;
         }
 
-        public override string ErrorStringForX(double x)
+        public override string ErrorStringForX(string x)
         {
             return "";
         }

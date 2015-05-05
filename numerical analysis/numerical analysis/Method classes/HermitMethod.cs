@@ -134,8 +134,15 @@ namespace numerical_analysis.Method_classes
          * between yn to y0 is positive to be an increasing function
          * and it is decreasing otherwise
         **/
-        public override string ErrorStringForX(double x)
+        public override string ErrorStringForX(string x)
         {
+            double parsedX;
+
+            if (!double.TryParse(x,out parsedX))
+            {
+                return "";
+            }
+
             bool isIncreasing = interpolationSamples[samplesYIndex, samplesColumnLength - 1] - interpolationSamples[samplesYIndex, 0] > 0;
 
             // calculate the (2n+2)!
@@ -150,7 +157,7 @@ namespace numerical_analysis.Method_classes
             double product = 1;
             for (int i = 0; i < samplesColumnLength; i++)
             {
-                product *= Math.Pow(x - interpolationSamples[samplesXIndex, i],2);
+                product *= Math.Pow(parsedX - interpolationSamples[samplesXIndex, i], 2);
             }
 
 

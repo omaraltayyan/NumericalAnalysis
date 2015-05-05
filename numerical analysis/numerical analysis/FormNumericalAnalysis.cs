@@ -49,24 +49,28 @@ namespace numerical_analysis
 
 
             if (allRows[e.RowIndex].IsNewRow) { return; }
-            if (!allColumns[e.ColumnIndex].ReadOnly) return;
+            if (allColumns[e.ColumnIndex].ReadOnly) return;
 
+            bool allOtherEnabledCellsHaveValue = true;
             // go through all columns, if one of them has a value then so must be this one
             for (int i = 0; i < allColumns.Count; i++)
             {
                 // if the current column is enabled
-                if (!allColumns[e.ColumnIndex].ReadOnly && i != e.ColumnIndex)
+                if (!allColumns[i].ReadOnly && i != e.ColumnIndex)
                 {
                     DataGridViewCell comparedCell = currentView[i, e.RowIndex];
 
-                    if (((string)currentCell.Value == "" || currentCell.Value == null) &&
-                        (comparedCell.FormattedValue.ToString() != null && comparedCell.FormattedValue.ToString() != ""))
+                    if (cellDoesntHaveValue(comparedCell))
                     {
-                        currentCell.ErrorText = "Required";
-                        e.Cancel = true;
-                        return;
+                        allOtherEnabledCellsHaveValue = false;  
                     }
                 }
+            }
+            if (allOtherEnabledCellsHaveValue && cellDoesntHaveValue(currentCell))
+            {
+                currentCell.ErrorText = "Required";
+                e.Cancel = true;
+                return;
             }
 
             // copy the formatted value
@@ -130,13 +134,12 @@ namespace numerical_analysis
             {
                 DataGridViewRow currentRow = dataGridViewSamplesInput.Rows[i];
                     // if only one of the cells in the row has a value and the other doesn't
-                if ((currentRow.Cells[samplesXIndex].Value == null || (string)currentRow.Cells[samplesXIndex].Value == "") ^ 
-                     (currentRow.Cells[samplesYIndex].Value == null ||(string) currentRow.Cells[samplesYIndex].Value == ""))
+                if (cellDoesntHaveValue(currentRow.Cells[samplesXIndex]) ^ cellDoesntHaveValue(currentRow.Cells[samplesYIndex]))
                 {
                     haveCompleteInput = false;
                 }
                 // if the row is not empty then count it
-                if (currentRow.Cells[samplesXIndex].Value != null && (string)currentRow.Cells[samplesXIndex].Value != "")
+                if (cellHasValue(currentRow.Cells[samplesXIndex]))
                 {
                     rowsCounter++;
                 }
@@ -154,10 +157,10 @@ namespace numerical_analysis
                 for (int i = 0; i < dataGridViewSamplesInput.Rows.Count; i++)
                 {
                     DataGridViewRow currentRow = dataGridViewSamplesInput.Rows[i];
-                    if (currentRow.Cells[samplesXIndex].Value != null && (string)currentRow.Cells[samplesXIndex].Value != "")
+                    if (cellHasValue(currentRow.Cells[samplesXIndex]))
                     {
-                        interpolationSamples[samplesXIndex, i] = double.Parse((string)currentRow.Cells[samplesXIndex].Value);
-                        interpolationSamples[samplesYIndex, i] = double.Parse((string)currentRow.Cells[samplesYIndex].Value);
+                        interpolationSamples[samplesXIndex, i] = double.Parse(currentRow.Cells[samplesXIndex].Value.ToString());
+                        interpolationSamples[samplesYIndex, i] = double.Parse(currentRow.Cells[samplesYIndex].Value.ToString());
                     }
                 }
 
@@ -198,12 +201,11 @@ namespace numerical_analysis
                         // since at this point we are sure we have a complete input for methods other that hermit
                         // (i.e X's and Y's columns are complete) we only need to check one cell other that the Y' cell
                         // to see if that row has any values
-                        if ((currentCell.Value == null || (string)currentCell.Value == "") ^
-                            (comparedRandomCell.Value == null || (string)comparedRandomCell.Value == ""))
+                        if (cellDoesntHaveValue(currentCell) ^ cellDoesntHaveValue(comparedRandomCell))
                         {
                             hermitInputComplete = false;
                         }
-                        if (currentCell.Value != null && (string)currentCell.Value != "")
+                        if (cellHasValue(currentCell))
                         {
                             hermitRowsCounter++;
                         }
@@ -219,18 +221,19 @@ namespace numerical_analysis
                     for (int i = 0; i < dataGridViewSamplesInput.Rows.Count; i++)
                     {
                         DataGridViewRow currentRow = dataGridViewSamplesInput.Rows[i];
-                        if (currentRow.Cells[samplesXIndex].Value != null && (string)currentRow.Cells[samplesXIndex].Value != "")
+                        if (cellHasValue(currentRow.Cells[samplesXIndex]))
                         {
-                            interpolationSamples[samplesXIndex, i] = double.Parse((string)currentRow.Cells[samplesXIndex].Value);
-                            interpolationSamples[samplesYIndex, i] = double.Parse((string)currentRow.Cells[samplesYIndex].Value);
-                            interpolationSamples[samplesYDerivativeIndex, i] = double.Parse((string)currentRow.Cells[samplesYDerivativeIndex].Value);
+                            hermitInterpolationSamples[samplesXIndex, i] = double.Parse(currentRow.Cells[samplesXIndex].Value.ToString());
+                            hermitInterpolationSamples[samplesYIndex, i] = double.Parse(currentRow.Cells[samplesYIndex].Value.ToString());
+                            hermitInterpolationSamples[samplesYDerivativeIndex, i] = double.Parse(currentRow.Cells[samplesYDerivativeIndex].Value.ToString());
                         }
                     }
 
 
-                    HermitMethod hermitMethod = new HermitMethod(interpolationSamples);
+                    HermitMethod hermitMethod = new HermitMethod(hermitInterpolationSamples);
                     if (hermitMethod.isSolvable)
                     {
+                        textBoxOutputResults.Text += "\r\n\r\n";
                         textBoxOutputResults.AppendText("Hermit Method's Solution:");
                         textBoxOutputResults.Text += "\r\n\r\n";
                         textBoxOutputResults.AppendText(hermitMethod.FunctionString);
@@ -238,6 +241,8 @@ namespace numerical_analysis
                         {
                             textBoxOutputResults.Text += "\r\n\r\n";
                             textBoxOutputResults.AppendText(hermitMethod.YForXString(textBoxPerdictValue.Text));
+                            textBoxOutputResults.Text += "\r\n\r\n";
+                            textBoxOutputResults.AppendText(hermitMethod.ErrorStringForX(textBoxPerdictValue.Text));
                         }
                     }
 
@@ -273,9 +278,8 @@ namespace numerical_analysis
             int cellIndex = e.ColumnIndex;
             for (int i = 0; i < currentRow.Cells.Count; i++)
             {
-                string cellVal = (string)currentRow.Cells[i].Value;
                 // if this column is enabled and the cell is empty
-                if (!allColumns[i].ReadOnly && ( cellVal == null || cellVal == ""))
+                if (!allColumns[i].ReadOnly && cellDoesntHaveValue(currentRow.Cells[i]))
                 {
                     // preserve the cell's index and set the input to be not complete
                     cellIndex = i;
@@ -303,10 +307,27 @@ namespace numerical_analysis
         private void checkBoxHermitMethod_CheckedChanged(object sender, EventArgs e)
         {
             // if the hermit method is checked then enable the derivative column, else disable it
-            dataGridViewSamplesInput.Columns[samplesYDerivativeIndex].ReadOnly = checkBoxHermitMethod.Checked ? false : true;
+            dataGridViewSamplesInput.Columns[samplesYDerivativeIndex].ReadOnly = !checkBoxHermitMethod.Checked;
+
+            updateSolutions();
+        }
+
+        private void checkBoxGeneralMethod_CheckedChanged(object sender, EventArgs e)
+        {
+            updateSolutions();
+        }
+
+        private bool cellHasValue(DataGridViewCell cell)
+        {
+            return cell.Value != null && cell.Value.ToString() != "";
         }
 
 
+        private bool cellDoesntHaveValue(DataGridViewCell cell)
+        {
+            return (cell.EditedFormattedValue == null || cell.EditedFormattedValue.ToString() == "")
+                        &&(cell.Value == null || cell.Value.ToString() == "");
+        }
 
 
     }
