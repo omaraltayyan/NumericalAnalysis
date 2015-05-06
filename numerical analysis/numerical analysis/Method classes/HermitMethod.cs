@@ -37,7 +37,7 @@ namespace numerical_analysis.Method_classes
                 {
                     builder.Append(currentY >= 0 ? '-' : '+');
                 }
-                builder.Append(Math.Abs(currentY) + "(");
+                if (UIDoubleAbs(currentY) != 1) builder.Append(UIDoubleAbs(currentY) + "(");
                 builder.Append(HjStringForX(j) + ")");
             }
             builder.Append(" + ");
@@ -50,7 +50,7 @@ namespace numerical_analysis.Method_classes
                 {
                     builder.Append(currentYDerivative >= 0 ? '-' : '+');
                 }
-                builder.Append(Math.Abs(currentYDerivative) + "(");
+                if (UIDoubleAbs(currentYDerivative) != 1) builder.Append(UIDoubleAbs(currentYDerivative) + "(");
                 builder.Append(HchapeaujStringForX(j) + ")");
             }
             isSolvable = true;
@@ -218,15 +218,18 @@ namespace numerical_analysis.Method_classes
             double derivativeValue = 0;
             for (int i = 0; i < samplesColumnLength; i++)
             {
-                double localMultiplication = 1;
-                for (int j = 0; j < samplesColumnLength; j++)
+                if (i != lagrangeIndex)
                 {
-                    if (j != lagrangeIndex && i != j)
+                    double localMultiplication = 1;
+                    for (int j = 0; j < samplesColumnLength; j++)
                     {
-                        localMultiplication *= (interpolationSamples[samplesXIndex,lagrangeIndex] - interpolationSamples[samplesXIndex,j]);
+                        if (j != lagrangeIndex && i != j)
+                        {
+                            localMultiplication *= (interpolationSamples[samplesXIndex, lagrangeIndex] - interpolationSamples[samplesXIndex, j]);
+                        }
                     }
+                    derivativeValue += localMultiplication;
                 }
-                derivativeValue += localMultiplication;
             }
             return derivativeValue / denominator;
         }
@@ -286,11 +289,20 @@ namespace numerical_analysis.Method_classes
                     // (x - xi) from the lectures
                     double currentXi = interpolationSamples[samplesXIndex, i];
                     char currentXiReversedSign = currentXi >= 0 ? '-' : '+';
-
-                    nominatorBuilder.Append("(x " + currentXiReversedSign + " " + Math.Abs(currentXi) + ")");
+                    if (UIDoubleAbs(currentXi) == 0)
+                    {
+                        nominatorBuilder.Append("(x)");
+                    }
+                    else
+                    {
+                        nominatorBuilder.Append("(x " + currentXiReversedSign + " " + UIDoubleAbs(currentXi) + ")");
+                    }
                 }
             }
-            nominatorBuilder.Append("/" + denominator);
+            if (UIDouble(denominator) != 0 && UIDouble(denominator) != 1)
+            {
+                nominatorBuilder.Append("/" + UIDouble(denominator));
+            }
             return nominatorBuilder.ToString();
         }
 
@@ -315,26 +327,47 @@ namespace numerical_analysis.Method_classes
             StringBuilder derivativeValueBuilder = new StringBuilder();
             for (int i = 0; i < samplesColumnLength; i++)
             {
-                for (int j = 0; j < samplesColumnLength; j++)
+                if (i != lagrangeIndex)
                 {
-                    if (j != lagrangeIndex && i != j)
+                    for (int j = 0; j < samplesColumnLength; j++)
                     {
-                         double currentXi = interpolationSamples[samplesXIndex, j];
-                        char currentXiReversedSign = currentXi >= 0 ? '-' : '+';
-
-                        derivativeValueBuilder.Append("(x " + currentXiReversedSign + " " + Math.Abs(currentXi) + ")");
+                        if (j != lagrangeIndex && i != j)
+                        {
+                            double currentXi = interpolationSamples[samplesXIndex, j];
+                            char currentXiReversedSign = currentXi >= 0 ? '-' : '+';
+                            if (UIDoubleAbs(currentXi) == 0)
+                            {
+                                derivativeValueBuilder.Append("(x)");
+                            }
+                            else derivativeValueBuilder.Append("(x " + currentXiReversedSign + " " + UIDoubleAbs(currentXi) + ")");
+                        }
+                    }
+                    if (i != samplesColumnLength - 1)
+                    {
+                        derivativeValueBuilder.Append(" + ");
                     }
                 }
-                if (i != samplesColumnLength - 1)
-                {
-                    derivativeValueBuilder.Append(" + ");
-                }
             }
-            derivativeValueBuilder.Append("/" + denominator);
+
+            if(UIDouble(denominator) != 0 && UIDouble(denominator) != 1) derivativeValueBuilder.Append("/" + UIDouble(denominator));
             return derivativeValueBuilder.ToString();
         }
 
+        private double UIDouble(double x)
+        {
+            return Math.Round(x, 3);
+        }
 
+        private double UIDoubleAbs(double x)
+        {
+            return Math.Abs(UIDouble(x));
+        }
+
+
+        // H^j(x) part of the formula
+        // which is H^j(x) = (x-xj)*l2j(x)
+        // the jIndex is the j of the formula (surprise!!!)
+        // and x is the argument of the function 
         private string HchapeaujStringForX(int jIndex)
         {
             
@@ -343,10 +376,14 @@ namespace numerical_analysis.Method_classes
 
 
             // the (x-xj) part
-            StringBuilder builder = new StringBuilder("(x " + currentXiReversedSign + " " + Math.Abs(currentXi) + ")");
+            StringBuilder builder = new StringBuilder();
+
+            if (UIDoubleAbs(currentXi) == 0) builder.Append("(x)");
+
+            else builder.Append("(x " + currentXiReversedSign + " " + UIDoubleAbs(currentXi) + ")");
 
             // the l2j(x) part
-            builder.Append("[" + langrangeString(jIndex) + "]");
+            builder.Append("[" + langrangeString(jIndex) + "]^2");
 
             return builder.ToString();
         }
@@ -369,7 +406,7 @@ namespace numerical_analysis.Method_classes
             double a = 2 * lagrangeDerivative(jIndex);
             double b = a * currentXi + 1;
             char bInversedSign = b >= 0 ? '-' : '+';
-            StringBuilder builder = new StringBuilder("[" + a + "x " + bInversedSign + " " + Math.Abs(b) + "]");
+            StringBuilder builder = new StringBuilder("[" + UIDoubleAbs(a) + "x " + bInversedSign + " " + UIDoubleAbs(b) + "]");
 
 
             // the l2j(x) part
