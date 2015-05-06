@@ -23,7 +23,7 @@ namespace numerical_analysis.Method_classes
             }
             interpolationSamples = samplesToInterpolate;
 
-            polynomialDegree = samplesColumnLength * 2 + 1;
+            polynomialDegree = (samplesColumnLength-1) * 2 + 1;
 
 
             // build the function string
@@ -124,15 +124,8 @@ namespace numerical_analysis.Method_classes
 
 
         /**
-         * Hermit's error formula: e(x) = [f(m)^(2n+2)/(2n+2)!] * Π(x-xi)^2
+         * Hermit's error formula: e(x) = [f(m)(2n+2)/(2n+2)!] * Π(x-xi)^2
          * 
-         * in order to calculate the error for hermit
-         * we need to "guess" if the function is generally increasing
-         * or decreasing , we can never do this with absolute
-         * accuracy, since this is an interpolation operation).
-         * to do this we will consider a function whose difference
-         * between yn to y0 is positive to be an increasing function
-         * and it is decreasing otherwise
         **/
         public override string ErrorStringForX(string x)
         {

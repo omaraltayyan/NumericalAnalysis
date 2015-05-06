@@ -213,7 +213,7 @@ namespace numerical_analysis
                 }
 
 
-                if (hermitInputComplete)
+                if (hermitInputComplete && hermitRowsCounter > 0)
                 {
                     double[,] hermitInterpolationSamples = new double[3, rowsCounter];
 
