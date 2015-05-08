@@ -16,12 +16,29 @@ namespace numerical_analysis.Method_classes
             {
                 throw new Exception("samples rows must be 2");
             }
+            // checking if it's solvable
+            isSolvable = true;
+            for (int j = 0; j < samplesColumnLength; j++)
+            {
+                for (int i = 0; i < samplesColumnLength; i++)
+                {
+                    if (i != j)
+                    {
+                        // if one of the (xj - xi)'s is 0 then we have a divide by zero in one of lagrange's polynomials
+                        // and the result is unsolvable
+                        if ((interpolationSamples[samplesXIndex, j] - interpolationSamples[samplesXIndex, i]) == 0)
+                        {
+                            isSolvable = false;
+                        }
+                    }
+                }
+            }
 
             polynomialDegree = samplesColumnLength - 1;
         }
 
 
-        public override double YForX(double x)
+        protected override double YForX(double x)
         {
             double result = 0;
 

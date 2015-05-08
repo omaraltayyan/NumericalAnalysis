@@ -129,7 +129,7 @@ namespace numerical_analysis
 
             // check if the input is complete
             bool twoColumnsCompleteInput = true;
-            int twoColumnsCompleterowsCounter = 0;
+            int twoColumnsCompleteRowsCounter = 0;
             for (int i = 0; i < dataGridViewSamplesInput.Rows.Count; i++)
             {
                 DataGridViewRow currentRow = dataGridViewSamplesInput.Rows[i];
@@ -141,16 +141,16 @@ namespace numerical_analysis
                 // if the row is not empty then count it
                 if (cellHasValue(currentRow.Cells[samplesXIndex]))
                 {
-                    twoColumnsCompleterowsCounter++;
+                    twoColumnsCompleteRowsCounter++;
                 }
                 
             }
 
 
             // make sure that the input we have is full before we start to collect samples
-            if (twoColumnsCompleteInput && twoColumnsCompleterowsCounter > 0)
+            if (twoColumnsCompleteInput && twoColumnsCompleteRowsCounter > 0)
             {
-                double[,] interpolationSamples = new double[2, twoColumnsCompleterowsCounter];
+                double[,] twoColumnsInterpolationSamples = new double[2, twoColumnsCompleteRowsCounter];
 
 
                 // collect samples from the grid view
@@ -159,8 +159,8 @@ namespace numerical_analysis
                     DataGridViewRow currentRow = dataGridViewSamplesInput.Rows[i];
                     if (cellHasValue(currentRow.Cells[samplesXIndex]))
                     {
-                        interpolationSamples[samplesXIndex, i] = double.Parse(currentRow.Cells[samplesXIndex].Value.ToString());
-                        interpolationSamples[samplesYIndex, i] = double.Parse(currentRow.Cells[samplesYIndex].Value.ToString());
+                        twoColumnsInterpolationSamples[samplesXIndex, i] = double.Parse(currentRow.Cells[samplesXIndex].Value.ToString());
+                        twoColumnsInterpolationSamples[samplesYIndex, i] = double.Parse(currentRow.Cells[samplesYIndex].Value.ToString());
                     }
                 }
 
@@ -168,9 +168,12 @@ namespace numerical_analysis
                 textBoxOutputResults.Clear();
 
 #warning add your two columns (x, y) method calling code here
+                LagrangeMethod lagrangeMethod = new LagrangeMethod(twoColumnsInterpolationSamples);
+
+
 
                 // General Method Code
-                GeneralMethodFunction generalMethod = new GeneralMethodFunction(interpolationSamples);
+                GeneralMethodFunction generalMethod = new GeneralMethodFunction(twoColumnsInterpolationSamples);
                 if (generalMethod.isSolvable && checkBoxGeneralMethod.Checked)
                 {
                     textBoxOutputResults.AppendText("General Method's Solution:");
@@ -215,7 +218,7 @@ namespace numerical_analysis
 
                 if (ThreeColumnsInputComplete && ThreeColumnCompleteRowsCounter > 0)
                 {
-                    double[,] ThreeColumnsInterpolationSamples = new double[3, twoColumnsCompleterowsCounter];
+                    double[,] threeColumnsInterpolationSamples = new double[3, twoColumnsCompleteRowsCounter];
 
                     // collect samples for hermit from the grid view
                     for (int i = 0; i < dataGridViewSamplesInput.Rows.Count; i++)
@@ -223,16 +226,16 @@ namespace numerical_analysis
                         DataGridViewRow currentRow = dataGridViewSamplesInput.Rows[i];
                         if (cellHasValue(currentRow.Cells[samplesXIndex]))
                         {
-                            ThreeColumnsInterpolationSamples[samplesXIndex, i] = double.Parse(currentRow.Cells[samplesXIndex].Value.ToString());
-                            ThreeColumnsInterpolationSamples[samplesYIndex, i] = double.Parse(currentRow.Cells[samplesYIndex].Value.ToString());
-                            ThreeColumnsInterpolationSamples[samplesYDerivativeIndex, i] = double.Parse(currentRow.Cells[samplesYDerivativeIndex].Value.ToString());
+                            threeColumnsInterpolationSamples[samplesXIndex, i] = double.Parse(currentRow.Cells[samplesXIndex].Value.ToString());
+                            threeColumnsInterpolationSamples[samplesYIndex, i] = double.Parse(currentRow.Cells[samplesYIndex].Value.ToString());
+                            threeColumnsInterpolationSamples[samplesYDerivativeIndex, i] = double.Parse(currentRow.Cells[samplesYDerivativeIndex].Value.ToString());
                         }
                     }
 
 #warning add your three columns (x, y, y') method calling code here
 
 
-                    HermitMethod hermitMethod = new HermitMethod(ThreeColumnsInterpolationSamples);
+                    HermitMethod hermitMethod = new HermitMethod(threeColumnsInterpolationSamples);
                     if (hermitMethod.isSolvable)
                     {
                         textBoxOutputResults.Text += "\r\n\r\n";

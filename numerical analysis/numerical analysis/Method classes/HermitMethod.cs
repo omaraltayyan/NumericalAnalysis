@@ -139,7 +139,7 @@ namespace numerical_analysis.Method_classes
             return "Error for " + x + " is between " + minimalError + " and " + maximalError;
         }
 
-        public override double YForX(double x)
+        protected override double YForX(double x)
         {
             // remember hermit's formula 
             // H2n+1(x) = Σ[yj * hj(x)] + Σ[y'j * H^j(x)]

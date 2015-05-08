@@ -42,7 +42,7 @@ namespace numerical_analysis.Method_classes
 
         public bool isSolvable { get; protected set; }
 
-        public abstract double YForX(double x);
+        protected abstract double YForX(double x);
 
 
         public virtual string FunctionString { get; protected set; }

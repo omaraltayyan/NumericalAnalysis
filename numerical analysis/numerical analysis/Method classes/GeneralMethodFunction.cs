@@ -82,7 +82,7 @@ namespace numerical_analysis.Method_classes
         }
 
 
-        public override double YForX(double x)
+        protected override double YForX(double x)
         {
             if (isSolvable)
             {
