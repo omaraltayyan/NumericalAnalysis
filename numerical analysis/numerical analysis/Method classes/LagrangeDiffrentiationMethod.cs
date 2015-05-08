@@ -12,7 +12,7 @@ namespace numerical_analysis.Method_classes
         public LagrangeDiffrentiationMethod(double[,] samplesToInterpolate)
             : base(samplesToInterpolate)
         {
-            if (samplesRowsLength != 3)
+            if (samplesRowsLength != 2)
             {
                 throw new Exception("samples rows must be 2");
             }
