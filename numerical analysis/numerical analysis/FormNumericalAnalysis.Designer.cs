@@ -39,6 +39,12 @@
             this.textBoxOutputResults = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.textBoxPerdictValue = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSamplesInput)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -59,7 +65,7 @@
             this.dataGridViewSamplesInput.Name = "dataGridViewSamplesInput";
             this.dataGridViewSamplesInput.RowTemplate.Height = 26;
             this.dataGridViewSamplesInput.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGridViewSamplesInput.Size = new System.Drawing.Size(362, 431);
+            this.dataGridViewSamplesInput.Size = new System.Drawing.Size(362, 426);
             this.dataGridViewSamplesInput.TabIndex = 0;
             this.dataGridViewSamplesInput.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dataGridViewSamplesInput_CellValidating);
             this.dataGridViewSamplesInput.RowValidating += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dataGridViewSamplesInput_RowValidating);
@@ -113,11 +119,13 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.checkBox2);
+            this.groupBox1.Controls.Add(this.checkBox1);
             this.groupBox1.Controls.Add(this.checkBoxHermitMethod);
             this.groupBox1.Controls.Add(this.checkBoxGeneralMethod);
             this.groupBox1.Location = new System.Drawing.Point(371, 31);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(263, 300);
+            this.groupBox1.Size = new System.Drawing.Size(281, 300);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Choose Numerical Methods";
@@ -138,15 +146,17 @@
             // textBoxOutputResults
             // 
             this.textBoxOutputResults.AcceptsReturn = true;
+            this.textBoxOutputResults.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxOutputResults.CausesValidation = false;
-            this.textBoxOutputResults.Dock = System.Windows.Forms.DockStyle.Right;
             this.textBoxOutputResults.HideSelection = false;
-            this.textBoxOutputResults.Location = new System.Drawing.Point(640, 0);
+            this.textBoxOutputResults.Location = new System.Drawing.Point(658, 0);
             this.textBoxOutputResults.Multiline = true;
             this.textBoxOutputResults.Name = "textBoxOutputResults";
             this.textBoxOutputResults.ReadOnly = true;
             this.textBoxOutputResults.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBoxOutputResults.Size = new System.Drawing.Size(243, 462);
+            this.textBoxOutputResults.Size = new System.Drawing.Size(318, 457);
             this.textBoxOutputResults.TabIndex = 4;
             this.textBoxOutputResults.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -155,23 +165,79 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(371, 356);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(91, 17);
+            this.label3.Size = new System.Drawing.Size(95, 17);
             this.label3.TabIndex = 6;
-            this.label3.Text = "Predict Value:";
+            this.label3.Text = "estimate Value";
             // 
             // textBoxPerdictValue
             // 
-            this.textBoxPerdictValue.Location = new System.Drawing.Point(505, 353);
+            this.textBoxPerdictValue.Location = new System.Drawing.Point(523, 353);
             this.textBoxPerdictValue.Name = "textBoxPerdictValue";
             this.textBoxPerdictValue.Size = new System.Drawing.Size(129, 24);
             this.textBoxPerdictValue.TabIndex = 7;
             this.textBoxPerdictValue.TextChanged += new System.EventHandler(this.textBoxPerdictValue_TextChanged);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(371, 387);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(124, 17);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "Hermit\'s Differential";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(371, 418);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(141, 17);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "Lagrange\'s Differential";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(523, 387);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(129, 24);
+            this.textBox1.TabIndex = 10;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(523, 418);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(129, 24);
+            this.textBox2.TabIndex = 11;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(7, 78);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(137, 21);
+            this.checkBox1.TabIndex = 4;
+            this.checkBox1.Text = "Lagrange Method";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Location = new System.Drawing.Point(7, 105);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(225, 21);
+            this.checkBox2.TabIndex = 5;
+            this.checkBox2.Text = "Lagrange Differentiation Method";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            // 
             // FormNumericalAnalysis
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(883, 462);
+            this.ClientSize = new System.Drawing.Size(976, 457);
+            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.textBoxPerdictValue);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.textBoxOutputResults);
@@ -179,7 +245,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridViewSamplesInput);
             this.KeyPreview = true;
-            this.MinimumSize = new System.Drawing.Size(864, 442);
+            this.MinimumSize = new System.Drawing.Size(994, 504);
             this.Name = "FormNumericalAnalysis";
             this.Text = "Numerical Analysis";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSamplesInput)).EndInit();
@@ -203,6 +269,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn X;
         private System.Windows.Forms.DataGridViewTextBoxColumn Y;
         private System.Windows.Forms.DataGridViewTextBoxColumn Yderivative;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }
 
