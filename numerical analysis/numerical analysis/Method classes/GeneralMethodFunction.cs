@@ -16,15 +16,11 @@ namespace numerical_analysis.Method_classes
         /// </summary>
         /// <param name="samplesToInterpolate"> the samples 2 by n grid</param> 
         public GeneralMethodFunction(double[,] samplesToInterpolate)
+            : base(samplesToInterpolate)
         {
-
-            int samplesRowsLength = samplesToInterpolate.GetUpperBound(0) + 1;
-            int samplesColumnLength = samplesToInterpolate.GetUpperBound(1) + 1;
 
             if (samplesRowsLength != 2)
                 throw new Exception("samples rows must be exactly 2");
-
-
 
             // calculate Wonderment's Determinant
             for (int i = 0; i < samplesColumnLength - 1; i++)
@@ -100,7 +96,7 @@ namespace numerical_analysis.Method_classes
             return 0.0;
         }
 
-        public override string ErrorStringForX(string x)
+        protected override string ErrorStringForX(double x)
         {
             return "";
         }

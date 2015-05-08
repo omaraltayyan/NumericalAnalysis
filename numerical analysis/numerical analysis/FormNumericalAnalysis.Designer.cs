@@ -43,8 +43,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.checkBoxLagrangeMethod = new System.Windows.Forms.CheckBox();
+            this.checkBoxLagrangeDifferentiation = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSamplesInput)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -119,8 +119,8 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.checkBox2);
-            this.groupBox1.Controls.Add(this.checkBox1);
+            this.groupBox1.Controls.Add(this.checkBoxLagrangeDifferentiation);
+            this.groupBox1.Controls.Add(this.checkBoxLagrangeMethod);
             this.groupBox1.Controls.Add(this.checkBoxHermitMethod);
             this.groupBox1.Controls.Add(this.checkBoxGeneralMethod);
             this.groupBox1.Location = new System.Drawing.Point(371, 31);
@@ -209,25 +209,25 @@
             this.textBox2.Size = new System.Drawing.Size(129, 24);
             this.textBox2.TabIndex = 11;
             // 
-            // checkBox1
+            // checkBoxLagrangeMethod
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(7, 78);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(137, 21);
-            this.checkBox1.TabIndex = 4;
-            this.checkBox1.Text = "Lagrange Method";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBoxLagrangeMethod.AutoSize = true;
+            this.checkBoxLagrangeMethod.Location = new System.Drawing.Point(7, 78);
+            this.checkBoxLagrangeMethod.Name = "checkBoxLagrangeMethod";
+            this.checkBoxLagrangeMethod.Size = new System.Drawing.Size(137, 21);
+            this.checkBoxLagrangeMethod.TabIndex = 4;
+            this.checkBoxLagrangeMethod.Text = "Lagrange Method";
+            this.checkBoxLagrangeMethod.UseVisualStyleBackColor = true;
             // 
-            // checkBox2
+            // checkBoxLagrangeDifferentiation
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(7, 105);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(225, 21);
-            this.checkBox2.TabIndex = 5;
-            this.checkBox2.Text = "Lagrange Differentiation Method";
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.checkBoxLagrangeDifferentiation.AutoSize = true;
+            this.checkBoxLagrangeDifferentiation.Location = new System.Drawing.Point(7, 105);
+            this.checkBoxLagrangeDifferentiation.Name = "checkBoxLagrangeDifferentiation";
+            this.checkBoxLagrangeDifferentiation.Size = new System.Drawing.Size(225, 21);
+            this.checkBoxLagrangeDifferentiation.TabIndex = 5;
+            this.checkBoxLagrangeDifferentiation.Text = "Lagrange Differentiation Method";
+            this.checkBoxLagrangeDifferentiation.UseVisualStyleBackColor = true;
             // 
             // FormNumericalAnalysis
             // 
@@ -273,8 +273,8 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox checkBoxLagrangeDifferentiation;
+        private System.Windows.Forms.CheckBox checkBoxLagrangeMethod;
     }
 }
 
