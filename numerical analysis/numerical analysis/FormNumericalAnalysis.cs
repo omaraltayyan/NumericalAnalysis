@@ -315,10 +315,10 @@ namespace numerical_analysis
                     textBoxOutputResults.AppendText("Spline Method's Solution:");
                     textBoxOutputResults.Text += "\r\n\r\n";
                     textBoxOutputResults.AppendText(splinemethod.FunctionString);
-                    if (textBoxPerdictValue.Text != null && textBoxPerdictValue.Text != "")
+                    if (stringNotEmpty(textBoxPerdictValue.Text))
                     {
                         textBoxOutputResults.Text += "\r\n\r\n";
-                        textBoxOutputResults.AppendText(splinemethod.YForXString(textBoxPerdictValue.Text.Trim()));
+                        textBoxOutputResults.AppendText(splinemethod.YForXString(textBoxPerdictValue.Text));
                     }
                 }
 

@@ -48,16 +48,7 @@ namespace numerical_analysis.Method_classes
             value_index = ind;
             return result;
         }
-        public string YForXString(string x)
-        {
-            if (!isSolvable) return "";
 
-            double sentVal;
-
-            if (!double.TryParse(x, out sentVal)) return "";
-            double yForFx = YForX(sentVal);
-            return "S" + value_index + "(" + x + ") = " + yForFx + "\n";
-        }
         public override string FunctionString
         {
             get
