@@ -239,6 +239,7 @@
             this.textBoxHermitDifferential.Name = "textBoxHermitDifferential";
             this.textBoxHermitDifferential.Size = new System.Drawing.Size(129, 24);
             this.textBoxHermitDifferential.TabIndex = 10;
+            this.textBoxHermitDifferential.TextChanged += new System.EventHandler(this.textBoxHermitDifferential_TextChanged);
             // 
             // textBoxLagrangeDifferential
             // 
@@ -246,6 +247,7 @@
             this.textBoxLagrangeDifferential.Name = "textBoxLagrangeDifferential";
             this.textBoxLagrangeDifferential.Size = new System.Drawing.Size(129, 24);
             this.textBoxLagrangeDifferential.TabIndex = 11;
+            this.textBoxLagrangeDifferential.TextChanged += new System.EventHandler(this.textBoxLagrangeDifferential_TextChanged);
             // 
             // FormNumericalAnalysis
             // 

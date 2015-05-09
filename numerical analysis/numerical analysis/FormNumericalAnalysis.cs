@@ -123,16 +123,26 @@ namespace numerical_analysis
 
         private void updateSolutions()
         {
-
             // make the grid view apply it's changes to it's data cache
             dataGridViewSamplesInput.EndEdit();
+
+            clearDataGridDuplicateEnteries();
+
+            List<DataGridViewRow> validRows = new List<DataGridViewRow>();
+            for (int i = 0; i < dataGridViewSamplesInput.Rows.Count; i++)
+            {
+                if (dataGridViewSamplesInput.Rows[i].Visible)
+                {
+                    validRows.Add(dataGridViewSamplesInput.Rows[i]);
+                }
+            }
 
             // check if the input is complete
             bool twoColumnsCompleteInput = true;
             int twoColumnsCompleteRowsCounter = 0;
-            for (int i = 0; i < dataGridViewSamplesInput.Rows.Count; i++)
+            for (int i = 0; i < validRows.Count; i++)
             {
-                DataGridViewRow currentRow = dataGridViewSamplesInput.Rows[i];
+                DataGridViewRow currentRow = validRows[i];
                     // if only one of the cells in the row has a value and the other doesn't
                 if (cellDoesntHaveValue(currentRow.Cells[samplesXIndex]) ^ cellDoesntHaveValue(currentRow.Cells[samplesYIndex]))
                 {
@@ -154,9 +164,9 @@ namespace numerical_analysis
 
 
                 // collect samples from the grid view
-                for (int i = 0; i < dataGridViewSamplesInput.Rows.Count; i++)
+                for (int i = 0; i < validRows.Count; i++)
                 {
-                    DataGridViewRow currentRow = dataGridViewSamplesInput.Rows[i];
+                    DataGridViewRow currentRow = validRows[i];
                     if (cellHasValue(currentRow.Cells[samplesXIndex]))
                     {
                         twoColumnsInterpolationSamples[samplesXIndex, i] = double.Parse(currentRow.Cells[samplesXIndex].Value.ToString());
@@ -235,9 +245,9 @@ namespace numerical_analysis
                 else
                 {
                     // check the y' column for complete input
-                    for (int i = 0; i < dataGridViewSamplesInput.Rows.Count; i++)
+                    for (int i = 0; i < validRows.Count; i++)
                     {
-                        DataGridViewRow currentRow = dataGridViewSamplesInput.Rows[i];
+                        DataGridViewRow currentRow = validRows[i];
                         DataGridViewCell currentCell = currentRow.Cells[samplesYDerivativeIndex];
                         DataGridViewCell comparedRandomCell = currentRow.Cells[samplesXIndex];
 
@@ -261,9 +271,9 @@ namespace numerical_analysis
                     double[,] threeColumnsInterpolationSamples = new double[3, twoColumnsCompleteRowsCounter];
 
                     // collect samples for hermit from the grid view
-                    for (int i = 0; i < dataGridViewSamplesInput.Rows.Count; i++)
+                    for (int i = 0; i < validRows.Count; i++)
                     {
-                        DataGridViewRow currentRow = dataGridViewSamplesInput.Rows[i];
+                        DataGridViewRow currentRow = validRows[i];
                         if (cellHasValue(currentRow.Cells[samplesXIndex]))
                         {
                             threeColumnsInterpolationSamples[samplesXIndex, i] = double.Parse(currentRow.Cells[samplesXIndex].Value.ToString());
@@ -298,13 +308,47 @@ namespace numerical_analysis
 
                 // end of hermit's code
 
-
-
-
-
             }
         }
 
+        private void clearDataGridDuplicateEnteries()
+        {
+            // convenience local variables
+            DataGridViewRowCollection allRows = dataGridViewSamplesInput.Rows;
+
+            // begin from the second row
+            // check if all x's are unique, if not, make the last one override
+            // the ones before it
+            for (int i = allRows.Count - 1; i > 0; i--)
+            {
+                if (allRows[i].Visible == true) // if the row has not been staged for removal before
+                {
+                    double currentVal;
+                    object currentObject = allRows[i].Cells[samplesXIndex].Value;
+
+                    if (currentObject != null && double.TryParse(currentObject.ToString(), out currentVal))
+                    {
+                        // check all rows before this one
+                        for (int j = 0; j < i; j++)
+                        {
+                            if (allRows[j].Visible == true) // if the row has not been staged for removal before
+                            {
+                                double comparedVal;
+                                object comparedObject = allRows[j].Cells[samplesXIndex].Value;
+                                if (comparedObject != null && double.TryParse(comparedObject.ToString(), out comparedVal))
+                                {
+                                    if (doublesEqual(comparedVal, currentVal)) // duplicate found
+                                    {
+                                        // stage the row for removal
+                                        allRows[j].Visible = false;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
         private void dataGridViewSamplesInput_RowValidating(object sender, DataGridViewCellCancelEventArgs e)
         {
             // Don't try to validate the 'new row' until finished 
@@ -391,6 +435,33 @@ namespace numerical_analysis
                         &&(cell.Value == null || cell.Value.ToString() == "");
         }
 
+        private void textBoxHermitDifferential_TextChanged(object sender, EventArgs e)
+        {
+            updateSolutions();
+        }
+
+        private void textBoxLagrangeDifferential_TextChanged(object sender, EventArgs e)
+        {
+            updateSolutions();
+        }
+        private bool doublesEqual(double a, double b)
+        {
+           
+            double difference = Math.Abs(a * .00000001);
+
+            // Compare the values
+            return Math.Abs(a - b) <= difference;
+            
+        }
+
+            //for (int i = 0; i < dataGridViewSamplesInput.Rows.Count; i++)
+            //{
+            //    if (dataGridViewSamplesInput.Rows[i].Visible == false)
+            //    {
+            //        dataGridViewSamplesInput.Rows.RemoveAt(i);
+            //        i--;
+            //    }
+            //}
 
     }
 }
