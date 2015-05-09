@@ -308,8 +308,8 @@ namespace numerical_analysis
         private void checkBoxHermitMethod_CheckedChanged(object sender, EventArgs e)
         {
             // if the hermit method is checked then enable the derivative column, else disable it
-            dataGridViewSamplesInput.Columns[samplesYDerivativeIndex].ReadOnly = !checkBoxHermitMethod.Checked;
-
+            var yDerivativeColumn = dataGridViewSamplesInput.Columns[samplesYDerivativeIndex];
+            yDerivativeColumn.Visible = yDerivativeColumn.ReadOnly = checkBoxHermitMethod.Checked;
             updateSolutions();
         }
 
@@ -320,6 +320,7 @@ namespace numerical_analysis
 
         private bool cellHasValue(DataGridViewCell cell)
         {
+            
             return cell.Value != null && cell.Value.ToString() != "";
         }
 

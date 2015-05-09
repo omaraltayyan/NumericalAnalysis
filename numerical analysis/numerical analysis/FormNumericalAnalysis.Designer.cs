@@ -35,6 +35,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.checkBoxGeneralMethod = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.checkBoxLagrangeDifferentiation = new System.Windows.Forms.CheckBox();
+            this.checkBoxLagrangeMethod = new System.Windows.Forms.CheckBox();
             this.checkBoxHermitMethod = new System.Windows.Forms.CheckBox();
             this.textBoxOutputResults = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -43,16 +45,14 @@
             this.label4 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
-            this.checkBoxLagrangeMethod = new System.Windows.Forms.CheckBox();
-            this.checkBoxLagrangeDifferentiation = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSamplesInput)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridViewSamplesInput
             // 
-            this.dataGridViewSamplesInput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)));
+            this.dataGridViewSamplesInput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.dataGridViewSamplesInput.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewSamplesInput.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
             this.dataGridViewSamplesInput.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -130,6 +130,26 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Choose Numerical Methods";
             // 
+            // checkBoxLagrangeDifferentiation
+            // 
+            this.checkBoxLagrangeDifferentiation.AutoSize = true;
+            this.checkBoxLagrangeDifferentiation.Location = new System.Drawing.Point(7, 105);
+            this.checkBoxLagrangeDifferentiation.Name = "checkBoxLagrangeDifferentiation";
+            this.checkBoxLagrangeDifferentiation.Size = new System.Drawing.Size(225, 21);
+            this.checkBoxLagrangeDifferentiation.TabIndex = 5;
+            this.checkBoxLagrangeDifferentiation.Text = "Lagrange Differentiation Method";
+            this.checkBoxLagrangeDifferentiation.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxLagrangeMethod
+            // 
+            this.checkBoxLagrangeMethod.AutoSize = true;
+            this.checkBoxLagrangeMethod.Location = new System.Drawing.Point(7, 78);
+            this.checkBoxLagrangeMethod.Name = "checkBoxLagrangeMethod";
+            this.checkBoxLagrangeMethod.Size = new System.Drawing.Size(137, 21);
+            this.checkBoxLagrangeMethod.TabIndex = 4;
+            this.checkBoxLagrangeMethod.Text = "Lagrange Method";
+            this.checkBoxLagrangeMethod.UseVisualStyleBackColor = true;
+            // 
             // checkBoxHermitMethod
             // 
             this.checkBoxHermitMethod.AutoSize = true;
@@ -146,9 +166,9 @@
             // textBoxOutputResults
             // 
             this.textBoxOutputResults.AcceptsReturn = true;
-            this.textBoxOutputResults.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxOutputResults.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxOutputResults.CausesValidation = false;
             this.textBoxOutputResults.HideSelection = false;
             this.textBoxOutputResults.Location = new System.Drawing.Point(658, 0);
@@ -208,26 +228,6 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(129, 24);
             this.textBox2.TabIndex = 11;
-            // 
-            // checkBoxLagrangeMethod
-            // 
-            this.checkBoxLagrangeMethod.AutoSize = true;
-            this.checkBoxLagrangeMethod.Location = new System.Drawing.Point(7, 78);
-            this.checkBoxLagrangeMethod.Name = "checkBoxLagrangeMethod";
-            this.checkBoxLagrangeMethod.Size = new System.Drawing.Size(137, 21);
-            this.checkBoxLagrangeMethod.TabIndex = 4;
-            this.checkBoxLagrangeMethod.Text = "Lagrange Method";
-            this.checkBoxLagrangeMethod.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxLagrangeDifferentiation
-            // 
-            this.checkBoxLagrangeDifferentiation.AutoSize = true;
-            this.checkBoxLagrangeDifferentiation.Location = new System.Drawing.Point(7, 105);
-            this.checkBoxLagrangeDifferentiation.Name = "checkBoxLagrangeDifferentiation";
-            this.checkBoxLagrangeDifferentiation.Size = new System.Drawing.Size(225, 21);
-            this.checkBoxLagrangeDifferentiation.TabIndex = 5;
-            this.checkBoxLagrangeDifferentiation.Text = "Lagrange Differentiation Method";
-            this.checkBoxLagrangeDifferentiation.UseVisualStyleBackColor = true;
             // 
             // FormNumericalAnalysis
             // 
