@@ -45,6 +45,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
+            this.checkBoxSplineMethod = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSamplesInput)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -119,6 +120,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.checkBoxSplineMethod);
             this.groupBox1.Controls.Add(this.checkBoxLagrangeDifferentiation);
             this.groupBox1.Controls.Add(this.checkBoxLagrangeMethod);
             this.groupBox1.Controls.Add(this.checkBoxHermitMethod);
@@ -235,6 +237,16 @@
             this.textBox2.Size = new System.Drawing.Size(129, 24);
             this.textBox2.TabIndex = 11;
             // 
+            // checkBoxSplineMethod
+            // 
+            this.checkBoxSplineMethod.AutoSize = true;
+            this.checkBoxSplineMethod.Location = new System.Drawing.Point(7, 132);
+            this.checkBoxSplineMethod.Name = "checkBoxSplineMethod";
+            this.checkBoxSplineMethod.Size = new System.Drawing.Size(115, 21);
+            this.checkBoxSplineMethod.TabIndex = 6;
+            this.checkBoxSplineMethod.Text = "Spline Method";
+            this.checkBoxSplineMethod.UseVisualStyleBackColor = true;
+            // 
             // FormNumericalAnalysis
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -281,6 +293,7 @@
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.CheckBox checkBoxLagrangeDifferentiation;
         private System.Windows.Forms.CheckBox checkBoxLagrangeMethod;
+        private System.Windows.Forms.CheckBox checkBoxSplineMethod;
     }
 }
 
