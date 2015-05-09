@@ -5,7 +5,7 @@ using System.Text;
 
 namespace numerical_analysis.Method_classes
 {
-    class NewtonDividedDifferences
+    class NewtonDividedDifferences : AnalysisMethod
     {
         public enum DifferncesType
         {
@@ -13,11 +13,9 @@ namespace numerical_analysis.Method_classes
         }
         private const int Xi = 0;
         private const int Yi = 1;
-        public double[,] SamplesToInterpolate { get; set; }
         public DifferncesType MethodType { get; set; }
-        public NewtonDividedDifferences(DifferncesType typ , double[,] samplesArray)
+        public NewtonDividedDifferences(DifferncesType typ , double[,] samplesArray) : base(samplesArray)
         {
-            SamplesToInterpolate = samplesArray;
             MethodType = typ;
         }
         public static double DividedDifferences(double X0, double X1, double Y0, double Y1)
@@ -31,7 +29,12 @@ namespace numerical_analysis.Method_classes
         }
         public void ProgressiveDividedDifferences()
         {
-            int numberOfSamples = SamplesToInterpolate.GetLength(Xi);
+            int numberOfSamples = samplesColumnLength;
+        }
+
+        protected override double YForX(double x)
+        {
+            throw new NotImplementedException();
         }
     }
 }
