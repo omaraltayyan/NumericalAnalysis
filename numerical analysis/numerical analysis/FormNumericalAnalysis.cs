@@ -298,6 +298,22 @@ namespace numerical_analysis
 
                 // end of hermit's code
 
+                //Spline Method Code
+                SplineMethod splinemethod = new SplineMethod(twoColumnsInterpolationSamples);
+                if (splinemethod.isSolvable && checkBoxSplineMethod.Checked)
+                {
+                    textBoxOutputResults.AppendText("Spline Method's Solution:");
+                    textBoxOutputResults.Text += "\r\n\r\n";
+                    textBoxOutputResults.AppendText(splinemethod.FunctionString);
+                    if (textBoxPerdictValue.Text != null && textBoxPerdictValue.Text != "")
+                    {
+                        textBoxOutputResults.Text += "\r\n\r\n";
+                        textBoxOutputResults.AppendText(splinemethod.YForXString(textBoxPerdictValue.Text.Trim()));
+                    }
+                }
+
+                //end of spline's method
+
 
 
 
