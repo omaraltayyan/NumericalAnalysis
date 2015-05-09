@@ -14,6 +14,8 @@ namespace numerical_analysis.Method_classes
             {
                 throw new Exception("samples rows must be 2");
             }
+            polynomialDegree = samplesColumnLength - 1;
+
             // checking if it's solvable
             isSolvable = true;
             for (int j = 0; j < samplesColumnLength; j++)
@@ -36,7 +38,6 @@ namespace numerical_analysis.Method_classes
             {
                 FunctionString = buildFunctionString();
             }
-            polynomialDegree = samplesColumnLength - 1;
         }
 
 
@@ -53,7 +54,7 @@ namespace numerical_analysis.Method_classes
                 {
                     builder.Append(currentY >= 0 ? '-' : '+');
                 }
-                if (UIDoubleAbs(currentY) != 1 || samplesColumnLength != 1) builder.Append(UIDoubleAbs(currentY));
+                if (UIDoubleAbs(currentY) != 1 || samplesColumnLength == 1) builder.Append(UIDoubleAbs(currentY));
                 string lagString = langrangeString(j);
                 if (lagString != "")
                 {

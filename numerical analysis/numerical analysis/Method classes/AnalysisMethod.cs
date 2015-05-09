@@ -72,7 +72,8 @@ namespace numerical_analysis.Method_classes
 
             if (!double.TryParse(x, out sentVal)) return "";
 
-            double yForFx = YForX(sentVal);
+            // remove possible errors in calculation like 1.9999... instead of 2 and the sort
+            double yForFx = Math.Round(YForX(sentVal),13);
             return "P" + polynomialDegree + "(" + sentVal + ")" + " = " + yForFx;
         }
 
