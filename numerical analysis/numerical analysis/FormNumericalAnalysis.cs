@@ -143,7 +143,7 @@ namespace numerical_analysis
             for (int i = 0; i < validRows.Count; i++)
             {
                 DataGridViewRow currentRow = validRows[i];
-                    // if only one of the cells in the row has a value and the other doesn't
+                // if only one of the cells in the row has a value and the other doesn't
                 if (cellDoesntHaveValue(currentRow.Cells[samplesXIndex]) ^ cellDoesntHaveValue(currentRow.Cells[samplesYIndex]))
                 {
                     twoColumnsCompleteInput = false;
@@ -153,7 +153,7 @@ namespace numerical_analysis
                 {
                     twoColumnsCompleteRowsCounter++;
                 }
-                
+
             }
 
 
@@ -187,7 +187,7 @@ namespace numerical_analysis
                     if (stringNotEmpty(textBoxPerdictValue.Text))
                     {
                         textBoxOutputResults.Text += "\r\n\r\n";
-                        textBoxOutputResults.AppendText( generalMethod.YForXString(textBoxPerdictValue.Text));
+                        textBoxOutputResults.AppendText(generalMethod.YForXString(textBoxPerdictValue.Text));
                     }
                     textBoxOutputResults.Text += "\r\n\r\n";
                 }
@@ -298,7 +298,7 @@ namespace numerical_analysis
                             textBoxOutputResults.Text += "\r\n\r\n";
                             if (stringNotEmpty(textBoxHermitDifferential.Text))
                             {
-                                textBoxOutputResults.AppendText(hermitMethod.ErrorStringForX(textBoxPerdictValue.Text,textBoxHermitDifferential.Text));
+                                textBoxOutputResults.AppendText(hermitMethod.ErrorStringForX(textBoxPerdictValue.Text, textBoxHermitDifferential.Text));
                             }
                         }
                         textBoxOutputResults.Text += "\r\n\r\n";
@@ -308,9 +308,24 @@ namespace numerical_analysis
 
                 // end of hermit's code
 
+                //Spline Method Code
+                SplineMethod splinemethod = new SplineMethod(twoColumnsInterpolationSamples);
+                if (splinemethod.isSolvable && checkBoxSplineMethod.Checked)
+                {
+                    textBoxOutputResults.AppendText("Spline Method's Solution:");
+                    textBoxOutputResults.Text += "\r\n\r\n";
+                    textBoxOutputResults.AppendText(splinemethod.FunctionString);
+                    if (textBoxPerdictValue.Text != null && textBoxPerdictValue.Text != "")
+                    {
+                        textBoxOutputResults.Text += "\r\n\r\n";
+                        textBoxOutputResults.AppendText(splinemethod.YForXString(textBoxPerdictValue.Text.Trim()));
+                    }
+                }
+
+                //end of spline's method
+
             }
         }
-
         private void clearDataGridDuplicateEnteries()
         {
             // convenience local variables
