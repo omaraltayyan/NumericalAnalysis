@@ -167,11 +167,6 @@ namespace numerical_analysis
                 // clear results view
                 textBoxOutputResults.Clear();
 
-#warning add your two columns (x, y) method calling code here
-                LagrangeMethod lagrangeMethod = new LagrangeMethod(twoColumnsInterpolationSamples);
-
-
-
                 // General Method Code
                 GeneralMethodFunction generalMethod = new GeneralMethodFunction(twoColumnsInterpolationSamples);
                 if (generalMethod.isSolvable && checkBoxGeneralMethod.Checked)
@@ -184,9 +179,49 @@ namespace numerical_analysis
                         textBoxOutputResults.Text += "\r\n\r\n";
                         textBoxOutputResults.AppendText( generalMethod.YForXString(textBoxPerdictValue.Text));
                     }
+                    textBoxOutputResults.Text += "\r\n\r\n";
                 }
                 // end of general method
 
+
+                // Lagrange method code
+                LagrangeMethod lagrangeMethod = new LagrangeMethod(twoColumnsInterpolationSamples);
+                if (lagrangeMethod.isSolvable && checkBoxLagrangeMethod.Checked)
+                {
+                    textBoxOutputResults.AppendText("Lagrange Method's Solution:");
+                    textBoxOutputResults.Text += "\r\n\r\n";
+                    textBoxOutputResults.AppendText(lagrangeMethod.FunctionString);
+                    if (textBoxPerdictValue.Text != null && textBoxPerdictValue.Text != "")
+                    {
+                        textBoxOutputResults.Text += "\r\n\r\n";
+                        textBoxOutputResults.AppendText(lagrangeMethod.YForXString(textBoxPerdictValue.Text));
+                    }
+                    textBoxOutputResults.Text += "\r\n\r\n";
+                }
+
+
+                // end of Lagrange method's code
+
+                // Lagrange differentiation method code
+                LagrangeMethod lagrangeDifferentialMethod = new LagrangeMethod(twoColumnsInterpolationSamples);
+                if (lagrangeDifferentialMethod.isSolvable && checkBoxLagrangeDifferentiation.Checked)
+                {
+                    textBoxOutputResults.AppendText("Lagrange's differential Method's Solution:");
+                    textBoxOutputResults.Text += "\r\n\r\n";
+                    textBoxOutputResults.AppendText(lagrangeDifferentialMethod.FunctionString);
+                    if (textBoxPerdictValue.Text != null && textBoxPerdictValue.Text != "")
+                    {
+                        textBoxOutputResults.Text += "\r\n\r\n";
+                        textBoxOutputResults.AppendText(lagrangeDifferentialMethod.YForXString(textBoxPerdictValue.Text));
+                    }
+                    textBoxOutputResults.Text += "\r\n\r\n";
+                }
+
+
+                // end of Lagrange differentiation method's code
+
+
+#warning add your two columns (x, y) method calling code here
 
                 // hermit method code
                 bool ThreeColumnsInputComplete = true;
@@ -238,7 +273,6 @@ namespace numerical_analysis
                     HermitMethod hermitMethod = new HermitMethod(threeColumnsInterpolationSamples);
                     if (hermitMethod.isSolvable)
                     {
-                        textBoxOutputResults.Text += "\r\n\r\n";
                         textBoxOutputResults.AppendText("Hermit Method's Solution:");
                         textBoxOutputResults.Text += "\r\n\r\n";
                         textBoxOutputResults.AppendText(hermitMethod.FunctionString);
@@ -247,8 +281,8 @@ namespace numerical_analysis
                             textBoxOutputResults.Text += "\r\n\r\n";
                             textBoxOutputResults.AppendText(hermitMethod.YForXString(textBoxPerdictValue.Text));
                             textBoxOutputResults.Text += "\r\n\r\n";
-                            textBoxOutputResults.AppendText(hermitMethod.ErrorStringForX(textBoxPerdictValue.Text));
                         }
+                        textBoxOutputResults.Text += "\r\n\r\n";
                     }
 
                 }
@@ -317,11 +351,20 @@ namespace numerical_analysis
         {
             updateSolutions();
         }
+        private void checkBoxLagrangeMethod_CheckedChanged(object sender, EventArgs e)
+        {
+            updateSolutions();
+        }
+
+        private void checkBoxLagrangeDifferentiation_CheckedChanged(object sender, EventArgs e)
+        {
+            updateSolutions();
+        }
 
         private bool cellHasValue(DataGridViewCell cell)
         {
-            
-            return cell.Value != null && cell.Value.ToString() != "";
+            return (cell.Value != null && cell.Value.ToString() != "")
+                || (cell.EditedFormattedValue != null && cell.EditedFormattedValue.ToString() != "");
         }
 
         private bool cellDoesntHaveValue(DataGridViewCell cell)
@@ -329,6 +372,7 @@ namespace numerical_analysis
             return (cell.EditedFormattedValue == null || cell.EditedFormattedValue.ToString() == "")
                         &&(cell.Value == null || cell.Value.ToString() == "");
         }
+
 
     }
 }

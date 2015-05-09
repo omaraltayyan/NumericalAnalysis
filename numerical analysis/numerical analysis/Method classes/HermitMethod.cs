@@ -36,8 +36,12 @@ namespace numerical_analysis.Method_classes
                 {
                     builder.Append(currentY >= 0 ? '-' : '+');
                 }
-                if (UIDoubleAbs(currentY) != 1) builder.Append(UIDoubleAbs(currentY) + "(");
-                builder.Append(HjStringForX(j) + ")");
+                if (UIDoubleAbs(currentY) != 1 || samplesColumnLength != 1) builder.Append(UIDoubleAbs(currentY));
+                string hString = HjStringForX(j);
+                if (hString != "")
+                {
+                    builder.Append("(" + hString + ")");
+                }
             }
             builder.Append(" + ");
             for (int j = 0; j < samplesColumnLength; j++)
@@ -49,8 +53,12 @@ namespace numerical_analysis.Method_classes
                 {
                     builder.Append(currentYDerivative >= 0 ? '-' : '+');
                 }
-                if (UIDoubleAbs(currentYDerivative) != 1) builder.Append(UIDoubleAbs(currentYDerivative) + "(");
-                builder.Append(HchapeaujStringForX(j) + ")");
+                if (UIDoubleAbs(currentYDerivative) != 1 || samplesColumnLength != 1) builder.Append(UIDoubleAbs(currentYDerivative));
+                string hChString = HchapeaujStringForX(j);
+                if (hChString != "")
+                {
+                    builder.Append("(" + hChString + ")");
+                }
             }
             return builder.ToString();
         }

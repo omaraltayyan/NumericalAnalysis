@@ -51,8 +51,8 @@
             // 
             // dataGridViewSamplesInput
             // 
-            this.dataGridViewSamplesInput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
+            this.dataGridViewSamplesInput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)));
             this.dataGridViewSamplesInput.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewSamplesInput.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
             this.dataGridViewSamplesInput.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -133,22 +133,28 @@
             // checkBoxLagrangeDifferentiation
             // 
             this.checkBoxLagrangeDifferentiation.AutoSize = true;
+            this.checkBoxLagrangeDifferentiation.Checked = true;
+            this.checkBoxLagrangeDifferentiation.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBoxLagrangeDifferentiation.Location = new System.Drawing.Point(7, 105);
             this.checkBoxLagrangeDifferentiation.Name = "checkBoxLagrangeDifferentiation";
             this.checkBoxLagrangeDifferentiation.Size = new System.Drawing.Size(225, 21);
             this.checkBoxLagrangeDifferentiation.TabIndex = 5;
             this.checkBoxLagrangeDifferentiation.Text = "Lagrange Differentiation Method";
             this.checkBoxLagrangeDifferentiation.UseVisualStyleBackColor = true;
+            this.checkBoxLagrangeDifferentiation.CheckedChanged += new System.EventHandler(this.checkBoxLagrangeDifferentiation_CheckedChanged);
             // 
             // checkBoxLagrangeMethod
             // 
             this.checkBoxLagrangeMethod.AutoSize = true;
+            this.checkBoxLagrangeMethod.Checked = true;
+            this.checkBoxLagrangeMethod.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBoxLagrangeMethod.Location = new System.Drawing.Point(7, 78);
             this.checkBoxLagrangeMethod.Name = "checkBoxLagrangeMethod";
             this.checkBoxLagrangeMethod.Size = new System.Drawing.Size(137, 21);
             this.checkBoxLagrangeMethod.TabIndex = 4;
             this.checkBoxLagrangeMethod.Text = "Lagrange Method";
             this.checkBoxLagrangeMethod.UseVisualStyleBackColor = true;
+            this.checkBoxLagrangeMethod.CheckedChanged += new System.EventHandler(this.checkBoxLagrangeMethod_CheckedChanged);
             // 
             // checkBoxHermitMethod
             // 
@@ -166,9 +172,9 @@
             // textBoxOutputResults
             // 
             this.textBoxOutputResults.AcceptsReturn = true;
-            this.textBoxOutputResults.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxOutputResults.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxOutputResults.CausesValidation = false;
             this.textBoxOutputResults.HideSelection = false;
             this.textBoxOutputResults.Location = new System.Drawing.Point(658, 0);

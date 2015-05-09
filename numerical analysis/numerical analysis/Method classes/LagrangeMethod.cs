@@ -32,7 +32,35 @@ namespace numerical_analysis.Method_classes
                 }
             }
 
+            if (isSolvable)
+            {
+                FunctionString = buildFunctionString();
+            }
             polynomialDegree = samplesColumnLength - 1;
+        }
+
+
+        private string buildFunctionString()
+        {
+
+            StringBuilder builder = new StringBuilder("F" + polynomialDegree + "(x) = ");
+            for (int j = 0; j < samplesColumnLength; j++)
+            {
+                double currentX = interpolationSamples[samplesXIndex, j];
+                double currentY = interpolationSamples[samplesYIndex, j];
+                if (currentY == 0) continue;
+                if (j != 0)
+                {
+                    builder.Append(currentY >= 0 ? '-' : '+');
+                }
+                if (UIDoubleAbs(currentY) != 1 || samplesColumnLength != 1) builder.Append(UIDoubleAbs(currentY));
+                string lagString = langrangeString(j);
+                if (lagString != "")
+                {
+                    builder.Append("(" + lagString + ")");
+                }
+            }
+            return builder.ToString();
         }
         protected override double YForX(double x)
         {
