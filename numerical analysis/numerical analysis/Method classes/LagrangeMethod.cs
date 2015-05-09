@@ -24,7 +24,7 @@ namespace numerical_analysis.Method_classes
                 {
                     if (i != j)
                     {
-                        // if one of the (xj - xi)'s is 0 then we have a divide by zero in one of lagrange's polynomials
+                        // if one of the (xj - xi)'s is 0 then we have a divide by zero in one of Lagrange's polynomials
                         // and the result is unsolvable
                         if ((interpolationSamples[samplesXIndex, j] - interpolationSamples[samplesXIndex, i]) == 0)
                         {
@@ -72,6 +72,56 @@ namespace numerical_analysis.Method_classes
                 result += interpolationSamples[samplesYIndex, i] * langrangeForX(i, x);
             }
             return result;
+        }
+
+        /**
+         * lagrange's error formula: e(x) = [f(m)(n+1)/(n+1)!] * Π(x-xi)
+         * 
+        **/
+        public string ErrorStringForX(string x, string lagrangeDefferntial)
+        {
+            double lDifferential;
+            double xValue;
+            if (!double.TryParse(x, out xValue) || !double.TryParse(lagrangeDefferntial, out lDifferential))
+            {
+                return "";
+            }
+
+            // calculate the (n+1)!
+            double denominator = 1;
+            int factorialLevel = samplesColumnLength + 1;// n+1
+            for (int i = 2; i <= factorialLevel; i++)
+            {
+                denominator *= i;
+            }
+
+            // check to see if in the samples
+            bool inSamples = false;
+            for (int i = 0; i < samplesColumnLength; i++)
+            {
+                if (interpolationSamples[samplesXIndex, i] == xValue)
+                {
+                    inSamples = true;
+                }
+            }
+
+            if (inSamples || denominator == 0)
+            {
+                return "the calculation for " + x + " is 100% accurate";
+            }
+
+            // calculate  Π(x-xi)
+            double product = 1;
+            for (int i = 0; i < samplesColumnLength; i++)
+            {
+                product *= xValue - interpolationSamples[samplesXIndex, i];
+            }
+
+            // calculate  [Π(x-xi)] / (n+1)!
+            double steadyPart = product / denominator;
+
+            double maximalError = steadyPart * lDifferential;
+            return "Error for " + x + " is less than " + maximalError;
         }
 
 

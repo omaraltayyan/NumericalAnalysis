@@ -35,6 +35,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.checkBoxGeneralMethod = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.checkBoxSplineMethod = new System.Windows.Forms.CheckBox();
             this.checkBoxLagrangeDifferentiation = new System.Windows.Forms.CheckBox();
             this.checkBoxLagrangeMethod = new System.Windows.Forms.CheckBox();
             this.checkBoxHermitMethod = new System.Windows.Forms.CheckBox();
@@ -43,9 +44,8 @@
             this.textBoxPerdictValue = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.checkBoxSplineMethod = new System.Windows.Forms.CheckBox();
+            this.textBoxHermitDifferential = new System.Windows.Forms.TextBox();
+            this.textBoxLagrangeDifferential = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSamplesInput)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -131,6 +131,16 @@
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Choose Numerical Methods";
+            // 
+            // checkBoxSplineMethod
+            // 
+            this.checkBoxSplineMethod.AutoSize = true;
+            this.checkBoxSplineMethod.Location = new System.Drawing.Point(7, 132);
+            this.checkBoxSplineMethod.Name = "checkBoxSplineMethod";
+            this.checkBoxSplineMethod.Size = new System.Drawing.Size(115, 21);
+            this.checkBoxSplineMethod.TabIndex = 6;
+            this.checkBoxSplineMethod.Text = "Spline Method";
+            this.checkBoxSplineMethod.UseVisualStyleBackColor = true;
             // 
             // checkBoxLagrangeDifferentiation
             // 
@@ -223,37 +233,27 @@
             this.label4.TabIndex = 9;
             this.label4.Text = "Lagrange\'s Differential";
             // 
-            // textBox1
+            // textBoxHermitDifferential
             // 
-            this.textBox1.Location = new System.Drawing.Point(523, 387);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(129, 24);
-            this.textBox1.TabIndex = 10;
+            this.textBoxHermitDifferential.Location = new System.Drawing.Point(523, 387);
+            this.textBoxHermitDifferential.Name = "textBoxHermitDifferential";
+            this.textBoxHermitDifferential.Size = new System.Drawing.Size(129, 24);
+            this.textBoxHermitDifferential.TabIndex = 10;
             // 
-            // textBox2
+            // textBoxLagrangeDifferential
             // 
-            this.textBox2.Location = new System.Drawing.Point(523, 418);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(129, 24);
-            this.textBox2.TabIndex = 11;
-            // 
-            // checkBoxSplineMethod
-            // 
-            this.checkBoxSplineMethod.AutoSize = true;
-            this.checkBoxSplineMethod.Location = new System.Drawing.Point(7, 132);
-            this.checkBoxSplineMethod.Name = "checkBoxSplineMethod";
-            this.checkBoxSplineMethod.Size = new System.Drawing.Size(115, 21);
-            this.checkBoxSplineMethod.TabIndex = 6;
-            this.checkBoxSplineMethod.Text = "Spline Method";
-            this.checkBoxSplineMethod.UseVisualStyleBackColor = true;
+            this.textBoxLagrangeDifferential.Location = new System.Drawing.Point(523, 418);
+            this.textBoxLagrangeDifferential.Name = "textBoxLagrangeDifferential";
+            this.textBoxLagrangeDifferential.Size = new System.Drawing.Size(129, 24);
+            this.textBoxLagrangeDifferential.TabIndex = 11;
             // 
             // FormNumericalAnalysis
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(976, 457);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.textBoxLagrangeDifferential);
+            this.Controls.Add(this.textBoxHermitDifferential);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textBoxPerdictValue);
@@ -289,8 +289,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Yderivative;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBoxHermitDifferential;
+        private System.Windows.Forms.TextBox textBoxLagrangeDifferential;
         private System.Windows.Forms.CheckBox checkBoxLagrangeDifferentiation;
         private System.Windows.Forms.CheckBox checkBoxLagrangeMethod;
         private System.Windows.Forms.CheckBox checkBoxSplineMethod;

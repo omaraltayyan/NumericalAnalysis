@@ -104,10 +104,15 @@ namespace numerical_analysis.Method_classes
          * Hermit's error formula: e(x) = [f(m)(2n+2)/(2n+2)!] * Π(x-xi)^2
          * 
         **/
-        protected override string ErrorStringForX(double x)
+        public string ErrorStringForX(string x, string hermitDefferntial)
         {
+            double hDifferential;
+            double xValue;
+            if (!double.TryParse(x, out xValue) || !double.TryParse(hermitDefferntial, out hDifferential))
+            {
+                return "";
+            }
 
-            bool isIncreasing = interpolationSamples[samplesYIndex, samplesColumnLength - 1] - interpolationSamples[samplesYIndex, 0] > 0;
 
             // calculate the (2n+2)!
             double denominator = 1;
@@ -117,34 +122,33 @@ namespace numerical_analysis.Method_classes
                 denominator *= i;
             }
 
+            // check to see if in the samples
+            bool inSamples = false;
+            for (int i = 0; i < samplesColumnLength; i++)
+            {
+                if (interpolationSamples[samplesXIndex, i] == xValue)
+                {
+                    inSamples = true;
+                }
+            }
+
+            if (inSamples || denominator == 0)
+            {
+                return "the calculation for " + x + " is 100% accurate";
+            }
+
             // calculate  Π(x-xi)^2
             double product = 1;
             for (int i = 0; i < samplesColumnLength; i++)
             {
-                product *= Math.Pow(x - interpolationSamples[samplesXIndex, i], 2);
+                product *= Math.Pow(xValue - interpolationSamples[samplesXIndex, i], 2);
             }
-
 
             // calculate  [Π(x-xi)^2] / (2n+2)!
             double steadyPart = product / denominator;
 
-
-            // now we calculate f(m)^(2n+2) for x0 and xn as it says in the lecture notes
-            double mForX0 = Math.Pow(interpolationSamples[samplesYIndex,0],factorialLevel);
-            double mForXn = Math.Pow(interpolationSamples[samplesYIndex, samplesColumnLength - 1], factorialLevel);
-
-            double minimalError = mForX0 * steadyPart;
-            double maximalError = mForXn * steadyPart;
-
-            if (!isIncreasing)
-            {
-                // swap the minimal and maximal errors
-                double temp = minimalError;
-                minimalError = maximalError;
-                maximalError = temp;
-            }
-                        
-            return "Error for " + x + " is between " + minimalError + " and " + maximalError;
+            double maximalError = steadyPart * hDifferential;
+            return "Error for " + x + " is less than " + maximalError;
         }
 
         protected override double YForX(double x)

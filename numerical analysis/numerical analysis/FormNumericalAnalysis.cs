@@ -174,7 +174,7 @@ namespace numerical_analysis
                     textBoxOutputResults.AppendText("General Method's Solution:");
                     textBoxOutputResults.Text += "\r\n\r\n";
                     textBoxOutputResults.AppendText(generalMethod.FunctionString);
-                    if (textBoxPerdictValue.Text != null && textBoxPerdictValue.Text != "")
+                    if (stringNotEmpty(textBoxPerdictValue.Text))
                     {
                         textBoxOutputResults.Text += "\r\n\r\n";
                         textBoxOutputResults.AppendText( generalMethod.YForXString(textBoxPerdictValue.Text));
@@ -191,10 +191,15 @@ namespace numerical_analysis
                     textBoxOutputResults.AppendText("Lagrange Method's Solution:");
                     textBoxOutputResults.Text += "\r\n\r\n";
                     textBoxOutputResults.AppendText(lagrangeMethod.FunctionString);
-                    if (textBoxPerdictValue.Text != null && textBoxPerdictValue.Text != "")
+                    if (stringNotEmpty(textBoxPerdictValue.Text))
                     {
                         textBoxOutputResults.Text += "\r\n\r\n";
                         textBoxOutputResults.AppendText(lagrangeMethod.YForXString(textBoxPerdictValue.Text));
+                        if (stringNotEmpty(textBoxLagrangeDifferential.Text))
+                        {
+                            textBoxOutputResults.Text += "\r\n\r\n";
+                            textBoxOutputResults.AppendText(lagrangeMethod.ErrorStringForX(textBoxPerdictValue.Text, textBoxLagrangeDifferential.Text));
+                        }
                     }
                     textBoxOutputResults.Text += "\r\n\r\n";
                 }
@@ -209,7 +214,7 @@ namespace numerical_analysis
                     textBoxOutputResults.AppendText("Lagrange's differential Method's Solution:");
                     textBoxOutputResults.Text += "\r\n\r\n";
                     textBoxOutputResults.AppendText(lagrangeDifferentialMethod.FunctionString);
-                    if (textBoxPerdictValue.Text != null && textBoxPerdictValue.Text != "")
+                    if (stringNotEmpty(textBoxPerdictValue.Text))
                     {
                         textBoxOutputResults.Text += "\r\n\r\n";
                         textBoxOutputResults.AppendText(lagrangeDifferentialMethod.YForXString(textBoxPerdictValue.Text));
@@ -276,11 +281,15 @@ namespace numerical_analysis
                         textBoxOutputResults.AppendText("Hermit Method's Solution:");
                         textBoxOutputResults.Text += "\r\n\r\n";
                         textBoxOutputResults.AppendText(hermitMethod.FunctionString);
-                        if (textBoxPerdictValue.Text != null && textBoxPerdictValue.Text != "")
+                        if (stringNotEmpty(textBoxPerdictValue.Text))
                         {
                             textBoxOutputResults.Text += "\r\n\r\n";
                             textBoxOutputResults.AppendText(hermitMethod.YForXString(textBoxPerdictValue.Text));
                             textBoxOutputResults.Text += "\r\n\r\n";
+                            if (stringNotEmpty(textBoxHermitDifferential.Text))
+                            {
+                                textBoxOutputResults.AppendText(hermitMethod.ErrorStringForX(textBoxPerdictValue.Text,textBoxHermitDifferential.Text));
+                            }
                         }
                         textBoxOutputResults.Text += "\r\n\r\n";
                     }
@@ -359,6 +368,15 @@ namespace numerical_analysis
         private void checkBoxLagrangeDifferentiation_CheckedChanged(object sender, EventArgs e)
         {
             updateSolutions();
+        }
+
+        private bool stringNotEmpty(string str)
+        {
+            return (str != null && str != "");
+        }
+        private bool stringEmpty(string str)
+        {
+            return (str == null || str == "");
         }
 
         private bool cellHasValue(DataGridViewCell cell)

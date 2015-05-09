@@ -66,6 +66,8 @@ namespace numerical_analysis.Method_classes
         }
 
 
+
+
         protected override double YForX(double x)
         {
             double result = 0;
