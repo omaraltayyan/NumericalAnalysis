@@ -78,6 +78,7 @@
     <Compile Include="Method classes\LagrangeDiffrentiationMethod.cs" />
     <Compile Include="Method classes\LagrangeMethod.cs" />
     <Compile Include="Method classes\NewtonDividedDifferences.cs" />
+    <Compile Include="Method classes\SplineMethod.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormNumericalAnalysis.resx">
