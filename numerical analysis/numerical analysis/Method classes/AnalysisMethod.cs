@@ -64,7 +64,7 @@ namespace numerical_analysis.Method_classes
             return "";
         }
 
-        public string YForXString(string x)
+        public  string YForXString(string x)
         {
             if (!isSolvable) return "";
 

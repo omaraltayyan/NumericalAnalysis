@@ -16,6 +16,7 @@ namespace numerical_analysis
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new FormNumericalAnalysis());
+            Application.Run(new StartingForm());
         }
     }
 }

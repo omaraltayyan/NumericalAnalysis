@@ -48,7 +48,18 @@ namespace numerical_analysis.Method_classes
             value_index = ind;
             return result;
         }
+    /*    public  string YForXString(string x)
+        {
+            if (!isSolvable) return "";
 
+            double sentVal;
+
+            if (!double.TryParse(x, out sentVal)) return "";
+
+            // remove possible errors in calculation like 1.9999... instead of 2 and the sort
+            double yForFx = Math.Round(YForX(sentVal), 13);
+            return "S" + value_index + "(" + sentVal + ")" + " = " + yForFx;
+        }*/
         public override string FunctionString
         {
             get

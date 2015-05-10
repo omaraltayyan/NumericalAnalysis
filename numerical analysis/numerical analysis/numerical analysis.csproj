@@ -53,6 +53,9 @@
     </StartupObject>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="NCalc">
+      <HintPath>..\..\..\NCalc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Numerics" />
@@ -66,23 +69,42 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormIntegration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormIntegration.Designer.cs">
+      <DependentUpon>FormIntegration.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormNumericalAnalysis.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormNumericalAnalysis.Designer.cs">
       <DependentUpon>FormNumericalAnalysis.cs</DependentUpon>
     </Compile>
+    <Compile Include="StartingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StartingForm.Designer.cs">
+      <DependentUpon>StartingForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Method classes\AnalysisMethod.cs" />
     <Compile Include="Method classes\GeneralMethodFunction.cs" />
     <Compile Include="Method classes\HermitMethod.cs" />
+    <Compile Include="Method classes\Integration.cs" />
     <Compile Include="Method classes\LagrangeDiffrentiationMethod.cs" />
     <Compile Include="Method classes\LagrangeMethod.cs" />
     <Compile Include="Method classes\NewtonDividedDifferences.cs" />
     <Compile Include="Method classes\SplineMethod.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormIntegration.resx">
+      <DependentUpon>FormIntegration.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormNumericalAnalysis.resx">
       <DependentUpon>FormNumericalAnalysis.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StartingForm.resx">
+      <DependentUpon>StartingForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
