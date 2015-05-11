@@ -191,6 +191,7 @@
             this.buttonCalculate.TabIndex = 15;
             this.buttonCalculate.Text = "Calculate";
             this.buttonCalculate.UseVisualStyleBackColor = true;
+            this.buttonCalculate.Click += new System.EventHandler(this.buttonCalculate_Click);
             // 
             // menuStrip1
             // 

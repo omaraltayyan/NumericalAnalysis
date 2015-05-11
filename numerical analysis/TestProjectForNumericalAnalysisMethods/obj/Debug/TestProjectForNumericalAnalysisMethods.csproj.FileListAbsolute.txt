@@ -22,6 +22,5 @@ C:\Users\Muhammad\Desktop\Numircal Analysis Project Git\numerical analysis\TestP
 C:\Users\Muhammad\Desktop\Numircal Analysis Project Git\numerical analysis\TestProjectForNumericalAnalysisMethods\bin\Debug\numerical analysis.pdb
 C:\Users\Muhammad\Desktop\Numircal Analysis Project Git\numerical analysis\TestProjectForNumericalAnalysisMethods\bin\Debug\numerical analysis_Accessor.exe
 C:\Users\Muhammad\Desktop\Numircal Analysis Project Git\numerical analysis\TestProjectForNumericalAnalysisMethods\bin\Debug\numerical analysis_Accessor.pdb
-C:\Users\Muhammad\Desktop\Numircal Analysis Project Git\numerical analysis\TestProjectForNumericalAnalysisMethods\obj\Debug\TestProjectForNumericalAnalysisMethods.csprojResolveAssemblyReference.cache
 C:\Users\Muhammad\Desktop\Numircal Analysis Project Git\numerical analysis\TestProjectForNumericalAnalysisMethods\obj\Debug\TestProjectForNumericalAnalysisMethods.dll
 C:\Users\Muhammad\Desktop\Numircal Analysis Project Git\numerical analysis\TestProjectForNumericalAnalysisMethods\obj\Debug\TestProjectForNumericalAnalysisMethods.pdb
