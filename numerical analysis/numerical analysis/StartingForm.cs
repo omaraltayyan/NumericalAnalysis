@@ -19,13 +19,13 @@ namespace numerical_analysis
         private void buttonIntegration_Click(object sender, EventArgs e)
         {
             FormIntegration FI = new FormIntegration();
-            FI.Show();
+            FI.ShowDialog();
         }
 
         private void buttonInterpolation_Click(object sender, EventArgs e)
         {
             FormNumericalAnalysis fnm = new FormNumericalAnalysis();
-            fnm.Show();
+            fnm.ShowDialog();
         }
     }
 }

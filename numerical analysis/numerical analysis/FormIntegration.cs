@@ -36,8 +36,9 @@ namespace numerical_analysis
         }
         private void backToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            StartingForm strf = new StartingForm();
-            strf.Show();
+            //StartingForm strf = new StartingForm();
+            //strf.Show();
+            this.Close();
         }
 
         private void buttonCalculate_Click(object sender, EventArgs e)
@@ -56,14 +57,14 @@ namespace numerical_analysis
                     else
                         I = new Integration(modifiedformula, upperbound, lowerbound, textBoxVariable.Text.Trim());
                     double rectagleresult = Math.Round(I.RectanglesMethod(), 12);
-                    double trapezoidresult = Math.Round(I.TrapezoidMethod(), 12);
-                    double simpsonresult = Math.Round(I.SimpsonMethod(), 12);
                     richTextBoxResult.AppendText("Rectangles Method :\nI = ");
                     richTextBoxResult.AppendText(rectagleresult.ToString() + "\n");
                     richTextBoxResult.AppendText("-------------------------------------------\n");
+                    double trapezoidresult = Math.Round(I.TrapezoidMethod(), 12);
                     richTextBoxResult.AppendText("Trapzoids Method :\nI = ");
                     richTextBoxResult.AppendText(trapezoidresult.ToString() + "\n");
                     richTextBoxResult.AppendText("-------------------------------------------\n");
+                    double simpsonresult = Math.Round(I.SimpsonMethod(), 12);                                     
                     richTextBoxResult.AppendText("Simpson Method :\nI = ");
                     richTextBoxResult.AppendText(simpsonresult.ToString() + "\n");
 
