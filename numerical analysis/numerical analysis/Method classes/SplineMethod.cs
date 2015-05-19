@@ -35,12 +35,17 @@ namespace numerical_analysis.Method_classes
         {
             double result = 0;
             int ind = -1;
-            for (int i = 0; i < samplesColumnLength - 1; i++)
+            if (x <= interpolationSamples[samplesXIndex, 0]) ind = 0;
+            else if (x >= interpolationSamples[samplesXIndex, samplesColumnLength - 1]) ind = samplesColumnLength - 2;
+            else
             {
-                if (x >= interpolationSamples[samplesXIndex, i] && x <= interpolationSamples[samplesXIndex, i + 1])
+                for (int i = 0; i < samplesColumnLength - 1; i++)
                 {
-                    ind = i;
-                    break;
+                    if (x >= interpolationSamples[samplesXIndex, i] && x <= interpolationSamples[samplesXIndex, i + 1])
+                    {
+                        ind = i;
+                        break;
+                    }
                 }
             }
 
@@ -48,18 +53,17 @@ namespace numerical_analysis.Method_classes
             value_index = ind;
             return result;
         }
-    /*    public  string YForXString(string x)
+        public  string YForXString(string x)
         {
             if (!isSolvable) return "";
 
             double sentVal;
 
             if (!double.TryParse(x, out sentVal)) return "";
-
-            // remove possible errors in calculation like 1.9999... instead of 2 and the sort
+          
             double yForFx = Math.Round(YForX(sentVal), 13);
             return "S" + value_index + "(" + sentVal + ")" + " = " + yForFx;
-        }*/
+        }
         public override string FunctionString
         {
             get

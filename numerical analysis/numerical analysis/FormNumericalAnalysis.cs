@@ -469,6 +469,11 @@ namespace numerical_analysis
             
         }
 
+        private void checkBoxSplineMethod_CheckedChanged(object sender, EventArgs e)
+        {
+            updateSolutions();
+        }
+
             //for (int i = 0; i < dataGridViewSamplesInput.Rows.Count; i++)
             //{
             //    if (dataGridViewSamplesInput.Rows[i].Visible == false)
