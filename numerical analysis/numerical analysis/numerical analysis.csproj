@@ -51,6 +51,10 @@
   <PropertyGroup>
     <StartupObject>numerical_analysis.Program</StartupObject>
   </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup>
+    <ApplicationIcon>numerical analysis icon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="NCalc">
       <HintPath>..\..\..\NCalc.dll</HintPath>
@@ -157,6 +161,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Damascus univ logo.jpg" />
+    <Content Include="numerical analysis icon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
