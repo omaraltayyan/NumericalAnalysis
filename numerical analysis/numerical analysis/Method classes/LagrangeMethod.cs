@@ -52,11 +52,11 @@ namespace numerical_analysis.Method_classes
                 if (currentY == 0) continue;
                 if (j != 0)
                 {
-                    builder.Append(currentY <= 0 ? '-' : '+');
+                    builder.Append(currentY <= 0 ? " - " : " + ");
                 }
                 if (UIDoubleAbs(currentY) != 1 || samplesColumnLength == 1) builder.Append(UIDoubleAbs(currentY));
                 string lagString = langrangeString(j);
-                if (lagString != "")
+                if (lagString != "" && lagString != "1")
                 {
                     builder.Append("[" + lagString + "]");
                 }
@@ -180,7 +180,7 @@ namespace numerical_analysis.Method_classes
                     denominator *= (Samples[samplesXIndex, lagrangeIndex] - Samples[samplesXIndex, i]);
                 }
             }
-
+            denominator = UIDouble(denominator);
 
             // calculate the nominator part
             StringBuilder nominatorBuilder = new StringBuilder();
@@ -202,10 +202,17 @@ namespace numerical_analysis.Method_classes
                     }
                 }
             }
-            if (UIDouble(denominator) != 0 && UIDouble(denominator) != 1)
+
+            if (nominatorBuilder.Length == 0)
             {
-                nominatorBuilder.Append("/" + UIDouble(denominator));
+                if (denominator == 1)
+                {
+                    nominatorBuilder.Append(denominator);
+                }
+                else if (denominator != 0) nominatorBuilder.Append("1/" + denominator);
             }
+            else if (denominator != 0 && denominator != 1) nominatorBuilder.Append("/" + denominator);
+
             return nominatorBuilder.ToString();
         }
 

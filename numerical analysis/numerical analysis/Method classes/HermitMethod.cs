@@ -34,11 +34,11 @@ namespace numerical_analysis.Method_classes
                 if (currentY == 0) continue;
                 if (j != 0)
                 {
-                    builder.Append(currentY <= 0 ? '-' : '+');
+                    builder.Append(currentY <= 0 ? " - " : " + ");
                 }
                 if (UIDoubleAbs(currentY) != 1 || samplesColumnLength == 1) builder.Append(UIDoubleAbs(currentY));
                 string hString = HjStringForX(j);
-                if (hString != "")
+                if (hString != "" && hString != "1")
                 {
                     builder.Append("[" + hString + "]");
                 }
@@ -51,11 +51,11 @@ namespace numerical_analysis.Method_classes
                 if (currentYDerivative == 0) continue;
                 if (j != 0)
                 {
-                    builder.Append(currentYDerivative <= 0 ? '-' : '+');
+                    builder.Append(currentYDerivative <= 0 ? " - " : " + ");
                 }
                 if (UIDoubleAbs(currentYDerivative) != 1 || samplesColumnLength == 1) builder.Append(UIDoubleAbs(currentYDerivative));
                 string hChString = HchapeaujStringForX(j);
-                if (hChString != "")
+                if (hChString != "" && hChString != "1")
                 {
                     builder.Append("[" + hChString + "]");
                 }

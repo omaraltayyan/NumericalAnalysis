@@ -68,11 +68,11 @@
             this.dataGridViewSamplesInput.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dataGridViewSamplesInput.Name = "dataGridViewSamplesInput";
             this.dataGridViewSamplesInput.RowTemplate.Height = 26;
-            this.dataGridViewSamplesInput.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dataGridViewSamplesInput.Size = new System.Drawing.Size(362, 385);
             this.dataGridViewSamplesInput.TabIndex = 0;
             this.dataGridViewSamplesInput.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dataGridViewSamplesInput_CellValidating);
             this.dataGridViewSamplesInput.RowValidating += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dataGridViewSamplesInput_RowValidating);
+            this.dataGridViewSamplesInput.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridViewSamplesInput_KeyDown);
             // 
             // X
             // 

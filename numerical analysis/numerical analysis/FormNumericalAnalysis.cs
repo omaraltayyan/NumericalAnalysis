@@ -68,10 +68,10 @@ namespace numerical_analysis
             // copy the formatted value
             string newValue = new string(e.FormattedValue.ToString().ToCharArray()).Trim();
 
-            // clear all characters except numbers and "."s 
+            // clear all characters except numbers and "-"s and "."s 
             for (int i = 0; i < newValue.Length; i++)
             {
-                if (newValue[i] != '.' && !char.IsDigit(newValue[i]))
+                if (newValue[i] != '.' && newValue[i] != '-' && !char.IsDigit(newValue[i]))
                 {
                     newValue = newValue.Remove(i, 1);
                     i--;
@@ -500,6 +500,41 @@ namespace numerical_analysis
             this.Visible = false;
             aboutBox.ShowDialog();
             this.Visible = true;
+        }
+
+
+
+        // this stack preserves each deleted group of rows to restore them
+        Stack<DataGridViewSelectedRowCollection> deletedRowGroups = new Stack<DataGridViewSelectedRowCollection>();
+        private void dataGridViewSamplesInput_KeyDown(object sender, KeyEventArgs e)
+        {
+            // if this is the delete or back space then delete the current row
+            if ((e.KeyCode == Keys.Back || e.KeyCode == Keys.Delete) && dataGridViewSamplesInput.SelectedRows.Count > 0)
+            {
+                deletedRowGroups.Push(dataGridViewSamplesInput.SelectedRows);
+                for (int i = 0; i < dataGridViewSamplesInput.SelectedRows.Count; i++)
+                {
+                    dataGridViewSamplesInput.SelectedRows[i].Visible = false;
+                }
+
+                // clear results view
+                textBoxOutputResults.Clear();
+
+                updateSolutions();
+            }
+            // if he's undoing the action then restore the group of rows deleted previously
+            else if (e.Modifiers == Keys.Control && e.KeyCode == Keys.Z && deletedRowGroups.Count != 0)
+            {
+                DataGridViewSelectedRowCollection rows = deletedRowGroups.Pop();
+                for (int i = 0; i < rows.Count; i++)
+                {
+                    rows[i].Visible = true;
+                }
+                // clear results view
+                textBoxOutputResults.Clear();
+
+                updateSolutions();
+            }
         }
 
 
