@@ -31,5 +31,13 @@ namespace numerical_analysis
             formNumericalAnalysis.ShowDialog();
             this.Visible = true;
         }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AboutBoxForApp aboutBox = new AboutBoxForApp();
+            this.Visible = false;
+            aboutBox.ShowDialog();
+            this.Visible = true;
+        }
     }
 }

@@ -46,14 +46,16 @@
             this.label4 = new System.Windows.Forms.Label();
             this.textBoxHermitDifferential = new System.Windows.Forms.TextBox();
             this.textBoxLagrangeDifferential = new System.Windows.Forms.TextBox();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.backToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSamplesInput)).BeginInit();
             this.groupBox1.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridViewSamplesInput
             // 
-            this.dataGridViewSamplesInput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)));
             this.dataGridViewSamplesInput.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewSamplesInput.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
             this.dataGridViewSamplesInput.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -62,12 +64,12 @@
             this.Y,
             this.Yderivative});
             this.dataGridViewSamplesInput.GridColor = System.Drawing.SystemColors.ButtonFace;
-            this.dataGridViewSamplesInput.Location = new System.Drawing.Point(0, 31);
+            this.dataGridViewSamplesInput.Location = new System.Drawing.Point(0, 54);
             this.dataGridViewSamplesInput.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dataGridViewSamplesInput.Name = "dataGridViewSamplesInput";
             this.dataGridViewSamplesInput.RowTemplate.Height = 26;
             this.dataGridViewSamplesInput.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGridViewSamplesInput.Size = new System.Drawing.Size(362, 426);
+            this.dataGridViewSamplesInput.Size = new System.Drawing.Size(362, 385);
             this.dataGridViewSamplesInput.TabIndex = 0;
             this.dataGridViewSamplesInput.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dataGridViewSamplesInput_CellValidating);
             this.dataGridViewSamplesInput.RowValidating += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dataGridViewSamplesInput_RowValidating);
@@ -100,7 +102,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(61, 11);
+            this.label1.Location = new System.Drawing.Point(51, 31);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(248, 17);
             this.label1.TabIndex = 1;
@@ -131,7 +133,7 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox1.Size = new System.Drawing.Size(281, 300);
+            this.groupBox1.Size = new System.Drawing.Size(311, 300);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Choose Numerical Methods";
@@ -195,18 +197,15 @@
             // textBoxOutputResults
             // 
             this.textBoxOutputResults.AcceptsReturn = true;
-            this.textBoxOutputResults.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxOutputResults.CausesValidation = false;
             this.textBoxOutputResults.HideSelection = false;
-            this.textBoxOutputResults.Location = new System.Drawing.Point(658, 0);
+            this.textBoxOutputResults.Location = new System.Drawing.Point(688, 26);
             this.textBoxOutputResults.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBoxOutputResults.Multiline = true;
             this.textBoxOutputResults.Name = "textBoxOutputResults";
             this.textBoxOutputResults.ReadOnly = true;
             this.textBoxOutputResults.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBoxOutputResults.Size = new System.Drawing.Size(318, 457);
+            this.textBoxOutputResults.Size = new System.Drawing.Size(361, 413);
             this.textBoxOutputResults.TabIndex = 4;
             this.textBoxOutputResults.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -221,7 +220,7 @@
             // 
             // textBoxPerdictValue
             // 
-            this.textBoxPerdictValue.Location = new System.Drawing.Point(523, 353);
+            this.textBoxPerdictValue.Location = new System.Drawing.Point(553, 350);
             this.textBoxPerdictValue.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBoxPerdictValue.Name = "textBoxPerdictValue";
             this.textBoxPerdictValue.Size = new System.Drawing.Size(129, 24);
@@ -233,22 +232,22 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(371, 386);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(124, 17);
+            this.label2.Size = new System.Drawing.Size(159, 17);
             this.label2.TabIndex = 8;
-            this.label2.Text = "Hermit\'s Differential";
+            this.label2.Text = "Hermit\'s Error Differential";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(371, 418);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(141, 17);
+            this.label4.Size = new System.Drawing.Size(176, 17);
             this.label4.TabIndex = 9;
-            this.label4.Text = "Lagrange\'s Differential";
+            this.label4.Text = "Lagrange\'s Error Differential";
             // 
             // textBoxHermitDifferential
             // 
-            this.textBoxHermitDifferential.Location = new System.Drawing.Point(523, 386);
+            this.textBoxHermitDifferential.Location = new System.Drawing.Point(553, 383);
             this.textBoxHermitDifferential.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBoxHermitDifferential.Name = "textBoxHermitDifferential";
             this.textBoxHermitDifferential.Size = new System.Drawing.Size(129, 24);
@@ -257,18 +256,43 @@
             // 
             // textBoxLagrangeDifferential
             // 
-            this.textBoxLagrangeDifferential.Location = new System.Drawing.Point(523, 418);
+            this.textBoxLagrangeDifferential.Location = new System.Drawing.Point(553, 415);
             this.textBoxLagrangeDifferential.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBoxLagrangeDifferential.Name = "textBoxLagrangeDifferential";
             this.textBoxLagrangeDifferential.Size = new System.Drawing.Size(129, 24);
             this.textBoxLagrangeDifferential.TabIndex = 11;
             this.textBoxLagrangeDifferential.TextChanged += new System.EventHandler(this.textBoxLagrangeDifferential_TextChanged);
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.backToolStripMenuItem,
+            this.aboutToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(1048, 28);
+            this.menuStrip1.TabIndex = 12;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // backToolStripMenuItem
+            // 
+            this.backToolStripMenuItem.Name = "backToolStripMenuItem";
+            this.backToolStripMenuItem.Size = new System.Drawing.Size(52, 24);
+            this.backToolStripMenuItem.Text = "Back";
+            this.backToolStripMenuItem.Click += new System.EventHandler(this.backToolStripMenuItem_Click);
+            // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(62, 24);
+            this.aboutToolStripMenuItem.Text = "About";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+            // 
             // FormNumericalAnalysis
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(978, 466);
+            this.ClientSize = new System.Drawing.Size(1048, 462);
             this.Controls.Add(this.textBoxLagrangeDifferential);
             this.Controls.Add(this.textBoxHermitDifferential);
             this.Controls.Add(this.label4);
@@ -279,14 +303,19 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridViewSamplesInput);
+            this.Controls.Add(this.menuStrip1);
             this.KeyPreview = true;
+            this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.MinimumSize = new System.Drawing.Size(993, 502);
+            this.MaximumSize = new System.Drawing.Size(1066, 509);
+            this.MinimumSize = new System.Drawing.Size(1066, 509);
             this.Name = "FormNumericalAnalysis";
             this.Text = "Numerical Analysis";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSamplesInput)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -312,6 +341,9 @@
         private System.Windows.Forms.CheckBox checkBoxLagrangeDifferentiation;
         private System.Windows.Forms.CheckBox checkBoxLagrangeMethod;
         private System.Windows.Forms.CheckBox checkBoxSplineMethod;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem backToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
     }
 }
 

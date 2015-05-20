@@ -137,6 +137,9 @@ namespace numerical_analysis
 
             clearDataGridDuplicateEnteries();
 
+
+            // consider only valid visible rows, because invisible rows are deleted but cannot be
+            // completely removed because of a weird exception
             List<DataGridViewRow> validRows = new List<DataGridViewRow>();
             for (int i = 0; i < dataGridViewSamplesInput.Rows.Count; i++)
             {
@@ -491,6 +494,19 @@ namespace numerical_analysis
         private void checkBoxSplineMethod_CheckedChanged(object sender, EventArgs e)
         {
             updateSolutions();
+        }
+
+        private void backToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AboutBoxForApp aboutBox = new AboutBoxForApp();
+            this.Visible = false;
+            aboutBox.ShowDialog();
+            this.Visible = true;
         }
 
 

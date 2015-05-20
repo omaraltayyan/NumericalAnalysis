@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("numerical analysis")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Coded by: \r\n\r\nOmar Altayyan \r\nMuhammad Ayoub \r\nHatem Hamad \r\n\r\nGit Repository Link: https://github.com/omaraltayyan/NumericalAnalysis")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("numerical analysis")]
-[assembly: AssemblyCopyright("Copyright ©  2015")]
+[assembly: AssemblyCompany("Damascus University")]
+[assembly: AssemblyProduct("Numerical Analysis")]
+[assembly: AssemblyCopyright("Copyright (c) 2015 Faculty of Information Technology Engineering")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

@@ -36,8 +36,6 @@ namespace numerical_analysis
         }
         private void backToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //StartingForm strf = new StartingForm();
-            //strf.Show();
             this.Close();
         }
 
@@ -123,6 +121,14 @@ namespace numerical_analysis
             builder.AppendLine();
             ErrorList = builder.ToString();
             return Validated;
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AboutBoxForApp aboutBox = new AboutBoxForApp();
+            this.Visible = false;
+            aboutBox.ShowDialog();
+            this.Visible = true;
         }
     }
 }
