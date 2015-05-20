@@ -44,7 +44,7 @@ namespace numerical_analysis.Method_classes
         private string buildFunctionString()
         {
 
-            StringBuilder builder = new StringBuilder("F" + polynomialDegree + "(x) = ");
+            StringBuilder builder = new StringBuilder("L" + polynomialDegree + "(x) = ");
             for (int j = 0; j < samplesColumnLength; j++)
             {
                 double currentX = interpolationSamples[samplesXIndex, j];
@@ -52,13 +52,13 @@ namespace numerical_analysis.Method_classes
                 if (currentY == 0) continue;
                 if (j != 0)
                 {
-                    builder.Append(currentY >= 0 ? '-' : '+');
+                    builder.Append(currentY <= 0 ? '-' : '+');
                 }
                 if (UIDoubleAbs(currentY) != 1 || samplesColumnLength == 1) builder.Append(UIDoubleAbs(currentY));
                 string lagString = langrangeString(j);
                 if (lagString != "")
                 {
-                    builder.Append("(" + lagString + ")");
+                    builder.Append("[" + lagString + "]");
                 }
             }
             return builder.ToString();

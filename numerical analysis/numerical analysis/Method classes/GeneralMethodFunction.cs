@@ -108,7 +108,7 @@ namespace numerical_analysis.Method_classes
                 if (isSolvable)
                 {
                     bool didAddACoefficient = false;
-                    StringBuilder builder = new StringBuilder("P" + polynomialDegree + "(x) = ");
+                    StringBuilder builder = new StringBuilder("G" + polynomialDegree + "(x) = ");
                     for (int i = 0; i < interpolationConstants.Length; i++)
                     {
                         if (interpolationConstants[i] != 0)

@@ -21,13 +21,6 @@ namespace numerical_analysis
             InitializeComponent();
         }
 
-        private void dataGridViewSamplesInput_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.')
-            {
-                e.Handled = true;
-            }
-        }
 
         private void dataGridViewSamplesInput_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
@@ -230,7 +223,7 @@ namespace numerical_analysis
                 // end of Lagrange method's code
 
                 // Lagrange differentiation method code
-                LagrangeMethod lagrangeDifferentialMethod = new LagrangeMethod(twoColumnsInterpolationSamples);
+                LagrangeDiffrentiationMethod lagrangeDifferentialMethod = new LagrangeDiffrentiationMethod(twoColumnsInterpolationSamples);
                 if (lagrangeDifferentialMethod.isSolvable && checkBoxLagrangeDifferentiation.Checked)
                 {
                     textBoxOutputResults.AppendText("Lagrange's differential Method's Solution:");
@@ -364,7 +357,7 @@ namespace numerical_analysis
                                 object comparedObject = allRows[j].Cells[samplesXIndex].Value;
                                 if (comparedObject != null && double.TryParse(comparedObject.ToString(), out comparedVal))
                                 {
-                                    if (doublesEqual(comparedVal, currentVal)) // duplicate found
+                                    if (doublesEqual(comparedVal, currentVal) && !allRows[j].IsNewRow) // duplicate found
                                     {
                                         // stage the row for removal
                                         allRows[j].Visible = false;

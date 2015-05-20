@@ -73,7 +73,6 @@
             this.dataGridViewSamplesInput.TabIndex = 0;
             this.dataGridViewSamplesInput.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dataGridViewSamplesInput_CellValidating);
             this.dataGridViewSamplesInput.RowValidating += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dataGridViewSamplesInput_RowValidating);
-            this.dataGridViewSamplesInput.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dataGridViewSamplesInput_KeyPress);
             // 
             // X
             // 
