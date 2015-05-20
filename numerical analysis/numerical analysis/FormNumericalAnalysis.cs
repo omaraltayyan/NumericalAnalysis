@@ -49,14 +49,14 @@ namespace numerical_analysis
 
 
             if (allRows[e.RowIndex].IsNewRow) { return; }
-            if (allColumns[e.ColumnIndex].ReadOnly) return;
+            if (!allColumns[e.ColumnIndex].Visible) return;
 
             bool allOtherEnabledCellsHaveValue = true;
             // go through all columns, if one of them has a value then so must be this one
             for (int i = 0; i < allColumns.Count; i++)
             {
                 // if the current column is enabled
-                if (!allColumns[i].ReadOnly && i != e.ColumnIndex)
+                if (allColumns[i].Visible && i != e.ColumnIndex)
                 {
                     DataGridViewCell comparedCell = currentView[i, e.RowIndex];
 
@@ -69,13 +69,22 @@ namespace numerical_analysis
             if (allOtherEnabledCellsHaveValue && cellDoesntHaveValue(currentCell))
             {
                 currentCell.ErrorText = "Required";
-                e.Cancel = true;
                 return;
             }
 
             // copy the formatted value
             string newValue = new string(e.FormattedValue.ToString().ToCharArray()).Trim();
 
+            // clear all characters except numbers and "."s 
+            for (int i = 0; i < newValue.Length; i++)
+            {
+                if (newValue[i] != '.' && !char.IsDigit(newValue[i]))
+                {
+                    newValue = newValue.Remove(i, 1);
+                    i--;
+                }
+            }
+            
             // clear all .'s other than the first
             bool isfirstdot = true;
             for (int i = 0; i < newValue.Length; i++)
@@ -87,8 +96,6 @@ namespace numerical_analysis
                     if (i == newValue.Length || !isfirstdot)
                     {
                         newValue = newValue.Remove(i, 1);
-                        currentCell.Value = newValue;
-                        dataGridViewSamplesInput.RefreshEdit();
                         i--;
                     }
                     else
@@ -102,15 +109,17 @@ namespace numerical_analysis
                     }
                 }
             }
-
-
+            if (newValue != null)
+            {
+                dataGridViewSamplesInput.EditingControl.Text = newValue.ToString();
+                dataGridViewSamplesInput.NotifyCurrentCellDirty(true);
+            }
             // try to see if this is still a double
             double value = 0;
             if (!double.TryParse(newValue, out value))
             {
                 // if this isn't a double then clear the cell
                 currentCell.ErrorText = "Not Valid Number";
-                e.Cancel = true;
             }
             else
             {
@@ -363,6 +372,8 @@ namespace numerical_analysis
                     }
                 }
             }
+
+
         }
         private void dataGridViewSamplesInput_RowValidating(object sender, DataGridViewCellCancelEventArgs e)
         {
@@ -382,7 +393,7 @@ namespace numerical_analysis
             for (int i = 0; i < currentRow.Cells.Count; i++)
             {
                 // if this column is enabled and the cell is empty
-                if (!allColumns[i].ReadOnly && cellDoesntHaveValue(currentRow.Cells[i]))
+                if (allColumns[i].Visible && cellDoesntHaveValue(currentRow.Cells[i]))
                 {
                     // preserve the cell's index and set the input to be not complete
                     cellIndex = i;
@@ -393,7 +404,6 @@ namespace numerical_analysis
             if (!AllCellsFromPrevRowHasVal)
             {
                 dataGridViewSamplesInput[cellIndex, e.RowIndex].ErrorText = "Required";
-                e.Cancel = true;
             }
             else
             {
@@ -411,7 +421,16 @@ namespace numerical_analysis
         {
             // if the hermit method is checked then enable the derivative column, else disable it
             var yDerivativeColumn = dataGridViewSamplesInput.Columns[samplesYDerivativeIndex];
-            yDerivativeColumn.Visible = yDerivativeColumn.ReadOnly = checkBoxHermitMethod.Checked;
+            yDerivativeColumn.Visible = checkBoxHermitMethod.Checked;
+
+            // re validate all hermit's y' column's cells
+            for(int i = 0; i < dataGridViewSamplesInput.Rows.Count; i++)
+            {
+                DataGridViewCellCancelEventArgs args = new DataGridViewCellCancelEventArgs(samplesYDerivativeIndex,i);
+                dataGridViewSamplesInput_RowValidating(dataGridViewSamplesInput, args);
+            }
+
+
             updateSolutions();
         }
 
@@ -473,6 +492,7 @@ namespace numerical_analysis
         {
             updateSolutions();
         }
+
 
             //for (int i = 0; i < dataGridViewSamplesInput.Rows.Count; i++)
             //{

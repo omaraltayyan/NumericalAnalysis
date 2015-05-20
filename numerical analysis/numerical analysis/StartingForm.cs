@@ -18,14 +18,18 @@ namespace numerical_analysis
 
         private void buttonIntegration_Click(object sender, EventArgs e)
         {
-            FormIntegration FI = new FormIntegration();
-            FI.ShowDialog();
+            FormIntegration formIntegration = new FormIntegration();
+            this.Visible = false;
+            formIntegration.ShowDialog();
+            this.Visible = true;
         }
 
         private void buttonInterpolation_Click(object sender, EventArgs e)
         {
-            FormNumericalAnalysis fnm = new FormNumericalAnalysis();
-            fnm.ShowDialog();
+            FormNumericalAnalysis formNumericalAnalysis = new FormNumericalAnalysis();
+            this.Visible = false;
+            formNumericalAnalysis.ShowDialog();
+            this.Visible = true;
         }
     }
 }

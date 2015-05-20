@@ -74,7 +74,8 @@ namespace numerical_analysis.Method_classes
 
             // remove possible errors in calculation like 1.9999... instead of 2 and the sort
             double yForFx = Math.Round(YForX(sentVal),13);
-            return "F" + polynomialDegree + "(" + sentVal + ")" + " = " + yForFx;
+
+            return this.GetType().Name.Substring(0,1).ToUpper() + polynomialDegree + "(" + sentVal + ")" + " = " + yForFx;
         }
 
     }
