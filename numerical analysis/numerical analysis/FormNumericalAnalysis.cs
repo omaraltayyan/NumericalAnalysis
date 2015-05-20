@@ -109,7 +109,7 @@ namespace numerical_analysis
                     }
                 }
             }
-            if (newValue != null)
+            if (dataGridViewSamplesInput.EditingControl != null && newValue != null)
             {
                 dataGridViewSamplesInput.EditingControl.Text = newValue.ToString();
                 dataGridViewSamplesInput.NotifyCurrentCellDirty(true);
