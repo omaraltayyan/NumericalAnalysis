@@ -1,0 +1,11 @@
+C:\Users\omar\Documents\GitHub\NumericalAnalysis\numerical analysis\numerical analysis\bin\Release\numerical analysis.exe
+C:\Users\omar\Documents\GitHub\NumericalAnalysis\numerical analysis\numerical analysis\bin\Release\numerical analysis.pdb
+C:\Users\omar\Documents\GitHub\NumericalAnalysis\numerical analysis\numerical analysis\bin\Release\NCalc.dll
+C:\Users\omar\Documents\GitHub\NumericalAnalysis\numerical analysis\numerical analysis\obj\x86\Release\numerical_analysis.AboutBoxForApp.resources
+C:\Users\omar\Documents\GitHub\NumericalAnalysis\numerical analysis\numerical analysis\obj\x86\Release\numerical_analysis.FormIntegration.resources
+C:\Users\omar\Documents\GitHub\NumericalAnalysis\numerical analysis\numerical analysis\obj\x86\Release\numerical_analysis.FormNumericalAnalysis.resources
+C:\Users\omar\Documents\GitHub\NumericalAnalysis\numerical analysis\numerical analysis\obj\x86\Release\numerical_analysis.StartingForm.resources
+C:\Users\omar\Documents\GitHub\NumericalAnalysis\numerical analysis\numerical analysis\obj\x86\Release\numerical_analysis.Properties.Resources.resources
+C:\Users\omar\Documents\GitHub\NumericalAnalysis\numerical analysis\numerical analysis\obj\x86\Release\numerical analysis.csproj.GenerateResource.Cache
+C:\Users\omar\Documents\GitHub\NumericalAnalysis\numerical analysis\numerical analysis\obj\x86\Release\numerical analysis.exe
+C:\Users\omar\Documents\GitHub\NumericalAnalysis\numerical analysis\numerical analysis\obj\x86\Release\numerical analysis.pdb

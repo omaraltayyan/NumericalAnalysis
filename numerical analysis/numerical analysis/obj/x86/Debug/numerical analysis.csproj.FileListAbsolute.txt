@@ -2,6 +2,8 @@ C:\Users\Muhammad\Desktop\Numircal Analysis Project Git\numerical analysis\numer
 C:\Users\Muhammad\Desktop\Numircal Analysis Project Git\numerical analysis\numerical analysis\obj\x86\Debug\numerical analysis.pdb
 C:\Users\omar\Documents\GitHub\NumericalAnalysis\numerical analysis\numerical analysis\bin\Debug\numerical analysis.exe
 C:\Users\omar\Documents\GitHub\NumericalAnalysis\numerical analysis\numerical analysis\bin\Debug\numerical analysis.pdb
+C:\Users\omar\Documents\GitHub\NumericalAnalysis\numerical analysis\numerical analysis\bin\Debug\NCalc.dll
+C:\Users\omar\Documents\GitHub\NumericalAnalysis\numerical analysis\numerical analysis\obj\x86\Debug\numerical analysis.csprojResolveAssemblyReference.cache
 C:\Users\omar\Documents\GitHub\NumericalAnalysis\numerical analysis\numerical analysis\obj\x86\Debug\numerical_analysis.AboutBoxForApp.resources
 C:\Users\omar\Documents\GitHub\NumericalAnalysis\numerical analysis\numerical analysis\obj\x86\Debug\numerical_analysis.FormIntegration.resources
 C:\Users\omar\Documents\GitHub\NumericalAnalysis\numerical analysis\numerical analysis\obj\x86\Debug\numerical_analysis.FormNumericalAnalysis.resources
