@@ -227,7 +227,7 @@ namespace numerical_analysis.Method_classes
                     }
                 }
             }
-            // check if we have a zero deteminant by checking the main diagonal  for zeros
+            // check if we have a zero determinant by checking the main diagonal  for zeros
             for (int i = 0; i < matrixRowsLength; i++)
             {
                 if (matrixCopy[i,i] == 0)
